@@ -10,7 +10,7 @@
 
 @interface ECCommandLineCommand()
 
-@property (strong, nonatomic) NSString* name;
+@property (strong, nonatomic, readwrite) NSString* name;
 @property (strong, nonatomic) NSDictionary* info;
 
 @end
@@ -33,6 +33,39 @@
 	}
 
 	return self;
+}
+
+- (ECCommandLineArgumentMode)argumentModeForValue:(NSString*)value
+{
+	ECCommandLineArgumentMode result;
+	if ([value isEqualToString:@"required"])
+	{
+		result = ECCommandLineArgumentModeRequired;
+	}
+
+	else if ([value isEqualToString:@"optional"])
+	{
+		result = ECCommandLineArgumentModeOptinal;
+	}
+
+	else
+	{
+		result = ECCommandLineArgumentModeNone;
+	}
+
+	return result;
+}
+
+- (void)enumerateArguments:(ArgumentBlock)block
+{
+	NSDictionary* arguments = self.info[@"arguments"];
+	[arguments enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL *stop) {
+		NSString* shortOptionInfo = info[@"short"];
+		UniChar shortOption = ([shortOptionInfo length] > 0) ? [shortOptionInfo characterAtIndex:0] : 0;
+		ECCommandLineArgumentMode mode = [self argumentModeForValue:info[@"mode"]];
+
+		block(name, mode, shortOption, info);
+	}];
 }
 
 @end

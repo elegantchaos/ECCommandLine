@@ -8,6 +8,6 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 
 @interface ECCommandLineEngine : NSObject
 
-- (NSInteger)processArgumentCount:(NSUInteger)count arguments:(const char *[])arguments;
+- (NSInteger)processArguments:(int)argc argv:(const char **)argv;
 
 @end
