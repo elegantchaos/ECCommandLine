@@ -10,6 +10,7 @@
 
 typedef NS_ENUM(NSInteger, ECCommandLineResult)
 {
+	ECCommandLineResultOKButTerminate = -2,
 	ECCommandLineResultStayRunning = -1,
 	ECCommandLineResultOK = 0,
 	ECCommandLineResultUnknownCommand,

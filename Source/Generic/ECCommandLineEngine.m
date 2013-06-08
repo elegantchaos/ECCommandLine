@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSMutableDictionary* commands;
 @property (strong, nonatomic) NSMutableDictionary* options;
 @property (strong, nonatomic) NSMutableDictionary* optionsByShortName;
+@property (strong, nonatomic) ECCommandLineOption* helpOption;
+@property (strong, nonatomic) ECCommandLineOption* versionOption;
 
 @end
 
@@ -117,15 +119,30 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	option.value = value;
 }
 
-- (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv
+- (void)setupFromBundle
 {
-	[self logArguments:argc argv:argv];
-	
 	NSBundle* bundle = [NSBundle mainBundle];
 	NSDictionary* commands = bundle.infoDictionary[@"Commands"];
 	NSDictionary* options = bundle.infoDictionary[@"Options"];
 	[self registerCommands:commands];
 	[self registerOptions:options];
+
+	// TODO: maybe load these from a plist?
+	[self registerOptions:
+	 @{
+	 @"version": @{@"short" : @"v", @"help" : @"show version number"},
+	 @"help": @{@"short" : @"h", @"help" : @"show command help"}
+	 }
+	 ];
+
+	self.versionOption = self.options[@"version"];
+	self.helpOption = self.options[@"help"];
+}
+
+- (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv
+{
+	//	[self logArguments:argc argv:argv];
+	[self setupFromBundle];
 
 	const char* shortOptions = nil;
 	struct option* optionsArray = [self setupOptionsArrayWithShortOptions:&shortOptions];
@@ -157,15 +174,43 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
 
-	NSMutableArray* remainingArguments = [NSMutableArray arrayWithCapacity:argc - processedOptions];
-	for (NSUInteger n = processedOptions + 1; n < (NSUInteger)argc; ++n)
+	ECCommandLineResult result;
+	if ((processedOptions + 1) < (NSUInteger)argc)
 	{
-		[remainingArguments addObject:[[NSString alloc] initWithCString:argv[n] encoding:NSUTF8StringEncoding]];
+		NSMutableArray* remainingArguments = [NSMutableArray arrayWithCapacity:argc - processedOptions];
+		for (NSUInteger n = processedOptions + 1; n < (NSUInteger)argc; ++n)
+		{
+			[remainingArguments addObject:[[NSString alloc] initWithCString:argv[n] encoding:NSUTF8StringEncoding]];
+		}
+
+		result = [self processCommands:remainingArguments];
+	}
+	else
+	{
+		result = [self processNoCommands];
 	}
 
-	ECCommandLineResult result = [self processCommands:remainingArguments];
+	if (result == ECCommandLineResultUnknownCommand)
+	{
+		[self showUsage];
+	}
 
 	return result;
+}
+
+- (void)showUsage
+{
+	NSLog(@"usage: to do");
+}
+
+- (void)showHelp
+{
+	NSLog(@"help goes here");
+}
+
+- (void)showVersion
+{
+	NSLog(@"version goes here");
 }
 
 - (ECCommandLineResult)processCommands:(NSMutableArray*)commands
@@ -195,7 +240,26 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	return result;
 }
 
-- (NSInteger)processUnknownCommand:(NSString*)command
+- (ECCommandLineResult)processNoCommands
+{
+	ECCommandLineResult result = ECCommandLineResultOKButTerminate;
+	if ([self.versionOption.value boolValue])
+	{
+		[self showVersion];
+	}
+	else if ([self.helpOption.value boolValue])
+	{
+		[self showHelp];
+	}
+	else
+	{
+		result = ECCommandLineResultUnknownCommand;
+	}
+	
+	return result;
+}
+
+- (ECCommandLineResult)processUnknownCommand:(NSString*)command
 {
 	NSLog(@"unknown command %@", command);
 	return ECCommandLineResultUnknownCommand;
