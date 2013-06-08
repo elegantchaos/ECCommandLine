@@ -30,6 +30,7 @@
 	{
 		self.name = name;
 		self.info = info;
+		self.value = info[@"default"];
 	}
 
 	return self;

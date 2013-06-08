@@ -113,7 +113,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	if (!value)
 		value = @(YES);
 
-	NSLog(@"option %@ = %@", option.name, value);
+	ECDebug(CommandLineEngineChannel, @"option %@ = %@", option.name, value);
 	option.value = value;
 }
 
@@ -154,6 +154,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}
 
 	[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
+
+	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL *stop) {
+		NSLog(@"option %@ = %@", option.name, option.value);
+	}];
 
 	return 0;
 }
