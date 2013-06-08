@@ -6,18 +6,22 @@
 
 #import "ECCommandLineEngine.h"
 #import "ECCommandLineCommand.h"
+#import "ECCommandLineOption.h"
 
 #import <getopt.h>
 
 @interface ECCommandLineEngine()
 
 @property (strong, nonatomic) NSMutableDictionary* commands;
+@property (strong, nonatomic) NSMutableDictionary* options;
 
 @end
 
 @implementation ECCommandLineEngine
 
 ECDefineDebugChannel(CommandLineEngineChannel);
+
+#pragma mark - Commands
 
 - (void)registerCommandNamed:(NSString*)name withInfo:(NSDictionary*)info
 {
@@ -36,6 +40,25 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}];
 }
 
+#pragma mark - Options
+
+- (void)registerOptionNamed:(NSString*)name withInfo:(NSDictionary*)info
+{
+	ECDebug(CommandLineEngineChannel, @"registered option %@", name);
+
+	ECCommandLineOption* option = [ECCommandLineOption optionWithName:name info:info];
+	self.options[name] = option;
+}
+
+- (void)registerOptions:(NSDictionary*)options
+{
+	self.options = [NSMutableDictionary dictionary];
+
+	[options enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL *stop) {
+		[self registerOptionNamed:name withInfo:info];
+	}];
+}
+
 - (void)logArguments:(int)argc argv:(const char **)argv
 {
 	for (int n = 0; n < argc; ++n)
@@ -49,38 +72,52 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	
 	NSBundle* bundle = [NSBundle mainBundle];
 	NSDictionary* commands = bundle.infoDictionary[@"Commands"];
+	NSDictionary* options = bundle.infoDictionary[@"Options"];
 	[self registerCommands:commands];
+	[self registerOptions:options];
 
-	NSUInteger optionsCount = [self.commands count];
-	struct option* options = calloc(optionsCount, sizeof(struct option));
-	__block struct option* option = options;
+	NSUInteger optionsCount = [self.options count];
+	struct option* optionsArray = calloc(optionsCount, sizeof(struct option));
+	__block struct option* optionPtr = optionsArray;
 	NSMutableString* shortOptions = [[NSMutableString alloc] init];
-	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* commandName, ECCommandLineCommand* command, BOOL *stop) {
-		[command enumerateArguments:^(NSString* argumentName, ECCommandLineArgumentMode mode, UniChar shortOption, NSDictionary *info) {
-			option->name = strdup([argumentName UTF8String]);
-			option->has_arg = mode;
-			option->flag = NULL;
-			option->val = shortOption;
-			[shortOptions appendFormat:@"%c", shortOption];
-			option++;
-		}];
+	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* optionName, ECCommandLineOption* option, BOOL *stop) {
+		optionPtr->name = strdup([optionName UTF8String]);
+		optionPtr->has_arg = option.mode;
+		optionPtr->flag = NULL;
+		optionPtr->val = option.shortOption;
+		[shortOptions appendFormat:@"%c", option.shortOption];
+		optionPtr++;
 	}];
 
 	int optionIndex = -1;
-	int opt;
+	int shortOption;
 
 	char* shortOptionsC = strdup([shortOptions UTF8String]);
-	while ((opt = getopt_long(argc, (char *const *)argv, shortOptionsC, options, &optionIndex)) != -1)
+	while ((shortOption = getopt_long(argc, (char *const *)argv, shortOptionsC, optionsArray, &optionIndex)) != -1)
 	{
-		NSString* optionName = [NSString stringWithUTF8String:options[optionIndex].name];
-		NSLog(@"option name %@", optionName);
+		switch (shortOption)
+		{
+			case '?':
+				NSLog(@"unknown option %s", optarg);
+				break;
+
+			case ':':
+				NSLog(@"missing value %s", optarg);
+				break;
+
+			default:
+			{
+				NSString* optionName = [NSString stringWithUTF8String:optionsArray[optionIndex].name];
+				NSLog(@"option name %@ value %s", optionName, optarg);
+			}
+		}
 	}
 
 	for (NSUInteger n = 0; n < optionsCount; ++n)
 	{
-		free((char*)(options[n].name));
+		free((char*)(optionsArray[n].name));
 	}
-	free(options);
+	free(optionsArray);
 	free(shortOptionsC);
 
 	return 0;
