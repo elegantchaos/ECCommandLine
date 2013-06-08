@@ -14,10 +14,23 @@
 
 @property (strong, nonatomic) NSMutableDictionary* commands;
 @property (strong, nonatomic) NSMutableDictionary* options;
+@property (strong, nonatomic) NSMutableDictionary* optionsByShortName;
 
 @end
 
 @implementation ECCommandLineEngine
+
+- (id)init
+{
+	if ((self = [super init]) != nil)
+	{
+		self.commands = [NSMutableDictionary dictionary];
+		self.options = [NSMutableDictionary dictionary];
+		self.optionsByShortName = [NSMutableDictionary dictionary];
+	}
+
+	return self;
+}
 
 ECDefineDebugChannel(CommandLineEngineChannel);
 
@@ -33,8 +46,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (void)registerCommands:(NSDictionary*)commands
 {
-	self.commands = [NSMutableDictionary dictionary];
-
 	[commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL *stop) {
 		[self registerCommandNamed:name withInfo:info];
 	}];
@@ -48,12 +59,11 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	ECCommandLineOption* option = [ECCommandLineOption optionWithName:name info:info];
 	self.options[name] = option;
+	self.optionsByShortName[[NSString stringWithFormat:@"%c", option.shortOption]] = option;
 }
 
 - (void)registerOptions:(NSDictionary*)options
 {
-	self.options = [NSMutableDictionary dictionary];
-
 	[options enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL *stop) {
 		[self registerOptionNamed:name withInfo:info];
 	}];
@@ -66,6 +76,47 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		NSLog(@"%s", argv[n]);
 	}
 }
+
+- (struct option*)setupOptionsArrayWithShortOptions:(const char**)shortOptions
+{
+	NSUInteger optionsCount = [self.options count];
+	struct option* optionsArray = calloc(optionsCount + 1, sizeof(struct option));
+	__block struct option* optionPtr = optionsArray;
+	NSMutableString* shortBuffer = [[NSMutableString alloc] init];
+	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* optionName, ECCommandLineOption* option, BOOL *stop) {
+		optionPtr->name = strdup([optionName UTF8String]);
+		optionPtr->has_arg = option.mode;
+		optionPtr->flag = NULL;
+		optionPtr->val = option.shortOption;
+		[shortBuffer appendFormat:@"%c", option.shortOption];
+		optionPtr++;
+	}];
+
+	*shortOptions = strdup([shortBuffer UTF8String]);
+
+	return optionsArray;
+}
+
+- (void)cleanupOptionsArray:(struct option*)optionsArray withShortOptions:(const char*)shortOptions
+{
+	NSUInteger optionsCount = [self.options count];
+	for (NSUInteger n = 0; n < optionsCount; ++n)
+	{
+		free((char*)(optionsArray[n].name));
+	}
+	free(optionsArray);
+	free((void*)shortOptions);
+}
+
+- (void)processOption:(ECCommandLineOption*)option value:(id)value
+{
+	if (!value)
+		value = @(YES);
+
+	NSLog(@"option %@ = %@", option.name, value);
+	option.value = value;
+}
+
 - (NSInteger)processArguments:(int)argc argv:(const char **)argv
 {
 	[self logArguments:argc argv:argv];
@@ -76,24 +127,12 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	[self registerCommands:commands];
 	[self registerOptions:options];
 
-	NSUInteger optionsCount = [self.options count];
-	struct option* optionsArray = calloc(optionsCount, sizeof(struct option));
-	__block struct option* optionPtr = optionsArray;
-	NSMutableString* shortOptions = [[NSMutableString alloc] init];
-	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* optionName, ECCommandLineOption* option, BOOL *stop) {
-		optionPtr->name = strdup([optionName UTF8String]);
-		optionPtr->has_arg = option.mode;
-		optionPtr->flag = NULL;
-		optionPtr->val = option.shortOption;
-		[shortOptions appendFormat:@"%c", option.shortOption];
-		optionPtr++;
-	}];
-
+	const char* shortOptions = nil;
+	struct option* optionsArray = [self setupOptionsArrayWithShortOptions:&shortOptions];
 	int optionIndex = -1;
 	int shortOption;
 
-	char* shortOptionsC = strdup([shortOptions UTF8String]);
-	while ((shortOption = getopt_long(argc, (char *const *)argv, shortOptionsC, optionsArray, &optionIndex)) != -1)
+	while ((shortOption = getopt_long(argc, (char *const *)argv, shortOptions, optionsArray, &optionIndex)) != -1)
 	{
 		switch (shortOption)
 		{
@@ -107,18 +146,14 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 			default:
 			{
-				NSString* optionName = [NSString stringWithUTF8String:optionsArray[optionIndex].name];
-				NSLog(@"option name %@ value %s", optionName, optarg);
+				ECCommandLineOption* option = self.optionsByShortName[[NSString stringWithFormat:@"%c", (char)shortOption]];
+				NSString* optionValue = optarg ? [[NSString alloc] initWithCString:optarg encoding:NSUTF8StringEncoding] : nil;
+				[self processOption:option value:optionValue];
 			}
 		}
 	}
 
-	for (NSUInteger n = 0; n < optionsCount; ++n)
-	{
-		free((char*)(optionsArray[n].name));
-	}
-	free(optionsArray);
-	free(shortOptionsC);
+	[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
 
 	return 0;
 }

@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOptionMode)
 @interface ECCommandLineOption : NSObject
 
 @property (readonly, nonatomic) NSString* name;
+@property (strong, nonatomic) id value;
 
 + (ECCommandLineOption*)optionWithName:(NSString*)name info:(NSDictionary*)info;
 
