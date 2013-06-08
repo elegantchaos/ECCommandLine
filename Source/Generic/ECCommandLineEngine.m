@@ -132,10 +132,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	int optionIndex = -1;
 	int shortOption;
 
-	NSUInteger realArgumentCount = argc;
+	NSUInteger processedOptions = 0;
 	while ((shortOption = getopt_long(argc, (char *const *)argv, shortOptions, optionsArray, &optionIndex)) != -1)
 	{
-		--realArgumentCount;
+		++processedOptions;
 		switch (shortOption)
 		{
 			case '?':
@@ -157,11 +157,48 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
 
-	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL *stop) {
-		NSLog(@"option %@ = %@", option.name, option.value);
-	}];
+	NSMutableArray* remainingArguments = [NSMutableArray arrayWithCapacity:argc - processedOptions];
+	for (NSUInteger n = processedOptions + 1; n < (NSUInteger)argc; ++n)
+	{
+		[remainingArguments addObject:[[NSString alloc] initWithCString:argv[n] encoding:NSUTF8StringEncoding]];
+	}
 
-	return 0;
+	NSInteger result = [self processCommands:remainingArguments];
+
+	return result;
+}
+
+- (NSInteger)processCommands:(NSMutableArray*)commands
+{
+	NSString* commandName = [commands objectAtIndex:0];
+	[commands removeObjectAtIndex:0];
+
+	NSInteger result;
+	if ([commandName isEqualToString:@"--"])
+	{
+		// skip to next command
+		result = [self processCommands:commands];
+	}
+	else
+	{
+		ECCommandLineCommand* command = self.commands[commandName];
+		if (command)
+		{
+			result = [command processCommands:commands];
+		}
+		else
+		{
+			result = [self processUnknownCommand:commandName];
+		}
+	}
+
+	return result;
+}
+
+- (NSInteger)processUnknownCommand:(NSString*)command
+{
+	NSLog(@"unknown command %@", command);
+	return 1;
 }
 
 @end

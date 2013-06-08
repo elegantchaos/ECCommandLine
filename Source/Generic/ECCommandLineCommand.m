@@ -68,4 +68,12 @@
 	}];
 }
 
+- (NSInteger)processCommands:(NSMutableArray*)commands
+{
+	NSLog(@"couldn't process command %@ (%@)", self.name, [self class]);
+
+	return 1;
+}
+
+
 @end

@@ -24,5 +24,6 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 + (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info;
 
 - (void)enumerateArguments:(ArgumentBlock)block;
+- (NSInteger)processCommands:(NSMutableArray*)commands;
 
 @end
