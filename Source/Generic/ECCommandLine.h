@@ -7,3 +7,4 @@
 #import <ECLogging/ECLogging.h>
 
 #import "ECCommandLineEngine.h"
+#import "ECCommandLineCommand.h"

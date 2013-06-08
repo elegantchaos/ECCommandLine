@@ -4,6 +4,8 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
+ECDeclareDebugChannel(CommandLineEngineChannel);
+
 @interface ECCommandLineEngine : NSObject
 
 - (NSInteger)processArgumentCount:(NSUInteger)count arguments:(const char *[])arguments;
