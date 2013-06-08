@@ -6,4 +6,4 @@
 
 #import <ECLogging/ECLogging.h>
 
-#import "ECKeyChain.h"
+#import "ECCommandLineExample.h"

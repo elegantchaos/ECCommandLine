@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2251B9FE15DBCC3E00F2FE40"
-               BuildableName = "ECLogging.framework"
-               BlueprintName = "ECLoggingMac"
+               BlueprintIdentifier = "228CF1E817562478003E1D25"
+               BuildableName = "libECLogging.a"
+               BlueprintName = "ECLoggingMacStatic"
                ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,24 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2260A2E815DFD7290057C9DA"
-               BuildableName = "{{name}}.framework"
-               BlueprintName = "{{name}}Mac"
-               ReferencedContainer = "container:{{name}}.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "22FF8E8516F1E5EB008FC10D"
-               BuildableName = "ECUnitTests.framework"
-               BlueprintName = "ECUnitTestsMac"
-               ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
+               BlueprintIdentifier = "2296287017621E33008D887F"
+               BuildableName = "libECCommandLine.a"
+               BlueprintName = "ECCommandLineMacStatic"
+               ReferencedContainer = "container:ECCommandLine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -56,10 +42,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2283A3F414F52EC0009142F7"
-               BuildableName = "{{name}}MacTests.octest"
-               BlueprintName = "{{name}}MacTests"
-               ReferencedContainer = "container:{{name}}.xcodeproj">
+               BlueprintIdentifier = "22FF8E8516F1E5EB008FC10D"
+               BuildableName = "ECUnitTests.framework"
+               BlueprintName = "ECUnitTestsMac"
+               ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -70,6 +56,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2283A3F414F52EC0009142F7"
+               BuildableName = "ECCommandLineMacTests.octest"
+               BlueprintName = "ECCommandLineMacTests"
+               ReferencedContainer = "container:ECCommandLine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

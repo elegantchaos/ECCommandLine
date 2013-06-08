@@ -4,9 +4,6 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-/// Standard xcconfig files.
-/// The use of a relative path here relies on ECLogging being in a known location. See <ImportNote> in the documentation for more details.
+#import <ECLogging/ECLoggingRelease.pch>
 
-#include "../ECLogging/Source/Configuration/ECIOSDebug.xcconfig"
-#include "../ECLogging/Source/Configuration/ECUnitTests.xcconfig"
-#include "Shared.xcconfig"
+#import "ECCommandLineShared.pch"

@@ -4,6 +4,6 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-#import <ECLogging/ECLogging.h>
+@interface ECCommandLineInterface : NSObject
 
-#import "ECKeyChain.h"
+@end

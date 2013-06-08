@@ -4,9 +4,10 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-/// Standard xcconfig files.
-/// The use of a relative path here relies on ECLogging being in a known location. See <ImportNote> in the documentation for more details.
+#define EC_COMMAND_LINE 1
 
-#include "../ECLogging/Source/Configuration/ECMacRelease.xcconfig"
-#include "../ECLogging/Source/Configuration/ECFramework.xcconfig"
-#include "Shared.xcconfig"
+#ifdef __OBJC__
+
+#import <ECLogging/ECLogging.h>
+
+#endif
