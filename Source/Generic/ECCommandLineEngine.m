@@ -117,7 +117,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	option.value = value;
 }
 
-- (NSInteger)processArguments:(int)argc argv:(const char **)argv
+- (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv
 {
 	[self logArguments:argc argv:argv];
 	
@@ -163,17 +163,17 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		[remainingArguments addObject:[[NSString alloc] initWithCString:argv[n] encoding:NSUTF8StringEncoding]];
 	}
 
-	NSInteger result = [self processCommands:remainingArguments];
+	ECCommandLineResult result = [self processCommands:remainingArguments];
 
 	return result;
 }
 
-- (NSInteger)processCommands:(NSMutableArray*)commands
+- (ECCommandLineResult)processCommands:(NSMutableArray*)commands
 {
 	NSString* commandName = [commands objectAtIndex:0];
 	[commands removeObjectAtIndex:0];
 
-	NSInteger result;
+	ECCommandLineResult result;
 	if ([commandName isEqualToString:@"--"])
 	{
 		// skip to next command
@@ -198,7 +198,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 - (NSInteger)processUnknownCommand:(NSString*)command
 {
 	NSLog(@"unknown command %@", command);
-	return 1;
+	return ECCommandLineResultUnknownCommand;
 }
 
 @end

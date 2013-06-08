@@ -4,10 +4,12 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
+#import "ECCommandLineResult.h"
+
 ECDeclareDebugChannel(CommandLineEngineChannel);
 
 @interface ECCommandLineEngine : NSObject
 
-- (NSInteger)processArguments:(int)argc argv:(const char **)argv;
+- (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ECCommandLineCommand.h"
+#import "ECCommandLineMissingClassCommand.h"
 
 @interface ECCommandLineCommand()
 
@@ -19,7 +20,15 @@
 
 + (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info
 {
-	ECCommandLineCommand* command = [[ECCommandLineCommand alloc] initWithName:name info:info];
+	Class class = nil;
+	NSString* className = info[@"class"];
+	if (className)
+		class = NSClassFromString(className);
+
+	if (!class)
+		class = [ECCommandLineMissingClassCommand class];
+
+	ECCommandLineCommand* command = [[class alloc] initWithName:name info:info];
 
 	return command;
 }
@@ -68,12 +77,33 @@
 	}];
 }
 
-- (NSInteger)processCommands:(NSMutableArray*)commands
+- (ECCommandLineResult)processCommands:(NSMutableArray*)commands
+{
+	ECCommandLineResult result = [self willProcessWithArguments:commands];
+	if (result == 0)
+	{
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			ECCommandLineResult commandResult = [self didProcessWithArguments:commands];
+			if (result != ECCommandLineResultStayRunning)
+			{
+				exit(commandResult);
+			}
+		}];
+	}
+
+	return result;
+}
+
+- (ECCommandLineResult)willProcessWithArguments:(NSMutableArray*)arguments
+{
+	return ECCommandLineResultOK;
+}
+
+- (ECCommandLineResult)didProcessWithArguments:(NSMutableArray *)arguments
 {
 	NSLog(@"couldn't process command %@ (%@)", self.name, [self class]);
 
-	return 1;
+	return ECCommandLineResultNotImplemented;
 }
-
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Elegant Chaos. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ECCommandLineResult.h"
 
 typedef NS_ENUM(NSUInteger, ECCommandLineArgumentMode)
 {
@@ -24,6 +24,8 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 + (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info;
 
 - (void)enumerateArguments:(ArgumentBlock)block;
-- (NSInteger)processCommands:(NSMutableArray*)commands;
+- (ECCommandLineResult)processCommands:(NSMutableArray*)commands;
+- (ECCommandLineResult)willProcessWithArguments:(NSMutableArray*)arguments;
+- (ECCommandLineResult)didProcessWithArguments:(NSMutableArray*)arguments;
 
 @end
