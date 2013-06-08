@@ -4,6 +4,8 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-@interface ECCommandLineInterface : NSObject
+@interface ECCommandLineEngine : NSObject
+
+- (NSInteger)processArgumentCount:(NSUInteger)count arguments:(const char *[])arguments;
 
 @end

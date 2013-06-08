@@ -4,12 +4,22 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-#import "ECCommandLineExample.h"
+#import "ECCommandLineEngine.h"
 
-@interface ECCommandLineInterface()
+@interface ECCommandLineEngine()
 
 @end
 
-@implementation ECCommandLineInterface()
+@implementation ECCommandLineEngine
+
+- (NSInteger)processArgumentCount:(NSUInteger)count arguments:(const char *[])arguments
+{
+	for (NSUInteger n = 0; n < count; ++n)
+	{
+		NSLog(@"%s", arguments[n]);
+	}
+
+	return 0;
+}
 
 @end

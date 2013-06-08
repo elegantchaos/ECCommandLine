@@ -6,4 +6,4 @@
 
 #import <ECLogging/ECLogging.h>
 
-#import "ECCommandLineExample.h"
+#import "ECCommandLineEngine.h"
