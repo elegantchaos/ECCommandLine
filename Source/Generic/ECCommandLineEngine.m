@@ -132,8 +132,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	int optionIndex = -1;
 	int shortOption;
 
+	NSUInteger realArgumentCount = argc;
 	while ((shortOption = getopt_long(argc, (char *const *)argv, shortOptions, optionsArray, &optionIndex)) != -1)
 	{
+		--realArgumentCount;
 		switch (shortOption)
 		{
 			case '?':
