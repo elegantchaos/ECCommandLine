@@ -29,6 +29,20 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2296287017621E33008D887F"
+               BuildableName = "libECCore.a"
+               BlueprintName = "ECCoreMacStatic"
+               ReferencedContainer = "container:../ECCore/ECCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2296287017621E33008D887F"
                BuildableName = "libECCommandLine.a"
                BlueprintName = "ECCommandLineMacStatic"
                ReferencedContainer = "container:ECCommandLine.xcodeproj">

@@ -12,6 +12,7 @@
 
 @interface ECCommandLineEngine()
 
+@property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSMutableDictionary* commands;
 @property (strong, nonatomic) NSMutableDictionary* options;
 @property (strong, nonatomic) NSMutableDictionary* optionsByShortName;
@@ -141,6 +142,8 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv
 {
+	self.name = [[[NSString alloc] initWithUTF8String:argv[0]] lastPathComponent];
+
 	//	[self logArguments:argc argv:argv];
 	[self setupFromBundle];
 
@@ -200,7 +203,27 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (void)showUsage
 {
-	NSLog(@"usage: to do");
+	NSString* usage = [NSString stringWithFormat:@"Usage: %@ ", self.name];
+	NSString* padding = [@"" stringByPaddingToLength:[usage length] withString:@" " startingAtIndex:0];
+	NSMutableString* string = [NSMutableString stringWithFormat:@"%@", usage];
+	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL *stop) {
+		NSString* optionString = [NSString stringWithFormat:@" [ --%@ ]", option.name];
+		if ([string length] + [optionString length] > 70)
+		{
+			NSLog(@"%@", string);
+			[string setString:padding];
+		}
+
+		[string appendString:optionString];
+	}];
+	NSLog(@"%@", string);
+
+	NSLog(@"\n\nCommands:");
+	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
+		NSLog(@"\t%@ %@", name, command.help);
+	}];
+
+	NSLog(@"\n\nSee ‘%@ help <command>’ for more information on a specific command.", self.name);
 }
 
 - (void)showHelp

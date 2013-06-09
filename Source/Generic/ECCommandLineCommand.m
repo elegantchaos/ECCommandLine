@@ -44,6 +44,11 @@
 	return self;
 }
 
+- (NSString*)help
+{
+	return self.info[@"help"];
+}
+
 - (ECCommandLineArgumentMode)argumentModeForValue:(NSString*)value
 {
 	ECCommandLineArgumentMode result;

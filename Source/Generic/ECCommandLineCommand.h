@@ -27,5 +27,6 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 - (ECCommandLineResult)processCommands:(NSMutableArray*)commands;
 - (ECCommandLineResult)willProcessWithArguments:(NSMutableArray*)arguments;
 - (ECCommandLineResult)didProcessWithArguments:(NSMutableArray*)arguments;
+- (NSString*)help;
 
 @end
