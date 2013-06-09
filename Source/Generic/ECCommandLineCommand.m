@@ -82,13 +82,13 @@
 	}];
 }
 
-- (ECCommandLineResult)processCommands:(NSMutableArray*)commands
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine processCommands:(NSMutableArray*)commands
 {
-	ECCommandLineResult result = [self willProcessWithArguments:commands];
+	ECCommandLineResult result = [self engine:engine willProcessWithArguments:commands];
 	if (result == 0)
 	{
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-			ECCommandLineResult commandResult = [self didProcessWithArguments:commands];
+			ECCommandLineResult commandResult = [self engine:engine didProcessWithArguments:commands];
 			if (result != ECCommandLineResultStayRunning)
 			{
 				exit(commandResult);
@@ -99,12 +99,12 @@
 	return result;
 }
 
-- (ECCommandLineResult)willProcessWithArguments:(NSMutableArray*)arguments
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine willProcessWithArguments:(NSMutableArray*)arguments
 {
 	return ECCommandLineResultOK;
 }
 
-- (ECCommandLineResult)didProcessWithArguments:(NSMutableArray *)arguments
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine didProcessWithArguments:(NSMutableArray *)arguments
 {
 	NSLog(@"couldn't process command %@ (%@)", self.name, [self class]);
 

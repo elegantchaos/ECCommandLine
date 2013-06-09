@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, ECCommandLineArgumentMode)
 
 typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, UniChar shortOption, NSDictionary* info);
 
+@class ECCommandLineEngine;
 @interface ECCommandLineCommand : NSObject
 
 @property (readonly, nonatomic) NSString* name;
@@ -24,9 +25,10 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 + (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info;
 
 - (void)enumerateArguments:(ArgumentBlock)block;
-- (ECCommandLineResult)processCommands:(NSMutableArray*)commands;
-- (ECCommandLineResult)willProcessWithArguments:(NSMutableArray*)arguments;
-- (ECCommandLineResult)didProcessWithArguments:(NSMutableArray*)arguments;
+
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine processCommands:(NSMutableArray*)commands;
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine willProcessWithArguments:(NSMutableArray*)arguments;
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine didProcessWithArguments:(NSMutableArray*)arguments;
 - (NSString*)help;
 
 @end

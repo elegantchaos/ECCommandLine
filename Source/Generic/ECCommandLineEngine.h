@@ -12,4 +12,6 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 
 - (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv;
 
+- (void)showHelp;
+
 @end

@@ -9,6 +9,7 @@
 #import "ECCommandLineOption.h"
 
 #import <getopt.h>
+#import <stdarg.h>
 
 @interface ECCommandLineEngine()
 
@@ -136,6 +137,11 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	 }
 	 ];
 
+	[self registerCommands:
+	 @{ @"help": @{@"class" : @"ECCommandLineHelpCommand", @"help" : @"Show this help message."}
+	 }
+	 ];
+
 	self.versionOption = self.options[@"version"];
 	self.helpOption = self.options[@"help"];
 }
@@ -201,6 +207,16 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	return result;
 }
 
+- (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2)
+{
+	va_list args;
+	va_start(args, format);
+	NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
+	va_end(args);
+
+	printf("%s", [string UTF8String]);
+}
+
 - (void)showUsage
 {
 	NSString* usage = [NSString stringWithFormat:@"Usage: %@ ", self.name];
@@ -210,30 +226,30 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		NSString* optionString = [NSString stringWithFormat:@" [ --%@ ]", option.name];
 		if ([string length] + [optionString length] > 70)
 		{
-			NSLog(@"%@", string);
+			[self outputFormat:@"%@\n", string];
 			[string setString:padding];
 		}
 
 		[string appendString:optionString];
 	}];
-	NSLog(@"%@", string);
+	[self outputFormat:@"%@\n", string];
 
-	NSLog(@"\n\nCommands:");
+	[self outputFormat:@"\n\nCommands:\n"];
 	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
-		NSLog(@"\t%@ %@", name, command.help);
+		[self outputFormat:@"\t%@ %@\n", name, command.help];
 	}];
 
-	NSLog(@"\n\nSee ‘%@ help <command>’ for more information on a specific command.", self.name);
+	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];
 }
 
 - (void)showHelp
 {
-	NSLog(@"help goes here");
+	[self showUsage];
 }
 
 - (void)showVersion
 {
-	NSLog(@"version goes here");
+	[self outputFormat:@"%@ version %@\n", self.name, [NSApp applicationVersion]];
 }
 
 - (ECCommandLineResult)processCommands:(NSMutableArray*)commands
@@ -252,7 +268,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		ECCommandLineCommand* command = self.commands[commandName];
 		if (command)
 		{
-			result = [command processCommands:commands];
+			result = [command engine:self processCommands:commands];
 		}
 		else
 		{
@@ -284,7 +300,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (ECCommandLineResult)processUnknownCommand:(NSString*)command
 {
-	NSLog(@"unknown command %@", command);
+	[self outputFormat:@"unknown command %@", command];
 	return ECCommandLineResultUnknownCommand;
 }
 

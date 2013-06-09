@@ -10,7 +10,7 @@
 
 @implementation ECCommandLineMissingClassCommand
 
-- (ECCommandLineResult)didProcessWithArguments:(NSMutableArray *)arguments
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine didProcessWithArguments:(NSMutableArray *)arguments
 {
 	NSLog(@"Command class missing for %@ (%@)", self.name, [self class]);
 
