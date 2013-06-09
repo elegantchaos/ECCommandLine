@@ -249,7 +249,8 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (void)showVersion
 {
-	[self outputFormat:@"%@ version %@\n", self.name, [NSApp applicationVersion]];
+	NSString* version = [NSApp applicationVersion];
+	[self outputFormat:@"%@ version %@\n", self.name, version];
 }
 
 - (ECCommandLineResult)processCommands:(NSMutableArray*)commands
