@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2207E4C8176875520003F042 /* ECCommandLineMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2207E4C6176875520003F042 /* ECCommandLineMain.h */; };
+		2207E4C8176875520003F042 /* ECCommandLineMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2207E4C6176875520003F042 /* ECCommandLineMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2207E4C9176875520003F042 /* ECCommandLineMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2207E4C7176875520003F042 /* ECCommandLineMain.m */; };
 		2230CDA4176366AA0026AA5E /* ECCommandLineCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2230CDA5176366AA0026AA5E /* ECCommandLineCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */; };
