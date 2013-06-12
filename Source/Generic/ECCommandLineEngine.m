@@ -301,7 +301,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (ECCommandLineResult)processUnknownCommand:(NSString*)command
 {
-	[self outputFormat:@"unknown command %@", command];
+	[self outputFormat:@"Unknown command ‘%@’\n\n", command];
 	return ECCommandLineResultUnknownCommand;
 }
 
