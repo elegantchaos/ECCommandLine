@@ -15,5 +15,6 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (void)showHelp;
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 - (void)outputError:(NSError*)error format:(NSString*)format, ... NS_FORMAT_FUNCTION(2,3);
+- (id)optionForKey:(NSString*)key;
 
 @end

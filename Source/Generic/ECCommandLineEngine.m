@@ -121,6 +121,14 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	option.value = value;
 }
 
+- (id)optionForKey:(NSString*)key
+{
+	ECCommandLineOption* option = self.options[key];
+	id result = option.value;
+
+	return result;
+}
+
 - (void)setupFromBundle
 {
 	NSBundle* bundle = [NSBundle mainBundle];
