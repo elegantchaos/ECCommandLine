@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2207E4C8176875520003F042 /* ECCommandLineMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2207E4C6176875520003F042 /* ECCommandLineMain.h */; };
+		2207E4C9176875520003F042 /* ECCommandLineMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2207E4C7176875520003F042 /* ECCommandLineMain.m */; };
 		2230CDA4176366AA0026AA5E /* ECCommandLineCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2230CDA5176366AA0026AA5E /* ECCommandLineCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */; };
 		2230CDAE17637D970026AA5E /* ECCommandLineOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDAC17637D970026AA5E /* ECCommandLineOption.h */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2207E4C6176875520003F042 /* ECCommandLineMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLineMain.h; sourceTree = "<group>"; };
+		2207E4C7176875520003F042 /* ECCommandLineMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCommandLineMain.m; sourceTree = "<group>"; };
 		221662E914FB9315009B975D /* ECCoreTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ECCoreTests.plist; path = Resources/Tests/ECCoreTests.plist; sourceTree = SOURCE_ROOT; };
 		2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLineCommand.h; sourceTree = "<group>"; };
 		2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCommandLineCommand.m; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */,
 				225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */,
 				225DECC517649ADE000056F4 /* ECCommandLineHelpCommand.m */,
+				2207E4C6176875520003F042 /* ECCommandLineMain.h */,
+				2207E4C7176875520003F042 /* ECCommandLineMain.m */,
 				22664DFC1763AF2600D6439D /* ECCommandLineMissingClassCommand.h */,
 				22664DFD1763AF2600D6439D /* ECCommandLineMissingClassCommand.m */,
 				2230CDAC17637D970026AA5E /* ECCommandLineOption.h */,
@@ -180,6 +186,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2207E4C8176875520003F042 /* ECCommandLineMain.h in Headers */,
 				229628F31763442D008D887F /* ECCommandLine.h in Headers */,
 				229628F817634465008D887F /* ECCommandLineEngine.h in Headers */,
 				2230CDA4176366AA0026AA5E /* ECCommandLineCommand.h in Headers */,
@@ -303,6 +310,7 @@
 				2230CDA5176366AA0026AA5E /* ECCommandLineCommand.m in Sources */,
 				2230CDAF17637D970026AA5E /* ECCommandLineOption.m in Sources */,
 				22664DFB1763AD6500D6439D /* ECCommandLineResult.m in Sources */,
+				2207E4C9176875520003F042 /* ECCommandLineMain.m in Sources */,
 				22664DFF1763AF2600D6439D /* ECCommandLineMissingClassCommand.m in Sources */,
 				225DECC717649ADE000056F4 /* ECCommandLineHelpCommand.m in Sources */,
 			);
