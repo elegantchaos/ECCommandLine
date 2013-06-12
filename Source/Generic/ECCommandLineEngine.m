@@ -199,9 +199,15 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		result = [self processNoCommands];
 	}
 
-	if (result == ECCommandLineResultUnknownCommand)
+	switch (result)
 	{
-		[self showUsage];
+		case ECCommandLineResultUnknownCommand:
+		case ECCommandLineResultMissingArguments:
+			[self showUsage];
+			break;
+
+		default:
+			break;
 	}
 
 	return result;
@@ -215,6 +221,17 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	va_end(args);
 
 	printf("%s", [string UTF8String]);
+}
+
+- (void)outputError:(NSError *)error format:(NSString *)format, ...
+{
+	va_list args;
+	va_start(args, format);
+	NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
+	va_end(args);
+
+	NSString* errorString = error ? [error description] : @"";
+	fprintf(stderr, "%s\n%s", [string UTF8String], [errorString UTF8String]);
 }
 
 - (void)showUsage
@@ -234,9 +251,9 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}];
 	[self outputFormat:@"%@\n", string];
 
-	[self outputFormat:@"\n\nCommands:\n"];
+	[self outputFormat:@"\nCommands:\n"];
 	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
-		[self outputFormat:@"\t%@ %@\n", name, command.help];
+		[self outputFormat:@"\t%@\n", command.usage];
 	}];
 
 	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];

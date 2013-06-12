@@ -15,5 +15,7 @@ typedef NS_ENUM(NSInteger, ECCommandLineResult)
 	ECCommandLineResultOK = 0,
 	ECCommandLineResultUnknownCommand,
 	ECCommandLineResultMissingCommandClass,
-	ECCommandLineResultNotImplemented
+	ECCommandLineResultNotImplemented,
+	ECCommandLineResultMissingArguments,
+	ECCommandLineResultImplementationReturnedError,
 };

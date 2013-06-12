@@ -12,7 +12,10 @@
 @interface ECCommandLineCommand()
 
 @property (strong, nonatomic, readwrite) NSString* name;
+@property (strong, nonatomic, readwrite) NSArray* arguments;
 @property (strong, nonatomic) NSDictionary* info;
+@property (assign, nonatomic) NSUInteger minimumArguments;
+@property (assign, nonatomic) NSUInteger maximumArguments;
 
 @end
 
@@ -39,6 +42,16 @@
 	{
 		self.name = name;
 		self.info = info;
+		NSArray* arguments = info[@"arguments"];
+		for (NSDictionary* argument in arguments)
+		{
+			++_maximumArguments;
+			if (![argument[@"optional"] boolValue])
+			{
+				++_minimumArguments;
+			}
+		}
+		self.arguments = arguments;
 	}
 
 	return self;
@@ -47,6 +60,25 @@
 - (NSString*)help
 {
 	return self.info[@"help"];
+}
+
+- (NSString*)usage
+{
+	NSMutableString* description = [[NSMutableString alloc] init];
+	for (NSDictionary* argument in self.arguments)
+	{
+		NSString* string = [NSString stringWithFormat:@"<%@>", argument[@"description"]];
+		if ([argument[@"optional"] boolValue])
+		{
+			string = [NSString stringWithFormat:@"{ %@ }", string];
+		}
+
+		[description appendFormat:@"%@ ", string];
+	}
+
+	NSString* result = [NSString stringWithFormat:@"%@ %@ # %@", self.name, description, self.help];
+
+	return result;
 }
 
 - (ECCommandLineArgumentMode)argumentModeForValue:(NSString*)value
@@ -82,13 +114,34 @@
 	}];
 }
 
+- (ECCommandLineResult)validateArguments:(NSMutableArray*)arguments
+{
+	NSUInteger count = [arguments count];
+	ECCommandLineResult result = (count >= self.minimumArguments) ? ECCommandLineResultOK : ECCommandLineResultMissingArguments;
+
+	return result;
+}
+
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine processCommands:(NSMutableArray*)commands
 {
-	ECCommandLineResult result = [self engine:engine willProcessWithArguments:commands];
-	if (result == 0)
+	// TODO: handle sub-commands here
+
+	NSMutableArray* arguments = commands;
+	ECCommandLineResult result = [self validateArguments:arguments];
+
+	if (result == ECCommandLineResultOK)
+	{
+		result = [self engine:engine willProcessWithArguments:arguments];
+	}
+	else
+	{
+		[engine outputError:nil format:@"Missing arguments for command ‘%@’.\n", self.name];
+	}
+
+	if (result == ECCommandLineResultOK)
 	{
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-			ECCommandLineResult commandResult = [self engine:engine didProcessWithArguments:commands];
+			ECCommandLineResult commandResult = [self engine:engine didProcessWithArguments:arguments];
 			if (result != ECCommandLineResultStayRunning)
 			{
 				exit(commandResult);
@@ -106,7 +159,7 @@
 
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine didProcessWithArguments:(NSMutableArray *)arguments
 {
-	NSLog(@"couldn't process command %@ (%@)", self.name, [self class]);
+	NSLog(@"No implementation for command %@ (%@)", self.name, [self class]);
 
 	return ECCommandLineResultNotImplemented;
 }

@@ -21,6 +21,7 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 @interface ECCommandLineCommand : NSObject
 
 @property (readonly, nonatomic) NSString* name;
+@property (readonly, nonatomic) NSArray* arguments;
 
 + (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info;
 
@@ -29,6 +30,8 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine processCommands:(NSMutableArray*)commands;
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine willProcessWithArguments:(NSMutableArray*)arguments;
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine didProcessWithArguments:(NSMutableArray*)arguments;
+
 - (NSString*)help;
+- (NSString*)usage;
 
 @end
