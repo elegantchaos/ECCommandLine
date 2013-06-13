@@ -238,8 +238,8 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
 	va_end(args);
 
-	NSString* errorString = error ? [error description] : @"";
-	fprintf(stderr, "%s\n%s", [string UTF8String], [errorString UTF8String]);
+	NSString* errorString = error ? [NSString stringWithFormat:@"(%@ %@:%ld)\n", error.localizedFailureReason, error.domain, error.code] : @"";
+	fprintf(stderr, "%s\n%s\n", [string UTF8String], [errorString UTF8String]);
 }
 
 - (void)showUsage
