@@ -121,7 +121,7 @@
 	for (NSString* optionName in optionalOptions)
 	{
 		ECCommandLineOption* option = [engine optionWithName:optionName];
-		[description appendFormat:@"[--%@] ", optionName];
+		[description appendFormat:@"[ %@ | %@ ] ", option.longUsage, option.shortUsage];
 		[detailed appendFormat:@"\n\t--%@ %@ (optional)", [optionName stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0], option.help];
 	}
 

@@ -73,4 +73,36 @@
 	return result;
 }
 
+- (NSString*)longUsage
+{
+	NSString* result = [NSString stringWithFormat:@"--%@", self.name];
+	NSString* type = self.info[@"type"];
+	if ([type isEqualToString:@"boolean"])
+	{
+		result = [NSString stringWithFormat:@"%@{=YES|NO} | --no-%@", result, self.name];
+	}
+	else
+	{
+		result = [NSString stringWithFormat:@"%@=<%@>", result, type];
+	}
+	
+	return result;
+}
+
+- (NSString*)shortUsage
+{
+	NSString* result = [NSString stringWithFormat:@"-%lc", self.shortOption];
+	NSString* type = self.info[@"type"];
+	if ([type isEqualToString:@"boolean"])
+	{
+		result = [NSString stringWithFormat:@"%@ {<YES|NO>}", result];
+	}
+	else
+	{
+		result = [NSString stringWithFormat:@"%@ <%@>", result, type];
+	}
+
+	return result;
+}
+
 @end

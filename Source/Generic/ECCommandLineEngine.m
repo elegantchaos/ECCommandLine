@@ -248,7 +248,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	NSString* padding = [@"" stringByPaddingToLength:[usage length] withString:@" " startingAtIndex:0];
 	NSMutableString* string = [NSMutableString stringWithFormat:@"%@", usage];
 	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL *stop) {
-		NSString* optionString = [NSString stringWithFormat:@" [--%@ | -%lc]", option.name, option.shortOption];
+		NSString* optionString = [NSString stringWithFormat:@" [%@ | %@]", option.longUsage, option.shortUsage];
 		if ([string length] + [optionString length] > 70)
 		{
 			[self outputFormat:@"%@\n", string];

@@ -26,5 +26,7 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOptionMode)
 - (ECCommandLineOptionMode)mode;
 - (UniChar)shortOption;
 - (NSString*)help;
+- (NSString*)longUsage;
+- (NSString*)shortUsage;
 
 @end
