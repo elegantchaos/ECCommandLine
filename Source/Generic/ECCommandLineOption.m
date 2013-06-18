@@ -105,4 +105,16 @@
 	return result;
 }
 
+- (id)defaultValue
+{
+	id result = self.info[@"default"];
+	NSString* type = self.info[@"type"];
+	if ([type isEqualToString:@"boolean"])
+	{
+		result = [result boolValue] ? @"YES" : @"NO";
+	}
+
+	return result;
+}
+
 @end

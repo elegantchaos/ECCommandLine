@@ -97,9 +97,21 @@
 		[description appendFormat:@"%@ ", string];
 
 		[detailed appendFormat:@"\n\t%@ %@", [argumentName stringByPaddingToLength:paddingLength + 2 withString:@" " startingAtIndex:0], argument[@"description"]];
+		NSString* extras = @"";
 		if (isOptional)
 		{
-			[detailed appendString:@" (optional)"];
+			extras = [extras stringByAppendingString:@"optional"];
+		}
+
+		NSString* defaultValue = argument[@"default"];
+		if (defaultValue)
+		{
+			extras = [NSString stringWithFormat:@"%@, defaults to %@", extras, defaultValue];
+		}
+
+		if ([extras length] > 0)
+		{
+			[detailed appendFormat:@" (%@)", extras];
 		}
 	}
 
@@ -122,7 +134,13 @@
 	{
 		ECCommandLineOption* option = [engine optionWithName:optionName];
 		[description appendFormat:@"[ %@ | %@ ] ", option.longUsage, option.shortUsage];
-		[detailed appendFormat:@"\n\t--%@ %@ (optional)", [optionName stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0], option.help];
+		NSString* extras = @"optional";
+		if (option.defaultValue)
+		{
+			extras = [NSString stringWithFormat:@"%@, defaults to %@", extras, option.defaultValue];
+		}
+		
+		[detailed appendFormat:@"\n\t--%@ %@ (%@)", [optionName stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0], option.help, extras];
 	}
 
 	[description appendFormat:@"\n\n%@", self.help];
