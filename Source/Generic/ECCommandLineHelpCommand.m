@@ -12,7 +12,21 @@
 
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine didProcessWithArguments:(NSMutableArray *)arguments
 {
-	[engine showHelp];
+	NSUInteger count = [arguments count];
+	if (count == 0)
+	{
+		[engine showUsage];
+	}
+	else
+	{
+		NSString* commandName = arguments[0];
+		ECCommandLineCommand* command = [engine commandWithName:commandName];
+		if (command)
+		{
+			[engine outputFormat:@"Usage: %@ %@", engine.name, [command usageWithEngine:engine]];
+		}
+	}
+
 	return ECCommandLineResultOKButTerminate;
 }
 

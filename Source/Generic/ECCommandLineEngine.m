@@ -248,7 +248,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	NSString* padding = [@"" stringByPaddingToLength:[usage length] withString:@" " startingAtIndex:0];
 	NSMutableString* string = [NSMutableString stringWithFormat:@"%@", usage];
 	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL *stop) {
-		NSString* optionString = [NSString stringWithFormat:@" [ --%@ | -%lc ]", option.name, option.shortOption];
+		NSString* optionString = [NSString stringWithFormat:@" [--%@ | -%lc]", option.name, option.shortOption];
 		if ([string length] + [optionString length] > 70)
 		{
 			[self outputFormat:@"%@\n", string];
@@ -257,7 +257,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 		[string appendString:optionString];
 	}];
-	[self outputFormat:@"%@\n", string];
+	[self outputFormat:@"%@ <command> [<args>]\n", string];
 
 	[self outputFormat:@"\nCommands:\n"];
 	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
@@ -265,11 +265,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}];
 
 	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];
-}
-
-- (void)showHelp
-{
-	[self showUsage];
 }
 
 - (void)showVersion
@@ -291,7 +286,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}
 	else
 	{
-		ECCommandLineCommand* command = self.commands[commandName];
+		ECCommandLineCommand* command = [self commandWithName:commandName];
 		if (command)
 		{
 			result = [command engine:self processCommands:commands];
@@ -314,7 +309,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}
 	else if ([self.helpOption.value boolValue])
 	{
-		[self showHelp];
+		[self showUsage];
 	}
 	else
 	{
@@ -328,6 +323,25 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 {
 	[self outputFormat:@"Unknown command ‘%@’\n\n", command];
 	return ECCommandLineResultUnknownCommand;
+}
+
+- (ECCommandLineCommand*)commandWithName:(NSString *)name
+{
+	ECCommandLineCommand* result = self.commands[name];
+
+	return result;
+}
+
+- (ECCommandLineOption*)optionWithName:(NSString *)name
+{
+	ECCommandLineOption* result = self.options[name];
+
+	return result;
+}
+
+- (NSUInteger)paddingLength
+{
+	return 15;
 }
 
 @end

@@ -66,4 +66,11 @@
 	return result;
 }
 
+- (NSString*)help
+{
+	NSString* result = self.info[@"help"];
+
+	return result;
+}
+
 @end

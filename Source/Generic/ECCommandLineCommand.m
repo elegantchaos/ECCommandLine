@@ -8,6 +8,7 @@
 
 #import "ECCommandLineCommand.h"
 #import "ECCommandLineMissingClassCommand.h"
+#import "ECCommandLineOption.h"
 
 @interface ECCommandLineCommand()
 
@@ -71,34 +72,62 @@
 }
 
 
-- (NSString*)usage
+- (NSString*)usageWithEngine:(ECCommandLineEngine*)engine
 {
 	NSMutableString* description = [[NSMutableString alloc] init];
+	NSMutableString* detailed = [[NSMutableString alloc] init];
+
+	NSUInteger paddingLength = engine.paddingLength;
+	
+	if ([self.arguments count])
+	{
+		[detailed appendString:@"\n\nArguments:\n"];
+	}
+	
 	for (NSDictionary* argument in self.arguments)
 	{
-		NSString* string = [NSString stringWithFormat:@"<%@>", argument[@"short"]];
-		if ([argument[@"optional"] boolValue])
+		NSString* argumentName = argument[@"short"];
+		NSString* string = [NSString stringWithFormat:@"<%@>", argumentName];
+		BOOL isOptional = [argument[@"optional"] boolValue];
+		if (isOptional)
 		{
 			string = [NSString stringWithFormat:@"[%@]", string];
 		}
 
 		[description appendFormat:@"%@ ", string];
+
+		[detailed appendFormat:@"\n\t%@ %@", [argumentName stringByPaddingToLength:paddingLength + 2 withString:@" " startingAtIndex:0], argument[@"description"]];
+		if (isOptional)
+		{
+			[detailed appendString:@" (optional)"];
+		}
 	}
 
 	NSDictionary* options = self.info[@"options"];
 	NSArray* requiredOptions = options[@"required"];
-	for (NSString* option in requiredOptions)
-	{
-		[description appendFormat:@"--%@ ", option];
-	}
-
 	NSArray* optionalOptions = options[@"optional"];
-	for (NSString* option in optionalOptions)
+	if (([requiredOptions count] + [optionalOptions count]) > 0)
 	{
-		[description appendFormat:@"[--%@] ", option];
+		[detailed appendString:@"\n\nOptions:\n"];
 	}
 
-	NSString* result = [NSString stringWithFormat:@"%@ %@ # %@", self.name, description, self.help];
+	for (NSString* optionName in requiredOptions)
+	{
+		ECCommandLineOption* option = [engine optionWithName:optionName];
+		[description appendFormat:@"--%@ ", optionName];
+		[detailed appendFormat:@"\n\t--%@ %@", [optionName stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0], option.help];
+	}
+
+	for (NSString* optionName in optionalOptions)
+	{
+		ECCommandLineOption* option = [engine optionWithName:optionName];
+		[description appendFormat:@"[--%@] ", optionName];
+		[detailed appendFormat:@"\n\t--%@ %@ (optional)", [optionName stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0], option.help];
+	}
+
+	[description appendFormat:@"\n\n%@", self.help];
+
+	NSString* result = [NSString stringWithFormat:@"%@ %@%@", self.name, description, detailed];
 
 	return result;
 }
