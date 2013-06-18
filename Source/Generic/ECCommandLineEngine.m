@@ -261,7 +261,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	[self outputFormat:@"\nCommands:\n"];
 	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
-		[self outputFormat:@"\t%@\n", command.usage];
+		[self outputFormat:@"\t%@\n", command.summary];
 	}];
 
 	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];

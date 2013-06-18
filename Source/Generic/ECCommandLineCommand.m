@@ -62,18 +62,40 @@
 	return self.info[@"help"];
 }
 
+- (NSString*)summary
+{
+	NSString* paddedName = [self.name stringByPaddingToLength:10 withString:@" " startingAtIndex:0];
+	NSString* result = [NSString stringWithFormat:@"%@ %@", paddedName, self.help];
+
+	return result;
+}
+
+
 - (NSString*)usage
 {
 	NSMutableString* description = [[NSMutableString alloc] init];
 	for (NSDictionary* argument in self.arguments)
 	{
-		NSString* string = [NSString stringWithFormat:@"<%@>", argument[@"description"]];
+		NSString* string = [NSString stringWithFormat:@"<%@>", argument[@"short"]];
 		if ([argument[@"optional"] boolValue])
 		{
-			string = [NSString stringWithFormat:@"{ %@ }", string];
+			string = [NSString stringWithFormat:@"[%@]", string];
 		}
 
 		[description appendFormat:@"%@ ", string];
+	}
+
+	NSDictionary* options = self.info[@"options"];
+	NSArray* requiredOptions = options[@"required"];
+	for (NSString* option in requiredOptions)
+	{
+		[description appendFormat:@"--%@ ", option];
+	}
+
+	NSArray* optionalOptions = options[@"optional"];
+	for (NSString* option in optionalOptions)
+	{
+		[description appendFormat:@"[--%@] ", option];
 	}
 
 	NSString* result = [NSString stringWithFormat:@"%@ %@ # %@", self.name, description, self.help];
