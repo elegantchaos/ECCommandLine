@@ -11,7 +11,7 @@
 		2207E4C9176875520003F042 /* ECCommandLineMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2207E4C7176875520003F042 /* ECCommandLineMain.m */; };
 		2230CDA4176366AA0026AA5E /* ECCommandLineCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2230CDA5176366AA0026AA5E /* ECCommandLineCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */; };
-		2230CDAE17637D970026AA5E /* ECCommandLineOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDAC17637D970026AA5E /* ECCommandLineOption.h */; };
+		2230CDAE17637D970026AA5E /* ECCommandLineOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDAC17637D970026AA5E /* ECCommandLineOption.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2230CDAF17637D970026AA5E /* ECCommandLineOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDAD17637D970026AA5E /* ECCommandLineOption.m */; };
 		225DECC617649ADE000056F4 /* ECCommandLineHelpCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */; };
 		225DECC717649ADE000056F4 /* ECCommandLineHelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 225DECC517649ADE000056F4 /* ECCommandLineHelpCommand.m */; };

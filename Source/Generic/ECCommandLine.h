@@ -9,3 +9,4 @@
 #import "ECCommandLineEngine.h"
 #import "ECCommandLineCommand.h"
 #import "ECCommandLineMain.h"
+#import "ECCommandLineOption.h"
