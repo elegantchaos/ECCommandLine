@@ -40,18 +40,26 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 #pragma mark - Commands
 
-- (void)registerCommandNamed:(NSString*)name withInfo:(NSDictionary*)info
++ (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary
 {
-	ECDebug(CommandLineEngineChannel, @"registered command %@", name);
+	NSArray* names = @[mainName];
+	NSArray* aliases = info[@"aliases"];
+	if (aliases) {
+		names = [names arrayByAddingObjectsFromArray:aliases];
+		info = [info dictionaryWithoutKey:@"aliases"];
+	}
 
-	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:name info:info];
-	self.commands[name] = command;
+	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:mainName info:info];
+	for (NSString* name in names) {
+		ECDebug(CommandLineEngineChannel, @"registered command %@", name);
+		dictionary[name] = command;
+	}
 }
 
 - (void)registerCommands:(NSDictionary*)commands
 {
 	[commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL *stop) {
-		[self registerCommandNamed:name withInfo:info];
+			[ECCommandLineEngine addCommandNamed:name withInfo:info toDictionary:self.commands];
 	}];
 }
 

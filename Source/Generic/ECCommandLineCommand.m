@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic, readwrite) NSString* name;
 @property (strong, nonatomic, readwrite) NSArray* arguments;
+@property (strong, nonatomic) NSDictionary* subcommands;
 @property (strong, nonatomic) NSDictionary* info;
 @property (assign, nonatomic) NSUInteger minimumArguments;
 @property (assign, nonatomic) NSUInteger maximumArguments;
@@ -53,6 +54,15 @@
 			}
 		}
 		self.arguments = arguments;
+
+		NSDictionary* subcommands = info[@"commands"];
+		if (subcommands) {
+			NSMutableDictionary* commands = [NSMutableDictionary dictionaryWithCapacity:[subcommands count]];
+			for (NSString* subcommand in subcommands) {
+				[ECCommandLineEngine addCommandNamed:subcommand withInfo:subcommands[subcommand] toDictionary:commands];
+			}
+			self.subcommands = commands;
+		}
 	}
 
 	return self;
@@ -193,7 +203,16 @@
 
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine processCommands:(NSMutableArray*)commands
 {
-	// TODO: handle sub-commands here
+	// if we have a subcommand with the correct name, invoke that instead of the main command
+	NSUInteger commandCount = [commands count];
+	if (commandCount > 0) {
+		NSString* potentialSubcommand = commands[0];
+		ECCommandLineCommand* subcommand = self.subcommands[potentialSubcommand];
+		if (subcommand) {
+			NSMutableArray* subcommands = [NSMutableArray arrayWithArray:[commands subarrayWithRange:NSMakeRange(1, commandCount - 1)]];
+			return [subcommand engine:engine processCommands:subcommands];
+		}
+	}
 
 	NSMutableArray* arguments = commands;
 	ECCommandLineResult result = [self validateArguments:arguments];

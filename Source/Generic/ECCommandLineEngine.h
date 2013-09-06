@@ -25,4 +25,6 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (ECCommandLineOption*)optionWithName:(NSString *)name;
 - (NSUInteger)paddingLength;
 
++ (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary;
+
 @end
