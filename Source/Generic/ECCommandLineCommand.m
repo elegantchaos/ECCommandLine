@@ -83,7 +83,7 @@
 	for (NSString* subcommandName in self.subcommands)
 	{
 		ECCommandLineCommand* subcommand = self.subcommands[subcommandName];
-		[result appendFormat:@"\n%@", [subcommand summaryAs:subcommandName parentName:fullName]];
+		[result appendFormat:@"\n\t%@", [subcommand summaryAs:subcommandName parentName:fullName]];
 	}
 
 	return result;
