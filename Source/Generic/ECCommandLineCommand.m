@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic, readwrite) NSString* name;
 @property (strong, nonatomic, readwrite) NSArray* arguments;
+@property (strong, nonatomic, readwrite) ECCommandLineCommand* parentCommand;
 @property (strong, nonatomic) NSDictionary* subcommands;
 @property (strong, nonatomic) NSDictionary* info;
 @property (assign, nonatomic) NSUInteger minimumArguments;
@@ -23,7 +24,7 @@
 
 @implementation ECCommandLineCommand
 
-+ (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info
++ (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info parentCommand:(ECCommandLineCommand *)parentCommand
 {
 	Class class = nil;
 	NSString* className = info[@"class"];
@@ -33,17 +34,18 @@
 	if (!class)
 		class = [ECCommandLineMissingClassCommand class];
 
-	ECCommandLineCommand* command = [[class alloc] initWithName:name info:info];
+	ECCommandLineCommand* command = [[class alloc] initWithName:name info:info parentCommand:parentCommand];
 
 	return command;
 }
 
-- (id)initWithName:(NSString*)name info:(NSDictionary*)info
+- (id)initWithName:(NSString*)name info:(NSDictionary*)info parentCommand:(ECCommandLineCommand *)parentCommand
 {
 	if ((self = [super init]) != nil)
 	{
 		self.name = name;
 		self.info = info;
+		self.parentCommand = parentCommand;
 		NSArray* arguments = info[@"arguments"];
 		for (NSDictionary* argument in arguments)
 		{
@@ -59,7 +61,7 @@
 		if (subcommands) {
 			NSMutableDictionary* commands = [NSMutableDictionary dictionaryWithCapacity:[subcommands count]];
 			for (NSString* subcommand in subcommands) {
-				[ECCommandLineEngine addCommandNamed:subcommand withInfo:subcommands[subcommand] toDictionary:commands];
+				[ECCommandLineEngine addCommandNamed:subcommand withInfo:subcommands[subcommand] toDictionary:commands parentCommand:self];
 			}
 			self.subcommands = commands;
 		}
@@ -73,14 +75,27 @@
 	return self.info[@"help"];
 }
 
-- (NSString*)summary
+- (NSString*)summaryAs:(NSString*)name parentName:(NSString*)parentName
 {
-	NSString* paddedName = [self.name stringByPaddingToLength:10 withString:@" " startingAtIndex:0];
-	NSString* result = [NSString stringWithFormat:@"%@ %@", paddedName, self.help];
+	NSString* fullName = parentName ? [NSString stringWithFormat:@"%@ %@", parentName, name] : name;
+	NSMutableString* result = [NSMutableString stringWithString:[self ourSummaryAs:fullName]];
+
+	for (NSString* subcommandName in self.subcommands)
+	{
+		ECCommandLineCommand* subcommand = self.subcommands[subcommandName];
+		[result appendFormat:@"\n%@", [subcommand summaryAs:subcommandName parentName:fullName]];
+	}
 
 	return result;
 }
 
+- (NSString*)ourSummaryAs:(NSString*)name
+{
+	NSString* paddedName = [name stringByPaddingToLength:20 withString:@" " startingAtIndex:0];
+	NSString* result = [NSString stringWithFormat:@"%@ %@", paddedName, self.help];
+
+	return result;
+}
 
 - (NSString*)usageWithEngine:(ECCommandLineEngine*)engine
 {

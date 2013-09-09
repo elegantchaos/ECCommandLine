@@ -17,4 +17,9 @@
 	return ECCommandLineResultMissingCommandClass;
 }
 
+- (NSString*)ourSummaryAs:(NSString*)name
+{
+	return @"";
+}
+
 @end

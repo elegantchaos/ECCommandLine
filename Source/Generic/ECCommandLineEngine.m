@@ -40,7 +40,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 #pragma mark - Commands
 
-+ (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary
++ (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary parentCommand:(ECCommandLineCommand*)parentCommand
 {
 	NSArray* names = @[mainName];
 	NSArray* aliases = info[@"aliases"];
@@ -49,7 +49,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		info = [info dictionaryWithoutKey:@"aliases"];
 	}
 
-	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:mainName info:info];
+	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:mainName info:info parentCommand:parentCommand];
 	for (NSString* name in names) {
 		ECDebug(CommandLineEngineChannel, @"registered command %@", name);
 		dictionary[name] = command;
@@ -59,7 +59,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 - (void)registerCommands:(NSDictionary*)commands
 {
 	[commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL *stop) {
-			[ECCommandLineEngine addCommandNamed:name withInfo:info toDictionary:self.commands];
+			[ECCommandLineEngine addCommandNamed:name withInfo:info toDictionary:self.commands parentCommand:nil];
 	}];
 }
 
@@ -272,7 +272,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	[self outputFormat:@"\nCommands:\n"];
 	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
-		[self outputFormat:@"\t%@\n", command.summary];
+		[self outputFormat:@"\t%@\n", [command summaryAs:name parentName:nil]];
 	}];
 
 	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];
