@@ -81,11 +81,11 @@
 	{
 		result = [NSString stringWithFormat:@"%@{=YES|NO} | --no-%@", result, self.name];
 	}
-	else
+	else if (type)
 	{
 		result = [NSString stringWithFormat:@"%@=<%@>", result, type];
 	}
-	
+
 	return result;
 }
 
@@ -97,7 +97,7 @@
 	{
 		result = [NSString stringWithFormat:@"%@ {<YES|NO>}", result];
 	}
-	else
+	else if (type)
 	{
 		result = [NSString stringWithFormat:@"%@ <%@>", result, type];
 	}

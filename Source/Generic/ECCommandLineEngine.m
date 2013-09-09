@@ -252,9 +252,12 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (void)showUsage
 {
-	NSString* usage = [NSString stringWithFormat:@"Usage: %@ ", self.name];
-	NSString* padding = [@"" stringByPaddingToLength:[usage length] withString:@" " startingAtIndex:0];
-	NSMutableString* string = [NSMutableString stringWithFormat:@"%@", usage];
+	NSString* usage = [NSString stringWithFormat:@"Usage: %@", self.name];
+	NSUInteger paddingLength = [usage length];
+	usage = [usage stringByAppendingString:@" <command> [<args>]\n"];
+	[self outputFormat:@"%@", usage];
+	NSString* padding = [@"" stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0];
+	NSMutableString* string = [NSMutableString stringWithString:padding];
 	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL *stop) {
 		NSString* optionString = [NSString stringWithFormat:@" [%@ | %@]", option.longUsage, option.shortUsage];
 		if ([string length] + [optionString length] > 70)
@@ -265,7 +268,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 		[string appendString:optionString];
 	}];
-	[self outputFormat:@"%@ <command> [<args>]\n", string];
+	[self outputFormat:@"%@\n", string];
 
 	[self outputFormat:@"\nCommands:\n"];
 	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
