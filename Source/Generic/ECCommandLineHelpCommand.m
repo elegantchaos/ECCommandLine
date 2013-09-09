@@ -25,7 +25,7 @@
 		{
 			[arguments removeObjectAtIndex:0];
 			ECCommandLineCommand* resolved = [command resolveCommandPath:arguments];
-			[engine outputFormat:@"Usage: %@", [resolved usageAs:commandName parentName:nil engine:engine]];
+			[engine outputFormat:@"Usage: %@\n", [resolved usageAs:commandName parentName:nil engine:engine]];
 		}
 	}
 

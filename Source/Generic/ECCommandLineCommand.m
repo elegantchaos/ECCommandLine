@@ -185,7 +185,7 @@
 			extras = [NSString stringWithFormat:@"%@, defaults to %@", extras, option.defaultValue];
 		}
 		
-		[detailed appendFormat:@"\n\t--%@ %@ (%@)", [optionName stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0], option.help, extras];
+		[detailed appendFormat:@"\n\t--%@ %@ (%@).", [optionName stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0], option.help, extras];
 	}
 
 	[description appendFormat:@"\n\n%@", self.help];
