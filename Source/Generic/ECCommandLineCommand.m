@@ -96,6 +96,7 @@
 
 	return result;
 }
+
 - (NSString*)usageAs:(NSString*)name parentName:(NSString*)parentName engine:(ECCommandLineEngine*)engine
 {
 	NSString* fullName = parentName ? [NSString stringWithFormat:@"%@ %@", parentName, name] : name;
@@ -118,7 +119,7 @@
 
 - (NSString*)ourUsageAs:(NSString*)name engine:(ECCommandLineEngine*)engine
 {
-	NSMutableString* description = [NSMutableString stringWithString:name];
+	NSMutableString* description = [[NSMutableString alloc] init];
 	NSMutableString* detailed = [[NSMutableString alloc] init];
 
 	NSUInteger paddingLength = engine.paddingLength;
@@ -189,7 +190,7 @@
 
 	[description appendFormat:@"\n\n%@", self.help];
 
-	NSString* result = [NSString stringWithFormat:@"%@ %@%@", self.name, description, detailed];
+	NSString* result = [NSString stringWithFormat:@"%@ %@ %@%@", engine.name, name, description, detailed];
 
 	return result;
 }
