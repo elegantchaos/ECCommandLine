@@ -23,7 +23,7 @@
 		ECCommandLineCommand* command = [engine commandWithName:commandName];
 		if (command)
 		{
-			[engine outputFormat:@"Usage: %@ %@", engine.name, [command usageWithEngine:engine]];
+			[engine outputFormat:@"Usage: %@", [command usageAs:commandName parentName:nil engine:engine]];
 		}
 	}
 

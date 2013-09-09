@@ -22,4 +22,12 @@
 	return @"";
 }
 
+- (NSString*)ourUsageAs:(NSString*)name engine:(ECCommandLineEngine*)engine
+{
+	NSString* further = [NSString stringWithFormat:@"Type: %@ %@ <subcommand> for more detail on a subcommand.", engine.name, name];
+	NSString* result = [NSString stringWithFormat:@"%@ %@ <subcommand>\n\nSubcommands:\n%@\n\n%@", engine.name, name, [self subcommandSummaryAs:name], further];
+
+	 return result;
+}
+
 @end

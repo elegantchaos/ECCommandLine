@@ -96,10 +96,29 @@
 
 	return result;
 }
-
-- (NSString*)usageWithEngine:(ECCommandLineEngine*)engine
+- (NSString*)usageAs:(NSString*)name parentName:(NSString*)parentName engine:(ECCommandLineEngine*)engine
 {
-	NSMutableString* description = [[NSMutableString alloc] init];
+	NSString* fullName = parentName ? [NSString stringWithFormat:@"%@ %@", parentName, name] : name;
+	NSMutableString* result = [NSMutableString stringWithString:[self ourUsageAs:fullName engine:engine]];
+
+	return result;
+}
+
+- (NSString*)subcommandSummaryAs:(NSString*)name
+{
+	NSMutableString* result = [[NSMutableString alloc] init];
+	for (NSString* subcommandName in self.subcommands)
+	{
+		//		ECCommandLineCommand* subcommand = self.subcommands[subcommandName];
+		[result appendFormat:@"\t%@ %@\n", name, subcommandName];
+	}
+
+	return result;
+}
+
+- (NSString*)ourUsageAs:(NSString*)name engine:(ECCommandLineEngine*)engine
+{
+	NSMutableString* description = [NSMutableString stringWithString:name];
 	NSMutableString* detailed = [[NSMutableString alloc] init];
 
 	NSUInteger paddingLength = engine.paddingLength;
