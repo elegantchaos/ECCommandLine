@@ -36,5 +36,6 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 - (NSString*)summaryAs:(NSString*)name parentName:(NSString*)parentName;
 - (NSString*)usageAs:(NSString*)name parentName:(NSString*)parentName engine:(ECCommandLineEngine*)engine;
 - (NSString*)subcommandSummaryAs:(NSString*)name;
+- (ECCommandLineCommand*)resolveCommandPath:(NSMutableArray*)commands;
 
 @end

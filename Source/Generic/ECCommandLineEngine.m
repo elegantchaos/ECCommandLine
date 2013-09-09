@@ -297,10 +297,13 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}
 	else
 	{
+		// pull out the top level command
 		ECCommandLineCommand* command = [self commandWithName:commandName];
 		if (command)
 		{
-			result = [command engine:self processCommands:commands];
+			// resolve the actual command, which may be a subcommand - eg might be "export artboards", where "artboards" is a subcommand of "export"
+			ECCommandLineCommand* resolved = [command resolveCommandPath:commands];
+			result = [resolved engine:self processCommands:commands];
 		}
 		else
 		{

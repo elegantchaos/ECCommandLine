@@ -236,19 +236,24 @@
 	return result;
 }
 
-- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine processCommands:(NSMutableArray*)commands
-{
+- (ECCommandLineCommand*)resolveCommandPath:(NSMutableArray*)commands {
 	// if we have a subcommand with the correct name, invoke that instead of the main command
+	ECCommandLineCommand* result = self;
 	NSUInteger commandCount = [commands count];
 	if (commandCount > 0) {
 		NSString* potentialSubcommand = commands[0];
 		ECCommandLineCommand* subcommand = self.subcommands[potentialSubcommand];
 		if (subcommand) {
-			NSMutableArray* subcommands = [NSMutableArray arrayWithArray:[commands subarrayWithRange:NSMakeRange(1, commandCount - 1)]];
-			return [subcommand engine:engine processCommands:subcommands];
+			[commands removeObjectAtIndex:0];
+			result = [subcommand resolveCommandPath:commands];
 		}
 	}
 
+	return result;
+}
+
+- (ECCommandLineResult)engine:(ECCommandLineEngine*)engine processCommands:(NSMutableArray*)commands
+{
 	NSMutableArray* arguments = commands;
 	ECCommandLineResult result = [self validateArguments:arguments];
 

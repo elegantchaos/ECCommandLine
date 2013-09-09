@@ -23,7 +23,9 @@
 		ECCommandLineCommand* command = [engine commandWithName:commandName];
 		if (command)
 		{
-			[engine outputFormat:@"Usage: %@", [command usageAs:commandName parentName:nil engine:engine]];
+			[arguments removeObjectAtIndex:0];
+			ECCommandLineCommand* resolved = [command resolveCommandPath:arguments];
+			[engine outputFormat:@"Usage: %@", [resolved usageAs:commandName parentName:nil engine:engine]];
 		}
 	}
 
