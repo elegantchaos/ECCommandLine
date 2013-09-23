@@ -170,7 +170,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 }
 
 - (NSArray*)arrayOptionForKey:(NSString *)key separator:(NSString *)separator {
-	NSString* value = [self stringOptionForKey:@"scales"];
+	NSString* value = [self stringOptionForKey:key];
 	NSArray* result = [value componentsSeparatedByString:separator];
 
 	return result;
