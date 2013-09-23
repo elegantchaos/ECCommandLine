@@ -21,6 +21,9 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 - (void)outputError:(NSError*)error format:(NSString*)format, ... NS_FORMAT_FUNCTION(2,3);
 - (id)optionForKey:(NSString*)key;
+- (BOOL)boolOptionForKey:(NSString*)key;
+- (NSString*)stringOptionForKey:(NSString*)key;
+
 - (ECCommandLineCommand*)commandWithName:(NSString*)name;
 - (ECCommandLineOption*)optionWithName:(NSString *)name;
 - (NSUInteger)paddingLength;

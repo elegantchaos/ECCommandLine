@@ -137,6 +137,18 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	return result;
 }
 
+- (BOOL)boolOptionForKey:(NSString*)key {
+	BOOL result = [[self optionForKey:key] boolValue];
+
+	return result;
+}
+
+- (NSString*)stringOptionForKey:(NSString*)key {
+	NSString* result = [[self optionForKey:key] description];
+
+	return result;
+}
+
 - (void)setupFromBundle
 {
 	NSBundle* bundle = [NSBundle mainBundle];
