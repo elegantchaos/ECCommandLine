@@ -22,7 +22,10 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (void)outputError:(NSError*)error format:(NSString*)format, ... NS_FORMAT_FUNCTION(2,3);
 - (id)optionForKey:(NSString*)key;
 - (BOOL)boolOptionForKey:(NSString*)key;
+- (CGFloat)doubleOptionForKey:(NSString*)key;
 - (NSString*)stringOptionForKey:(NSString*)key;
+- (NSURL*)urlOptionForKey:(NSString*)key defaultingToWorkingDirectory:(BOOL)defaultingToWorkingDirectory;
+- (NSArray*)arrayOptionForKey:(NSString*)key separator:(NSString*)separator;
 
 - (ECCommandLineCommand*)commandWithName:(NSString*)name;
 - (ECCommandLineOption*)optionWithName:(NSString *)name;

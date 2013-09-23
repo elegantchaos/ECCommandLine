@@ -137,6 +137,14 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	return result;
 }
 
+- (CGFloat)doubleOptionForKey:(NSString*)key
+{
+	ECCommandLineOption* option = self.options[key];
+	CGFloat result = [option.value doubleValue];
+
+	return result;
+}
+
 - (BOOL)boolOptionForKey:(NSString*)key {
 	BOOL result = [[self optionForKey:key] boolValue];
 
@@ -145,6 +153,25 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (NSString*)stringOptionForKey:(NSString*)key {
 	NSString* result = [[self optionForKey:key] description];
+
+	return result;
+}
+
+- (NSURL*)urlOptionForKey:(NSString*)key defaultingToWorkingDirectory:(BOOL)defaultingToWorkingDirectory {
+	NSString* path = [[self stringOptionForKey:key] stringByStandardizingPath];
+	if (!path && defaultingToWorkingDirectory)
+		path = [@"./" stringByStandardizingPath];
+
+	NSURL* url = nil;
+	if (path)
+		url = [NSURL fileURLWithPath:path];
+
+	return url;
+}
+
+- (NSArray*)arrayOptionForKey:(NSString *)key separator:(NSString *)separator {
+	NSString* value = [self stringOptionForKey:@"scales"];
+	NSArray* result = [value componentsSeparatedByString:separator];
 
 	return result;
 }
