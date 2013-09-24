@@ -110,8 +110,7 @@
 	NSMutableString* result = [[NSMutableString alloc] init];
 	for (NSString* subcommandName in self.subcommands)
 	{
-		//		ECCommandLineCommand* subcommand = self.subcommands[subcommandName];
-		[result appendFormat:@"\t%@ %@\n", name, subcommandName];
+		[result appendFormat:@"\t%@ %@.\n", name, subcommandName];
 	}
 
 	return result;
