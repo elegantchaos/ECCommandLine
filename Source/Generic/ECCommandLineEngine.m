@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
 @property (strong, nonatomic) NSMutableArray* infoStack;
 @property (strong, nonatomic) NSMutableString* output;
 @property (assign, nonatomic) ECCommandLineOutputMode outputMode;
+@property (strong, nonatomic) NSURL* outputJSONURL;
 @end
 
 @implementation ECCommandLineEngine
@@ -201,7 +202,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	[self registerOptions:
 	 @{
 	 @"help": @{@"short" : @"h", @"help" : @"show command help"},
-	 @"outputJSON": @{@"short" : @"J", @"outputJSON" : @"produce output as json rather than text"},
+	 @"outputJSON": @{@"short" : @"J", @"help" : @"produce output as json rather than text", @"type" : @"path", @"mode" : @"optional"},
 	 @"version": @{@"short" : @"v", @"help" : @"show version number"},
 	 }
 	 ];
@@ -251,9 +252,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}
 
 	[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
-
-	if ([self boolOptionForKey:@"outputJSON"])
-		self.outputMode = ECCommandLineOutputJSON;
+	[self setupOutput];
 
 	ECCommandLineResult result;
 	if ((processedOptions + 1) < (NSUInteger)argc)
@@ -290,14 +289,46 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	return result;
 }
 
+- (void)setupOutput
+{
+	id value = [self optionForKey:@"outputJSON"];
+	if ([value isKindOfClass:[NSNumber class]] || ([value isKindOfClass:[NSString class]] && ([value isEqualToString:@"YES"] || [value isEqualToString:@"NO"])))
+	{
+		if ([self boolOptionForKey:@"outputJSON"])
+			self.outputMode = ECCommandLineOutputJSON;
+	}
+	else
+	{
+		self.outputJSONURL = [self urlOptionForKey:@"outputJSON" defaultingToWorkingDirectory:NO];
+	}
+}
+
 - (void)processOutput
 {
-	if (self.outputMode == ECCommandLineOutputJSON)
+	BOOL printJSON = self.outputMode == ECCommandLineOutputJSON;
+	if (printJSON || self.outputJSONURL)
 	{
 		NSError* error;
 		NSData* data = [NSJSONSerialization dataWithJSONObject:self.info options:NSJSONWritingPrettyPrinted error:&error];
-		NSString* text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		printf("%s", [text UTF8String]);
+		if (!data)
+		{
+			[self outputError:error format:@"Failed to convert output info to JSON"];
+		}
+		else
+		{
+			NSString* text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+			if (self.outputJSONURL)
+			{
+				if (![text writeToURL:self.outputJSONURL atomically:YES encoding:NSUTF8StringEncoding error:&error])
+				{
+					[self outputError:error format:@"Failed to write info file"];
+				}
+			}
+			else if (printJSON)
+			{
+				printf("%s", [text UTF8String]);
+			}
+		}
 	}
 }
 
