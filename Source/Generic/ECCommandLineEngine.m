@@ -326,7 +326,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 			}
 			else if (printJSON)
 			{
-				printf("%s", [text UTF8String]);
+				printf("%s\n", [text UTF8String]);
 			}
 		}
 	}
