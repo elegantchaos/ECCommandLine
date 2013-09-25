@@ -21,8 +21,8 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 - (void)outputError:(NSError*)error format:(NSString*)format, ... NS_FORMAT_FUNCTION(2,3);
 - (void)outputInfo:(id)info withKey:(NSString*)key;
-- (void)openInfoLevelWithKey:(NSString*)key;
-- (void)closeInfoLevel;
+- (void)openInfoGroupWithKey:(NSString*)key;
+- (void)closeInfoGroup;
 - (NSDictionary*)info;
 
 - (id)optionForKey:(NSString*)key;

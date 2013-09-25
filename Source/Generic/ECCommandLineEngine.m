@@ -335,14 +335,14 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	self.infoRecord[key] = info;
 }
 
-- (void)openInfoLevelWithKey:(NSString*)key {
+- (void)openInfoGroupWithKey:(NSString*)key {
 	NSMutableDictionary* level = [NSMutableDictionary dictionary];
 	self.infoRecord[key] = level;
 	[self.infoStack addObject:self.infoRecord];
 	self.infoRecord = level;
 }
 
-- (void)closeInfoLevel {
+- (void)closeInfoGroup {
 	NSUInteger count = [self.infoStack count];
 	if (count) {
 		NSUInteger index = count - 1;
