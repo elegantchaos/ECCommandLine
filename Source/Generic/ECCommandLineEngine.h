@@ -20,6 +20,11 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (void)showUsage;
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 - (void)outputError:(NSError*)error format:(NSString*)format, ... NS_FORMAT_FUNCTION(2,3);
+- (void)outputInfo:(id)info withKey:(NSString*)key;
+- (void)openInfoLevelWithKey:(NSString*)key;
+- (void)closeInfoLevel;
+- (NSDictionary*)info;
+
 - (id)optionForKey:(NSString*)key;
 - (BOOL)boolOptionForKey:(NSString*)key;
 - (CGFloat)doubleOptionForKey:(NSString*)key;
@@ -30,6 +35,8 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (ECCommandLineCommand*)commandWithName:(NSString*)name;
 - (ECCommandLineOption*)optionWithName:(NSString *)name;
 - (NSUInteger)paddingLength;
+
+- (void)exitWithResult:(ECCommandLineResult)result;
 
 + (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary parentCommand:(ECCommandLineCommand*)parentCommand;
 

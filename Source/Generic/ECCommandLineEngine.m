@@ -11,6 +11,12 @@
 #import <getopt.h>
 #import <stdarg.h>
 
+typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
+{
+	ECCommandLineOutputText,
+	ECCommandLineOutputJSON
+};
+
 @interface ECCommandLineEngine()
 
 @property (strong, nonatomic) NSString* name;
@@ -19,7 +25,10 @@
 @property (strong, nonatomic) NSMutableDictionary* optionsByShortName;
 @property (strong, nonatomic) ECCommandLineOption* helpOption;
 @property (strong, nonatomic) ECCommandLineOption* versionOption;
-
+@property (strong, nonatomic) NSMutableDictionary* infoRecord;
+@property (strong, nonatomic) NSMutableArray* infoStack;
+@property (strong, nonatomic) NSMutableString* output;
+@property (assign, nonatomic) ECCommandLineOutputMode outputMode;
 @end
 
 @implementation ECCommandLineEngine
@@ -31,6 +40,10 @@
 		self.commands = [NSMutableDictionary dictionary];
 		self.options = [NSMutableDictionary dictionary];
 		self.optionsByShortName = [NSMutableDictionary dictionary];
+		self.infoRecord = [NSMutableDictionary dictionary];
+		self.infoStack = [NSMutableArray array];
+		self.outputMode = ECCommandLineOutputText;
+		self.output = [NSMutableString new];
 	}
 
 	return self;
@@ -187,8 +200,9 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	// TODO: maybe load these from a plist?
 	[self registerOptions:
 	 @{
+	 @"help": @{@"short" : @"h", @"help" : @"show command help"},
+	 @"outputJSON": @{@"short" : @"J", @"outputJSON" : @"produce output as json rather than text"},
 	 @"version": @{@"short" : @"v", @"help" : @"show version number"},
-	 @"help": @{@"short" : @"h", @"help" : @"show command help"}
 	 }
 	 ];
 
@@ -238,6 +252,9 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
 
+	if ([self boolOptionForKey:@"outputJSON"])
+		self.outputMode = ECCommandLineOutputJSON;
+
 	ECCommandLineResult result;
 	if ((processedOptions + 1) < (NSUInteger)argc)
 	{
@@ -265,7 +282,29 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 			break;
 	}
 
+	if (result == ECCommandLineResultOKButTerminate)
+	{
+		[self processOutput];
+	}
+
 	return result;
+}
+
+- (void)processOutput
+{
+	if (self.outputMode == ECCommandLineOutputJSON)
+	{
+		NSError* error;
+		NSData* data = [NSJSONSerialization dataWithJSONObject:self.info options:NSJSONWritingPrettyPrinted error:&error];
+		NSString* text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		printf("%s", [text UTF8String]);
+	}
+}
+
+- (void)exitWithResult:(ECCommandLineResult)result
+{
+	[self processOutput];
+	exit(result);
 }
 
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2)
@@ -275,7 +314,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
 	va_end(args);
 
-	printf("%s", [string UTF8String]);
+	if (self.outputMode == ECCommandLineOutputText)
+		printf("%s", [string UTF8String]);
+	else
+		[self.output appendString:string];
 }
 
 - (void)outputError:(NSError *)error format:(NSString *)format, ...
@@ -287,6 +329,31 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	NSString* errorString = error ? [NSString stringWithFormat:@"(%@ %@:%ld)\n", error.localizedFailureReason, error.domain, error.code] : @"";
 	fprintf(stderr, "%s\n%s\n", [string UTF8String], [errorString UTF8String]);
+}
+
+- (void)outputInfo:(id)info withKey:(NSString*)key {
+	self.infoRecord[key] = info;
+}
+
+- (void)openInfoLevelWithKey:(NSString*)key {
+	NSMutableDictionary* level = [NSMutableDictionary dictionary];
+	self.infoRecord[key] = level;
+	[self.infoStack addObject:self.infoRecord];
+	self.infoRecord = level;
+}
+
+- (void)closeInfoLevel {
+	NSUInteger count = [self.infoStack count];
+	if (count) {
+		NSUInteger index = count - 1;
+		NSMutableDictionary* level = self.infoStack[index];
+		[self.infoStack removeObjectAtIndex:index];
+		self.infoRecord = level;
+	}
+}
+
+- (NSDictionary*)info {
+	return self.infoRecord;
 }
 
 - (void)showUsage

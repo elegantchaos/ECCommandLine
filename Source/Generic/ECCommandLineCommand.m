@@ -271,7 +271,7 @@
 			ECCommandLineResult commandResult = [self engine:engine didProcessWithArguments:arguments];
 			if (result != ECCommandLineResultStayRunning)
 			{
-				exit(commandResult);
+				[engine exitWithResult:commandResult];
 			}
 		}];
 	}
