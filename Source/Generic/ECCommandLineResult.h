@@ -18,4 +18,5 @@ typedef NS_ENUM(NSInteger, ECCommandLineResult)
 	ECCommandLineResultNotImplemented,
 	ECCommandLineResultMissingArguments,
 	ECCommandLineResultImplementationReturnedError,
+	ECCommandLineResultMissingBundle,
 };
