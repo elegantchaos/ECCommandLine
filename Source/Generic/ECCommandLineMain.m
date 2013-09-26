@@ -10,7 +10,7 @@
 
 int ECCommandLineMain(int argc, const char * argv[])
 {
-	NSBundle* bundle = [NSBundle bundleForClass:[ECCommandLineEngine class]];
+	NSBundle* bundle = [NSBundle mainBundle];
 	id<ECCommandLineEngineDelegate> delegate = nil;
 	NSString* delegateClass = bundle.infoDictionary[@"ECCommandLineEngineDelegate"];
 	if (delegateClass)
