@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 
 #import "ECCommandLineResult.h"
+#import "ECCommandLineEngineDelegate.h"
 
 ECDeclareDebugChannel(CommandLineEngineChannel);
 
@@ -14,6 +15,9 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 @interface ECCommandLineEngine : NSObject
 
 @property (strong, nonatomic, readonly) NSString* name;
+@property (strong, nonatomic) id<ECCommandLineEngineDelegate> delegate;
+
+- (id)initWithDelegate:(id<ECCommandLineEngineDelegate>)delegate;
 
 - (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv;
 

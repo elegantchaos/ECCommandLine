@@ -34,10 +34,11 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
 
 @implementation ECCommandLineEngine
 
-- (id)init
+- (id)initWithDelegate:(id<ECCommandLineEngineDelegate>)delegate
 {
 	if ((self = [super init]) != nil)
 	{
+		self.delegate = delegate;
 		self.commands = [NSMutableDictionary dictionary];
 		self.options = [NSMutableDictionary dictionary];
 		self.optionsByShortName = [NSMutableDictionary dictionary];
@@ -45,6 +46,10 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
 		self.infoStack = [NSMutableArray array];
 		self.outputMode = ECCommandLineOutputText;
 		self.output = [NSMutableString new];
+
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			[self.delegate engineDidFinishLaunching:self];
+		}];
 	}
 
 	return self;
@@ -423,6 +428,9 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (ECCommandLineResult)processCommands:(NSMutableArray*)commands
 {
+	if ([self.delegate respondsToSelector:@selector(engine:willProcessCommands:)])
+		[self.delegate engine:self willProcessCommands:commands];
+
 	NSString* commandName = [commands objectAtIndex:0];
 	[commands removeObjectAtIndex:0];
 
@@ -448,11 +456,17 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		}
 	}
 
+	if ([self.delegate respondsToSelector:@selector(engine:didProcessCommands:)])
+		[self.delegate engine:self didProcessCommands:commands];
+
 	return result;
 }
 
 - (ECCommandLineResult)processNoCommands
 {
+	if ([self.delegate respondsToSelector:@selector(engine:willProcessCommands:)])
+		[self.delegate engine:self willProcessCommands:@[]];
+
 	ECCommandLineResult result = ECCommandLineResultOKButTerminate;
 	if ([self.versionOption.value boolValue])
 	{
@@ -466,7 +480,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	{
 		result = ECCommandLineResultUnknownCommand;
 	}
-	
+
+	if ([self.delegate respondsToSelector:@selector(engine:didProcessCommands:)])
+		[self.delegate engine:self didProcessCommands:@[]];
+
 	return result;
 }
 
