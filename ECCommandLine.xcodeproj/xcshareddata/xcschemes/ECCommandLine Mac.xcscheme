@@ -75,7 +75,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2283A3F414F52EC0009142F7"
-               BuildableName = "ECCommandLineMacTests.octest"
+               BuildableName = "ECCommandLineMacTests.xctest"
                BlueprintName = "ECCommandLineMacTests"
                ReferencedContainer = "container:ECCommandLine.xcodeproj">
             </BuildableReference>
