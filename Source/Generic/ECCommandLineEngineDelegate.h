@@ -3,7 +3,7 @@
 //  ECCommandLine
 //
 //  Created by Sam Deane on 26/09/2013.
-//  Copyright (c) 2014 Elegant Chaos. All rights reserved.
+//  Copyright (c) 2014 Sam Deane, Elegant Chaos. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
