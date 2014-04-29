@@ -209,6 +209,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	 @"help": @{@"short" : @"h", @"help" : @"show command help"},
 	 @"outputJSON": @{@"short" : @"J", @"help" : @"produce output as json rather than text", @"type" : @"path", @"mode" : @"optional"},
 	 @"version": @{@"short" : @"v", @"help" : @"show version number"},
+	 @"bundle": @{@"short" : @"b", @"help" : @"show bundle number"},
 	 }
 	 ];
 
@@ -423,7 +424,13 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 - (void)showVersion
 {
 	NSString* version = [NSApp applicationFullVersion];
-	[self outputFormat:@"%@ %@\n", self.name, version];
+	if (self.outputMode == ECCommandLineOutputJSON) {
+		[self outputInfo:self.name withKey:@"name"];
+		[self outputInfo:[NSApp applicationVersion] withKey:@"version"];
+		[self outputInfo:[NSApp applicationBuild] withKey:@"build"];
+	} else {
+		[self outputFormat:@"%@ %@\n", self.name, version];
+	}
 }
 
 - (ECCommandLineResult)processCommands:(NSMutableArray*)commands
