@@ -209,7 +209,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	 @"help": @{@"short" : @"h", @"help" : @"show command help"},
 	 @"outputJSON": @{@"short" : @"J", @"help" : @"produce output as json rather than text", @"type" : @"path", @"mode" : @"optional"},
 	 @"version": @{@"short" : @"v", @"help" : @"show version number"},
-	 @"bundle": @{@"short" : @"u", @"help" : @"show bundle number"},
 	 }
 	 ];
 
