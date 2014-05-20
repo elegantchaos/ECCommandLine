@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const ECCommandLineDomain;
+
 typedef NS_ENUM(NSInteger, ECCommandLineResult)
 {
 	ECCommandLineResultOKButTerminate = -2,

@@ -7,3 +7,5 @@
 //
 
 #import "ECCommandLineResult.h"
+
+NSString *const ECCommandLineDomain = @"ECCommandLineDomain";

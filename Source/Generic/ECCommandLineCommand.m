@@ -268,7 +268,16 @@
 	if (result == ECCommandLineResultOK)
 	{
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-			ECCommandLineResult commandResult = [self engine:engine didProcessWithArguments:arguments];
+			ECCommandLineResult commandResult;
+			@try {
+				commandResult = [self engine:engine didProcessWithArguments:arguments];
+			}
+			@catch (NSException *exception) {
+				commandResult = ECCommandLineResultImplementationReturnedError;
+				NSError* error = [NSError errorWithDomain:ECCommandLineDomain code:ECCommandLineResultImplementationReturnedError userInfo:@{NSLocalizedDescriptionKey : @"Command threw exception"}];
+				[engine outputError:error format:@"%@", exception];
+			}
+			
 			if (result != ECCommandLineResultStayRunning)
 			{
 				[engine exitWithResult:commandResult];
