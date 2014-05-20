@@ -110,7 +110,7 @@
 	NSMutableString* result = [[NSMutableString alloc] init];
 	for (NSString* subcommandName in self.subcommands)
 	{
-		[result appendFormat:@"\t%@ %@.\n", name, subcommandName];
+		[result appendFormat:@"\t%@ %@\n", name, subcommandName];
 	}
 
 	return result;
