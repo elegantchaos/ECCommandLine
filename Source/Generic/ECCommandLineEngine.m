@@ -278,7 +278,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	switch (result)
 	{
 		case ECCommandLineResultUnknownCommand:
-		case ECCommandLineResultMissingArguments:
 			[self showUsage];
 			break;
 

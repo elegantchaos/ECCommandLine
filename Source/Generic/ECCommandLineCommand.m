@@ -263,6 +263,7 @@
 	else
 	{
 		[engine outputError:nil format:@"Missing arguments for command ‘%@’.\n", self.name];
+		[engine outputFormat:@"Usage: %@\n", [self usageAs:self.name parentName:nil engine:engine]];
 	}
 
 	if (result == ECCommandLineResultOK)
