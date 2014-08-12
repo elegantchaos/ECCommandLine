@@ -253,7 +253,7 @@
 			name = ECCommandLineMacTests;
 			productName = libECCoreMacTests;
 			productReference = 2283A3F514F52EC0009142F7 /* ECCommandLineMacTests.xctest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2296287017621E33008D887F /* ECCommandLineMacStatic */ = {
 			isa = PBXNativeTarget;
