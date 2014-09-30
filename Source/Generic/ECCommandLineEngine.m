@@ -421,11 +421,12 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (void)showVersion
 {
-	NSString* version = [NSApp applicationFullVersion];
+	NSBundle* bundle = [NSBundle mainBundle];
+	NSString* version = [bundle bundleFullVersion];
 	if (self.outputMode == ECCommandLineOutputJSON) {
 		[self outputInfo:self.name withKey:@"name"];
-		[self outputInfo:[NSApp applicationVersion] withKey:@"version"];
-		[self outputInfo:[NSApp applicationBuild] withKey:@"build"];
+		[self outputInfo:[bundle bundleVersion] withKey:@"version"];
+		[self outputInfo:[bundle bundleBuild] withKey:@"build"];
 	} else {
 		[self outputFormat:@"%@ %@\n", self.name, version];
 	}

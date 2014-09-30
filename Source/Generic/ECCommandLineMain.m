@@ -17,7 +17,8 @@ int ECCommandLineMain(int argc, const char * argv[])
 		delegate = [NSClassFromString(delegateClass) new];
 
 	ECCommandLineEngine* cl = [[ECCommandLineEngine alloc] initWithDelegate:delegate];
-	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+
+	dispatch_async(dispatch_get_main_queue(), ^{
 		ECCommandLineResult processResult = [cl processArguments:argc argv:argv];
 		if (processResult != ECCommandLineResultOK)
 		{
@@ -26,9 +27,9 @@ int ECCommandLineMain(int argc, const char * argv[])
 
 			exit(processResult);
 		}
-	}];
+	});
 
-	int result = NSApplicationMain(argc, argv);
+	CFRunLoopRun();
 
-	return result;
+	return 0;
 }
