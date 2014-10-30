@@ -43,5 +43,6 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 - (void)exitWithResult:(ECCommandLineResult)result;
 
 + (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary parentCommand:(ECCommandLineCommand*)parentCommand;
++ (NSArray*)commandsInDisplayOrder:(NSDictionary*)commands;
 
 @end

@@ -80,10 +80,15 @@
 	NSString* fullName = parentName ? [NSString stringWithFormat:@"%@ %@", parentName, name] : name;
 	NSMutableString* result = [NSMutableString stringWithString:[self ourSummaryAs:fullName]];
 
-	for (NSString* subcommandName in self.subcommands)
+	NSArray* sortedSubcommands = [ECCommandLineEngine commandsInDisplayOrder:self.subcommands];
+	if ([sortedSubcommands count] > 0)
 	{
-		ECCommandLineCommand* subcommand = self.subcommands[subcommandName];
-		[result appendFormat:@"%@\n\t", [subcommand summaryAs:subcommandName parentName:fullName]];
+		[result appendString:@"\n"];
+		for (ECCommandLineCommand* subcommand in sortedSubcommands)
+		{
+			[result appendFormat:@"%@", [subcommand summaryAs:subcommand.name parentName:fullName]];
+		}
+		[result appendString:@"\n"];
 	}
 
 	return result;
@@ -92,7 +97,7 @@
 - (NSString*)ourSummaryAs:(NSString*)name
 {
 	NSString* paddedName = [name stringByPaddingToLength:20 withString:@" " startingAtIndex:0];
-	NSString* result = [NSString stringWithFormat:@"%@ %@", paddedName, self.help];
+	NSString* result = [NSString stringWithFormat:@"\t%@ %@\n", paddedName, self.help];
 
 	return result;
 }

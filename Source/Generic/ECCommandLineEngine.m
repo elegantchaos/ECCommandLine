@@ -391,6 +391,14 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	return self.infoRecord;
 }
 
++ (NSArray*)commandsInDisplayOrder:(NSDictionary*)commands {
+	NSArray* sortedCommands = [[commands allValues] sortedArrayUsingComparator:^NSComparisonResult(ECCommandLineCommand* c1, ECCommandLineCommand* c2) {
+		return [c1.name compare:c2.name];
+	}];
+
+	return sortedCommands;
+}
+
 - (void)showUsage
 {
 	NSString* usage = [NSString stringWithFormat:@"Usage: %@", self.name];
@@ -412,9 +420,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	[self outputFormat:@"%@\n", string];
 
 	[self outputFormat:@"\nCommands:\n"];
-	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
-		[self outputFormat:@"\t%@\n", [command summaryAs:name parentName:nil]];
-	}];
+	NSArray* sortedCommands = [ECCommandLineEngine commandsInDisplayOrder:self.commands];
+	for (ECCommandLineCommand* command in sortedCommands) {
+		[self outputFormat:@"%@", [command summaryAs:command.name parentName:nil]];
+	};
 
 	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];
 }
