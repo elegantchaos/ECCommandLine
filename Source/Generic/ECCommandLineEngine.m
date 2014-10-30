@@ -392,9 +392,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 }
 
 + (NSArray*)commandsInDisplayOrder:(NSDictionary*)commands {
-	NSArray* sortedCommands = [[commands allValues] sortedArrayUsingComparator:^NSComparisonResult(ECCommandLineCommand* c1, ECCommandLineCommand* c2) {
-		return [c1.name compare:c2.name];
-	}];
+	NSArray* sortedCommands = [[commands allValues] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
 	return sortedCommands;
 }

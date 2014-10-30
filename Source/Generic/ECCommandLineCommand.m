@@ -306,4 +306,8 @@
 	return ECCommandLineResultNotImplemented;
 }
 
+- (NSComparisonResult)caseInsensitiveCompare:(ECCommandLineCommand*)command {
+	return [self.name compare:command.name];
+}
+
 @end
