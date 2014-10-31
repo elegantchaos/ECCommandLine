@@ -114,12 +114,20 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	struct option* optionsArray = calloc(optionsCount + 1, sizeof(struct option));
 	__block struct option* optionPtr = optionsArray;
 	NSMutableString* shortBuffer = [[NSMutableString alloc] init];
+	NSMutableDictionary* shortIndex = [NSMutableDictionary new];
 	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* optionName, ECCommandLineOption* option, BOOL *stop) {
 		optionPtr->name = strdup([optionName UTF8String]);
 		optionPtr->has_arg = option.mode;
 		optionPtr->flag = NULL;
 		optionPtr->val = option.shortOption;
-		[shortBuffer appendFormat:@"%c", option.shortOption];
+		NSString* shortChar = [NSString stringWithFormat:@"%c", option.shortOption];
+		[shortBuffer appendString:shortChar];
+		ECCommandLineOption* optionUsingChar = shortIndex[shortChar];
+		if (optionUsingChar) {
+			NSLog(@"clash detected: %@ and %@ are both trying to use a short char of %@", option.name, optionUsingChar.name, shortChar);
+		} else {
+			shortIndex[shortChar] = option;
+		}
 		optionPtr++;
 	}];
 
