@@ -4,4 +4,5 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
+extern int ECCommandLineMainNoArgs(void);
 extern int ECCommandLineMain(int argc, const char * argv[]);

@@ -8,6 +8,20 @@
 #import "ECCommandLineEngine.h"
 #import "ECCommandLineEngineDelegate.h"
 
+#import "crt_externs.h"
+
+int ECCommandLineMainNoArgs(void)
+{
+	int* argc = _NSGetArgc();
+	char *** argv = _NSGetArgv();
+	int result = 0;
+	if (argc && argv)
+		result = ECCommandLineMain(*argc, (const char**)*argv);
+	
+	return result;
+}
+
+
 int ECCommandLineMain(int argc, const char * argv[])
 {
 	NSBundle* bundle = [NSBundle mainBundle];
