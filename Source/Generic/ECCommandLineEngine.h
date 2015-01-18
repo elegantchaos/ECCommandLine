@@ -7,7 +7,7 @@
 #import "ECCommandLineResult.h"
 #import "ECCommandLineEngineDelegate.h"
 
-ECDeclareDebugChannel(CommandLineEngineChannel);
+//ECDeclareDebugChannel(CommandLineEngineChannel);
 
 @class ECCommandLineCommand;
 @class ECCommandLineOption;
