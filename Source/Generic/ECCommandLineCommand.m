@@ -24,6 +24,12 @@
 
 @implementation ECCommandLineCommand
 
++ (Class)swiftClassFromString:(NSString *)className {
+	NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+	NSString *classStringName = [NSString stringWithFormat:@"_TtC%ld%@%ld%@", appName.length, appName, className.length, className];
+	return NSClassFromString(classStringName);
+}
+
 + (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info parentCommand:(ECCommandLineCommand *)parentCommand
 {
 	Class class = nil;
@@ -31,6 +37,9 @@
 	if (className)
 		class = NSClassFromString(className);
 
+	if (!class)
+		class = [self swiftClassFromString:className];
+	
 	if (!class)
 		class = [ECCommandLineMissingClassCommand class];
 
