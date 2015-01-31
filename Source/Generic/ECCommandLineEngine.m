@@ -350,6 +350,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	exit(result);
 }
 
+- (void)outputDescription:(NSString*)description {
+	[self outputFormat:@"%@", description];
+}
+
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2)
 {
 	va_list args;
@@ -361,6 +365,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		printf("%s", [string UTF8String]);
 	else
 		[self.output appendString:string];
+}
+
+- (void)outputError:(NSError*)error description:(NSString*)description {
+	[self outputError:error format:@"%@", description];
 }
 
 - (void)outputError:(NSError *)error format:(NSString *)format, ...
