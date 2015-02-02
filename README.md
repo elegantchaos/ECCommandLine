@@ -52,7 +52,7 @@ It takes one parameter - the thing to clean.
 It must also be supplied with the --tool option (presumably saying which cleaning tool to use), and can optionally be supplied with the --detergent option.
 
 
-   "Commands" : {
+    "Commands" : {
 	   "clean" : {
 		   "class" : "CleanCommand",
 		   "help" : "Clean things up.",
@@ -67,64 +67,29 @@ It must also be supplied with the --tool option (presumably saying which cleanin
 				optional : ( "detergent" )
 			},
 	   }
-   }
+    }
 
 
 ### Describing Options
 
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>user</key>
-	<dict>
-		<key>short</key>
-		<string>u</string>
-		<key>mode</key>
-		<string>required</string>
-		<key>help</key>
-		<string>Github username</string>
-		<key>type</key>
-		<string>string</string>
-		<key>default</key>
-		<string>samdeane</string>
-	</dict>
-	<key>remote</key>
-	<dict>
-		<key>short</key>
-		<string>r</string>
-		<key>mode</key>
-		<string>required</string>
-		<key>help</key>
-		<string>Git remote to use</string>
-		<key>type</key>
-		<string>string</string>
-		<key>default</key>
-		<string>origin</string>
-	</dict>
-	<key>branch</key>
-	<dict>
-		<key>short</key>
-		<string>b</string>
-		<key>mode</key>
-		<string>required</string>
-		<key>help</key>
-		<string>Git branch to check merged status against</string>
-		<key>type</key>
-		<string>string</string>
-		<key>default</key>
-		<string>develop</string>
-	</dict>
-	<key>password</key>
-	<dict>
-		<key>short</key>
-		<string>p</string>
-		<key>mode</key>
-		<string>optional</string>
-		<key>help</key>
-		<string>Github password</string>
-		<key>type</key>
-		<string>string</string>
-	</dict>
-</dict>
-</plist>
+The options that a particular command uses are just listed by name.
+
+To allow the tool to give a fuller description of them, supply default, and so on, they are also listed in more detail in their own top-level dictionary in the Info.plist, called "Options".
+
+The name of each entry is the option, and the value is a dictionary describing it.
+
+For example, the following describes the "tool" and "detergent" options. Both are expected to be strings. The tool option has a default value that can be supplied if the user doesn't specify it on the command line.
+
+    "Options" : {
+		"tool" : {
+			"short" : "t",
+			"help" : "Tool to use when cleaning.",
+			"type" : "string",
+			"default" : "brush"
+		},
+		"detergent" : {
+			"short" : "d",
+			"help" : "Detergent to use when cleaning.",
+			"type" : "string"
+		}
+	}
