@@ -93,3 +93,32 @@ For example, the following describes the "tool" and "detergent" options. Both ar
 			"type" : "string"
 		}
 	}
+
+### Implementing A Command
+
+To implement, you make a new class which inherits from ECCommandLineCommand, and override the engine:didProcessWithArguments: method.
+
+This method performs the work of the command, and returns an ECCommandLineResult.
+
+You are passed in any unprocessed arguments, and can call back to the command line engine to obtain values for options, and to output values to stdout or stderr.
+
+Asynchronous commands are supported - if you return StayRunning from the command, the engine will spin in a run loop until you call its exitWithResult method.
+
+Here's a simple example:
+
+	class CleanCommand : ECCommandLineCommand {
+    
+	    override func engine(engine : ECCommandLineEngine, didProcessWithArguments arguments : NSArray) -> ECCommandLineResult {
+	        // do something asynchronous
+			doMyAsyncThingWithCompletion { (result : NSError? ) -> Void in
+				if (result == nil) {
+	                engine.outputDescription("hurrah")
+	                engine.exitWithResult(ECCommandLineResult.OK)
+					} else {
+	                    engine.outputError(error, description:"failed to fetch mentions")
+	                    engine.exitWithResult(ECCommandLineResult.ImplementationReturnedError)
+			        }
+	            })
+            
+	        return ECCommandLineResult.StayRunning
+	    }
