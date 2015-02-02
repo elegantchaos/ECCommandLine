@@ -5,19 +5,19 @@ ECCommandLine provides support to simplify building command line tools that work
 
 In these tools you have a single executable, which then typically takes one or more related commands as the first parameter(s), eg:
 
-> burgermeister open
-> burgermeister make...
-> burgermeister sell...
-> burgermeister close
+    > burgermeister open
+    > burgermeister make...
+    > burgermeister sell...
+    > burgermeister close
 
 These commands determine which action the tool does, and the tool may then interpret additional arguments, eg
 
-> burgermeister make cheeseburger
-> burgermeister make quarterpounder
+    > burgermeister make cheeseburger
+    > burgermeister make quarterpounder
 
 They may also react to a number of unix style options, eg
 
-> burgermeister make quarterpounder --cheese=NO --fries=YES --no-mayo.
+    > burgermeister make quarterpounder --cheese=NO --fries=YES --no-mayo.
 
 All of this fancy-shmancy parsing of the input makes the command easy to use, but it's mostly repetitive drudge work to code. In a nutshell, what ECCommandLine does is supply all the plumbing for this, such that:
 
