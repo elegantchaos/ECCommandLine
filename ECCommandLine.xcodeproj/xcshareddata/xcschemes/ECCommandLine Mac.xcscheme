@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
@@ -75,7 +75,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2283A3F414F52EC0009142F7"
-               BuildableName = "ECCommandLineMacTests.octest"
+               BuildableName = "ECCommandLineMacTests.xctest"
                BlueprintName = "ECCommandLineMacTests"
                ReferencedContainer = "container:ECCommandLine.xcodeproj">
             </BuildableReference>
@@ -91,6 +91,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "228CF1E817562478003E1D25"
+            BuildableName = "libECLogging.a"
+            BlueprintName = "ECLoggingMacStatic"
+            ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

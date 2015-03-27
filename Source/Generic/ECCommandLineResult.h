@@ -3,10 +3,12 @@
 //  ECCommandLine
 //
 //  Created by Sam Deane on 08/06/2013.
-//  Copyright (c) 2013 Elegant Chaos. All rights reserved.
+//  Copyright (c) 2014 Sam Deane, Elegant Chaos. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
+extern NSString *const ECCommandLineDomain;
 
 typedef NS_ENUM(NSInteger, ECCommandLineResult)
 {
@@ -18,4 +20,5 @@ typedef NS_ENUM(NSInteger, ECCommandLineResult)
 	ECCommandLineResultNotImplemented,
 	ECCommandLineResultMissingArguments,
 	ECCommandLineResultImplementationReturnedError,
+	ECCommandLineResultMissingBundle,
 };

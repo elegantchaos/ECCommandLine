@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------
 
 #import "ECCommandLineResult.h"
+#import "ECCommandLineEngineDelegate.h"
 
 ECDeclareDebugChannel(CommandLineEngineChannel);
 
@@ -14,15 +15,34 @@ ECDeclareDebugChannel(CommandLineEngineChannel);
 @interface ECCommandLineEngine : NSObject
 
 @property (strong, nonatomic, readonly) NSString* name;
+@property (strong, nonatomic) id<ECCommandLineEngineDelegate> delegate;
+
+- (id)initWithDelegate:(id<ECCommandLineEngineDelegate>)delegate;
 
 - (ECCommandLineResult)processArguments:(int)argc argv:(const char **)argv;
 
 - (void)showUsage;
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 - (void)outputError:(NSError*)error format:(NSString*)format, ... NS_FORMAT_FUNCTION(2,3);
+- (void)outputInfo:(id)info withKey:(NSString*)key;
+- (void)openInfoGroupWithKey:(NSString*)key;
+- (void)closeInfoGroup;
+- (NSDictionary*)info;
+
 - (id)optionForKey:(NSString*)key;
+- (BOOL)boolOptionForKey:(NSString*)key;
+- (CGFloat)doubleOptionForKey:(NSString*)key;
+- (NSString*)stringOptionForKey:(NSString*)key;
+- (NSURL*)urlOptionForKey:(NSString*)key defaultingToWorkingDirectory:(BOOL)defaultingToWorkingDirectory;
+- (NSArray*)arrayOptionForKey:(NSString*)key separator:(NSString*)separator;
+
 - (ECCommandLineCommand*)commandWithName:(NSString*)name;
 - (ECCommandLineOption*)optionWithName:(NSString *)name;
 - (NSUInteger)paddingLength;
+
+- (void)exitWithResult:(ECCommandLineResult)result;
+
++ (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary parentCommand:(ECCommandLineCommand*)parentCommand;
++ (NSArray*)commandsInDisplayOrder:(NSDictionary*)commands;
 
 @end

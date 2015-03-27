@@ -8,8 +8,16 @@
 #import "ECCommandLineCommand.h"
 #import "ECCommandLineOption.h"
 
+#import "NSBundle+ECCore.h"
+
 #import <getopt.h>
 #import <stdarg.h>
+
+typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
+{
+	ECCommandLineOutputText,
+	ECCommandLineOutputJSON
+};
 
 @interface ECCommandLineEngine()
 
@@ -19,18 +27,31 @@
 @property (strong, nonatomic) NSMutableDictionary* optionsByShortName;
 @property (strong, nonatomic) ECCommandLineOption* helpOption;
 @property (strong, nonatomic) ECCommandLineOption* versionOption;
-
+@property (strong, nonatomic) NSMutableDictionary* infoRecord;
+@property (strong, nonatomic) NSMutableArray* infoStack;
+@property (strong, nonatomic) NSMutableString* output;
+@property (assign, nonatomic) ECCommandLineOutputMode outputMode;
+@property (strong, nonatomic) NSURL* outputJSONURL;
 @end
 
 @implementation ECCommandLineEngine
 
-- (id)init
+- (id)initWithDelegate:(id<ECCommandLineEngineDelegate>)delegate
 {
 	if ((self = [super init]) != nil)
 	{
+		self.delegate = delegate;
 		self.commands = [NSMutableDictionary dictionary];
 		self.options = [NSMutableDictionary dictionary];
 		self.optionsByShortName = [NSMutableDictionary dictionary];
+		self.infoRecord = [NSMutableDictionary dictionary];
+		self.infoStack = [NSMutableArray array];
+		self.outputMode = ECCommandLineOutputText;
+		self.output = [NSMutableString new];
+
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			[self.delegate engineDidFinishLaunching:self];
+		}];
 	}
 
 	return self;
@@ -40,18 +61,28 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 #pragma mark - Commands
 
-- (void)registerCommandNamed:(NSString*)name withInfo:(NSDictionary*)info
++ (void)addCommandNamed:(NSString*)mainName withInfo:(NSDictionary*)info toDictionary:(NSMutableDictionary*)dictionary parentCommand:(ECCommandLineCommand*)parentCommand
 {
-	ECDebug(CommandLineEngineChannel, @"registered command %@", name);
+	NSArray* names = @[mainName];
+	NSArray* aliases = info[@"aliases"];
+	if (aliases) {
+		names = [names arrayByAddingObjectsFromArray:aliases];
+		
+		info = [info mutableCopy];
+		[(NSMutableDictionary *)info removeObjectForKey:@"aliases"];
+	}
 
-	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:name info:info];
-	self.commands[name] = command;
+	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:mainName info:info parentCommand:parentCommand];
+	for (NSString* name in names) {
+		ECDebug(CommandLineEngineChannel, @"registered command %@", name);
+		dictionary[name] = command;
+	}
 }
 
 - (void)registerCommands:(NSDictionary*)commands
 {
 	[commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL *stop) {
-		[self registerCommandNamed:name withInfo:info];
+			[ECCommandLineEngine addCommandNamed:name withInfo:info toDictionary:self.commands parentCommand:nil];
 	}];
 }
 
@@ -87,12 +118,20 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	struct option* optionsArray = calloc(optionsCount + 1, sizeof(struct option));
 	__block struct option* optionPtr = optionsArray;
 	NSMutableString* shortBuffer = [[NSMutableString alloc] init];
+	NSMutableDictionary* shortIndex = [NSMutableDictionary new];
 	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* optionName, ECCommandLineOption* option, BOOL *stop) {
 		optionPtr->name = strdup([optionName UTF8String]);
 		optionPtr->has_arg = option.mode;
 		optionPtr->flag = NULL;
 		optionPtr->val = option.shortOption;
-		[shortBuffer appendFormat:@"%c", option.shortOption];
+		NSString* shortChar = [NSString stringWithFormat:@"%c", option.shortOption];
+		[shortBuffer appendString:shortChar];
+		ECCommandLineOption* optionUsingChar = shortIndex[shortChar];
+		if (optionUsingChar) {
+			NSLog(@"clash detected: %@ and %@ are both trying to use a short char of %@", option.name, optionUsingChar.name, shortChar);
+		} else {
+			shortIndex[shortChar] = option;
+		}
 		optionPtr++;
 	}];
 
@@ -129,6 +168,45 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	return result;
 }
 
+- (CGFloat)doubleOptionForKey:(NSString*)key
+{
+	ECCommandLineOption* option = self.options[key];
+	CGFloat result = [option.value doubleValue];
+
+	return result;
+}
+
+- (BOOL)boolOptionForKey:(NSString*)key {
+	BOOL result = [[self optionForKey:key] boolValue];
+
+	return result;
+}
+
+- (NSString*)stringOptionForKey:(NSString*)key {
+	NSString* result = [[self optionForKey:key] description];
+
+	return result;
+}
+
+- (NSURL*)urlOptionForKey:(NSString*)key defaultingToWorkingDirectory:(BOOL)defaultingToWorkingDirectory {
+	NSString* path = [[self stringOptionForKey:key] stringByStandardizingPath];
+	if (!path && defaultingToWorkingDirectory)
+		path = [@"./" stringByStandardizingPath];
+
+	NSURL* url = nil;
+	if (path)
+		url = [NSURL fileURLWithPath:path];
+
+	return url;
+}
+
+- (NSArray*)arrayOptionForKey:(NSString *)key separator:(NSString *)separator {
+	NSString* value = [self stringOptionForKey:key];
+	NSArray* result = [value componentsSeparatedByString:separator];
+
+	return result;
+}
+
 - (void)setupFromBundle
 {
 	NSBundle* bundle = [NSBundle mainBundle];
@@ -140,8 +218,9 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	// TODO: maybe load these from a plist?
 	[self registerOptions:
 	 @{
+	 @"help": @{@"short" : @"h", @"help" : @"show command help"},
+	 @"outputJSON": @{@"short" : @"J", @"help" : @"produce output as json rather than text", @"type" : @"path", @"mode" : @"optional"},
 	 @"version": @{@"short" : @"v", @"help" : @"show version number"},
-	 @"help": @{@"short" : @"h", @"help" : @"show command help"}
 	 }
 	 ];
 
@@ -190,6 +269,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}
 
 	[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
+	[self setupOutput];
 
 	ECCommandLineResult result;
 	if ((processedOptions + 1) < (NSUInteger)argc)
@@ -210,7 +290,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	switch (result)
 	{
 		case ECCommandLineResultUnknownCommand:
-		case ECCommandLineResultMissingArguments:
 			[self showUsage];
 			break;
 
@@ -218,7 +297,61 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 			break;
 	}
 
+	if (result == ECCommandLineResultOKButTerminate)
+	{
+		[self processOutput];
+	}
+
 	return result;
+}
+
+- (void)setupOutput
+{
+	id value = [self optionForKey:@"outputJSON"];
+	if ([value isKindOfClass:[NSNumber class]] || ([value isKindOfClass:[NSString class]] && ([value isEqualToString:@"YES"] || [value isEqualToString:@"NO"])))
+	{
+		if ([self boolOptionForKey:@"outputJSON"])
+			self.outputMode = ECCommandLineOutputJSON;
+	}
+	else
+	{
+		self.outputJSONURL = [self urlOptionForKey:@"outputJSON" defaultingToWorkingDirectory:NO];
+	}
+}
+
+- (void)processOutput
+{
+	BOOL printJSON = self.outputMode == ECCommandLineOutputJSON;
+	if (printJSON || self.outputJSONURL)
+	{
+		NSError* error;
+		NSData* data = [NSJSONSerialization dataWithJSONObject:self.info options:NSJSONWritingPrettyPrinted error:&error];
+		if (!data)
+		{
+			[self outputError:error format:@"Failed to convert output info to JSON"];
+		}
+		else
+		{
+			NSString* text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+			if (self.outputJSONURL)
+			{
+				if (![text writeToURL:self.outputJSONURL atomically:YES encoding:NSUTF8StringEncoding error:&error])
+				{
+					[self outputError:error format:@"Failed to write info file"];
+				}
+			}
+			else if (printJSON)
+			{
+				printf("%s\n", [text UTF8String]);
+			}
+		}
+	}
+}
+
+- (void)exitWithResult:(ECCommandLineResult)result
+{
+	[self processOutput];
+	exit(result);
 }
 
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2)
@@ -228,7 +361,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
 	va_end(args);
 
-	printf("%s", [string UTF8String]);
+	if (self.outputMode == ECCommandLineOutputText)
+		printf("%s", [string UTF8String]);
+	else
+		[self.output appendString:string];
 }
 
 - (void)outputError:(NSError *)error format:(NSString *)format, ...
@@ -242,11 +378,45 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	fprintf(stderr, "%s\n%s\n", [string UTF8String], [errorString UTF8String]);
 }
 
+- (void)outputInfo:(id)info withKey:(NSString*)key {
+	self.infoRecord[key] = info;
+}
+
+- (void)openInfoGroupWithKey:(NSString*)key {
+	NSMutableDictionary* level = [NSMutableDictionary dictionary];
+	self.infoRecord[key] = level;
+	[self.infoStack addObject:self.infoRecord];
+	self.infoRecord = level;
+}
+
+- (void)closeInfoGroup {
+	NSUInteger count = [self.infoStack count];
+	if (count) {
+		NSUInteger index = count - 1;
+		NSMutableDictionary* level = self.infoStack[index];
+		[self.infoStack removeObjectAtIndex:index];
+		self.infoRecord = level;
+	}
+}
+
+- (NSDictionary*)info {
+	return self.infoRecord;
+}
+
++ (NSArray*)commandsInDisplayOrder:(NSDictionary*)commands {
+	NSArray* sortedCommands = [[commands allValues] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+	return sortedCommands;
+}
+
 - (void)showUsage
 {
-	NSString* usage = [NSString stringWithFormat:@"Usage: %@ ", self.name];
-	NSString* padding = [@"" stringByPaddingToLength:[usage length] withString:@" " startingAtIndex:0];
-	NSMutableString* string = [NSMutableString stringWithFormat:@"%@", usage];
+	NSString* usage = [NSString stringWithFormat:@"Usage: %@", self.name];
+	NSUInteger paddingLength = [usage length];
+	usage = [usage stringByAppendingString:@" <command> [<args>]\n"];
+	[self outputFormat:@"%@", usage];
+	NSString* padding = [@"" stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0];
+	NSMutableString* string = [NSMutableString stringWithString:padding];
 	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL *stop) {
 		NSString* optionString = [NSString stringWithFormat:@" [%@ | %@]", option.longUsage, option.shortUsage];
 		if ([string length] + [optionString length] > 70)
@@ -257,24 +427,35 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 		[string appendString:optionString];
 	}];
-	[self outputFormat:@"%@ <command> [<args>]\n", string];
+	[self outputFormat:@"%@\n", string];
 
 	[self outputFormat:@"\nCommands:\n"];
-	[self.commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineCommand* command, BOOL *stop) {
-		[self outputFormat:@"\t%@\n", command.summary];
-	}];
+	NSArray* sortedCommands = [ECCommandLineEngine commandsInDisplayOrder:self.commands];
+	for (ECCommandLineCommand* command in sortedCommands) {
+		[self outputFormat:@"%@", [command summaryAs:command.name parentName:nil]];
+	};
 
 	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];
 }
 
 - (void)showVersion
 {
-	NSString* version = [NSApp applicationFullVersion];
-	[self outputFormat:@"%@ version %@\n", self.name, version];
+	NSBundle* bundle = [NSBundle mainBundle];
+	NSString* version = [[NSBundle mainBundle] bundleFullVersion];
+	if (self.outputMode == ECCommandLineOutputJSON) {
+		[self outputInfo:self.name withKey:@"name"];
+		[self outputInfo:[bundle bundleVersion] withKey:@"version"];
+		[self outputInfo:[bundle bundleBuild] withKey:@"build"];
+	} else {
+		[self outputFormat:@"%@ %@\n", self.name, version];
+	}
 }
 
 - (ECCommandLineResult)processCommands:(NSMutableArray*)commands
 {
+	if ([self.delegate respondsToSelector:@selector(engine:willProcessCommands:)])
+		[self.delegate engine:self willProcessCommands:commands];
+
 	NSString* commandName = [commands objectAtIndex:0];
 	[commands removeObjectAtIndex:0];
 
@@ -286,10 +467,13 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	}
 	else
 	{
+		// pull out the top level command
 		ECCommandLineCommand* command = [self commandWithName:commandName];
 		if (command)
 		{
-			result = [command engine:self processCommands:commands];
+			// resolve the actual command, which may be a subcommand - eg might be "export artboards", where "artboards" is a subcommand of "export"
+			ECCommandLineCommand* resolved = [command resolveCommandPath:commands];
+			result = [resolved engine:self processCommands:commands];
 		}
 		else
 		{
@@ -297,11 +481,17 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		}
 	}
 
+	if ([self.delegate respondsToSelector:@selector(engine:didProcessCommands:)])
+		[self.delegate engine:self didProcessCommands:commands];
+
 	return result;
 }
 
 - (ECCommandLineResult)processNoCommands
 {
+	if ([self.delegate respondsToSelector:@selector(engine:willProcessCommands:)])
+		[self.delegate engine:self willProcessCommands:@[]];
+
 	ECCommandLineResult result = ECCommandLineResultOKButTerminate;
 	if ([self.versionOption.value boolValue])
 	{
@@ -315,7 +505,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	{
 		result = ECCommandLineResultUnknownCommand;
 	}
-	
+
+	if ([self.delegate respondsToSelector:@selector(engine:didProcessCommands:)])
+		[self.delegate engine:self didProcessCommands:@[]];
+
 	return result;
 }
 

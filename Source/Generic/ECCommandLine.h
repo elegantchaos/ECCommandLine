@@ -7,6 +7,7 @@
 #import <ECLogging/ECLogging.h>
 
 #import "ECCommandLineEngine.h"
+#import "ECCommandLineEngineDelegate.h"
 #import "ECCommandLineCommand.h"
 #import "ECCommandLineMain.h"
 #import "ECCommandLineOption.h"

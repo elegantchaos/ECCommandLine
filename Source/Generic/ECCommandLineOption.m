@@ -3,7 +3,7 @@
 //  ECCommandLine
 //
 //  Created by Sam Deane on 08/06/2013.
-//  Copyright (c) 2013 Elegant Chaos. All rights reserved.
+//  Copyright (c) 2014 Sam Deane, Elegant Chaos. All rights reserved.
 //
 
 #import "ECCommandLineOption.h"
@@ -81,11 +81,11 @@
 	{
 		result = [NSString stringWithFormat:@"%@{=YES|NO} | --no-%@", result, self.name];
 	}
-	else
+	else if (type)
 	{
 		result = [NSString stringWithFormat:@"%@=<%@>", result, type];
 	}
-	
+
 	return result;
 }
 
@@ -97,7 +97,7 @@
 	{
 		result = [NSString stringWithFormat:@"%@ {<YES|NO>}", result];
 	}
-	else
+	else if (type)
 	{
 		result = [NSString stringWithFormat:@"%@ <%@>", result, type];
 	}

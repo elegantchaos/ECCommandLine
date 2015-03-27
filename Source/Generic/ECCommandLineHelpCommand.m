@@ -3,7 +3,7 @@
 //  ECCommandLine
 //
 //  Created by Sam Deane on 09/06/2013.
-//  Copyright (c) 2013 Elegant Chaos. All rights reserved.
+//  Copyright (c) 2014 Sam Deane, Elegant Chaos. All rights reserved.
 //
 
 #import "ECCommandLineHelpCommand.h"
@@ -23,7 +23,9 @@
 		ECCommandLineCommand* command = [engine commandWithName:commandName];
 		if (command)
 		{
-			[engine outputFormat:@"Usage: %@ %@", engine.name, [command usageWithEngine:engine]];
+			[arguments removeObjectAtIndex:0];
+			ECCommandLineCommand* resolved = [command resolveCommandPath:arguments];
+			[engine outputFormat:@"Usage: %@\n", [resolved usageAs:commandName parentName:nil engine:engine]];
 		}
 	}
 
