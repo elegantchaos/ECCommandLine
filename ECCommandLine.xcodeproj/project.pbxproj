@@ -29,6 +29,8 @@
 		22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */; };
 		22C8B768182D3C71003EA301 /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2230CDA717636BE30026AA5E /* libECLogging.a */; };
 		22C8B76A182D3C8B003EA301 /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C8B769182D3C8B003EA301 /* libECCore.a */; };
+		F5F6F9961AC5A04900C1FF62 /* NSBundle+ECCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F6F9941AC5A04900C1FF62 /* NSBundle+ECCore.h */; };
+		F5F6F9971AC5A04900C1FF62 /* NSBundle+ECCore.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F6F9951AC5A04900C1FF62 /* NSBundle+ECCore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		22C4FB3E1791C5C000F33FB2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		22C8B769182D3C8B003EA301 /* libECCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECCore.a; path = "../../../../../../../../../../../castor/Caches/DerivedData/ECIntegration-fbajcwyruhnhxzgnphlhxaexutkp/Build/Products/Debug/libECCore.a"; sourceTree = "<group>"; };
 		22C8B76B182D3CB8003EA301 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		F5F6F9941AC5A04900C1FF62 /* NSBundle+ECCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ECCore.h"; sourceTree = "<group>"; };
+		F5F6F9951AC5A04900C1FF62 /* NSBundle+ECCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ECCore.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +211,8 @@
 				22664DF91763AD6500D6439D /* ECCommandLineResult.m */,
 				229628F517634465008D887F /* ECCommandLineEngine.h */,
 				229628F617634465008D887F /* ECCommandLineEngine.m */,
+				F5F6F9941AC5A04900C1FF62 /* NSBundle+ECCore.h */,
+				F5F6F9951AC5A04900C1FF62 /* NSBundle+ECCore.m */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -222,6 +228,7 @@
 				220EF34E17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h in Headers */,
 				229628F31763442D008D887F /* ECCommandLine.h in Headers */,
 				229628F817634465008D887F /* ECCommandLineEngine.h in Headers */,
+				F5F6F9961AC5A04900C1FF62 /* NSBundle+ECCore.h in Headers */,
 				2230CDA4176366AA0026AA5E /* ECCommandLineCommand.h in Headers */,
 				2230CDAE17637D970026AA5E /* ECCommandLineOption.h in Headers */,
 				22664DFA1763AD6500D6439D /* ECCommandLineResult.h in Headers */,
@@ -343,6 +350,7 @@
 				229628FB17634465008D887F /* ECCommandLineEngine.m in Sources */,
 				2230CDA5176366AA0026AA5E /* ECCommandLineCommand.m in Sources */,
 				2230CDAF17637D970026AA5E /* ECCommandLineOption.m in Sources */,
+				F5F6F9971AC5A04900C1FF62 /* NSBundle+ECCore.m in Sources */,
 				22664DFB1763AD6500D6439D /* ECCommandLineResult.m in Sources */,
 				2207E4C9176875520003F042 /* ECCommandLineMain.m in Sources */,
 				22664DFF1763AF2600D6439D /* ECCommandLineMissingClassCommand.m in Sources */,

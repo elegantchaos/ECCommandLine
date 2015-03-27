@@ -8,6 +8,8 @@
 #import "ECCommandLineCommand.h"
 #import "ECCommandLineOption.h"
 
+#import "NSBundle+ECCore.h"
+
 #import <getopt.h>
 #import <stdarg.h>
 
@@ -65,7 +67,9 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	NSArray* aliases = info[@"aliases"];
 	if (aliases) {
 		names = [names arrayByAddingObjectsFromArray:aliases];
-		info = [info dictionaryWithoutKey:@"aliases"];
+		
+		info = [info mutableCopy];
+		[(NSMutableDictionary *)info removeObjectForKey:@"aliases"];
 	}
 
 	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:mainName info:info parentCommand:parentCommand];
@@ -437,7 +441,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 - (void)showVersion
 {
 	NSBundle* bundle = [NSBundle mainBundle];
-	NSString* version = [bundle bundleFullVersion];
+	NSString* version = [[NSBundle mainBundle] bundleFullVersion];
 	if (self.outputMode == ECCommandLineOutputJSON) {
 		[self outputInfo:self.name withKey:@"name"];
 		[self outputInfo:[bundle bundleVersion] withKey:@"version"];

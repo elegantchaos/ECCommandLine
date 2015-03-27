@@ -9,6 +9,5 @@
 #ifdef __OBJC__
 
 #import <ECLogging/ECLogging.h>
-#import <ECCore/ECCore.h>
 
 #endif
