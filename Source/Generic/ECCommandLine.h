@@ -9,3 +9,5 @@
 #import "ECCommandLineCommand.h"
 #import "ECCommandLineMain.h"
 #import "ECCommandLineOption.h"
+#import "ECCommandLineHelpCommand.h"
+#import "ECCommandLineMissingClassCommand.h"
