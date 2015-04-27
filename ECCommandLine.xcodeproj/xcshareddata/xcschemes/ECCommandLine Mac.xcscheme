@@ -62,6 +62,20 @@
                ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "226889ED1AEE5150005510E5"
+               BuildableName = "ECCommandLineExample"
+               BlueprintName = "ECCommandLineExample"
+               ReferencedContainer = "container:ECCommandLine.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -81,6 +95,15 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "228CF1E817562478003E1D25"
+            BuildableName = "libECLogging.a"
+            BlueprintName = "ECLoggingMacStatic"
+            ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -91,15 +114,26 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "228CF1E817562478003E1D25"
-            BuildableName = "libECLogging.a"
-            BlueprintName = "ECLoggingMacStatic"
-            ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
+            BlueprintIdentifier = "226889ED1AEE5150005510E5"
+            BuildableName = "ECCommandLineExample"
+            BlueprintName = "ECCommandLineExample"
+            ReferencedContainer = "container:ECCommandLine.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "--version"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "example"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -109,6 +143,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "228CF1E817562478003E1D25"
+            BuildableName = "libECLogging.a"
+            BlueprintName = "ECLoggingMacStatic"
+            ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
