@@ -47,4 +47,20 @@
 	[self assertString:output matchesContentsOfURL:expectedURL mode:ECTestComparisonDiff];
 }
 
+- (void)testExample {
+	NSString* output = [self runToolWithArguments:@[@"example"]];
+	[self assertString:output matchesString:@"This is an example command. It's not very useful. The blah parameter was “waffle”" mode:ECTestComparisonDiff];
+}
+
+- (void)testExampleWithOption {
+	NSString* output = [self runToolWithArguments:@[@"example", @"--blah=doodah"]];
+	[self assertString:output matchesString:@"This is an example command. It's not very useful. The blah parameter was “doodah”" mode:ECTestComparisonDiff];
+}
+
+- (void)testUnknown {
+	NSString* output = [self runToolWithArguments:@[@"zoinks"]];
+	NSString* line1 = [output componentsSeparatedByString:@"\n"][0];
+	[self assertString:line1 matchesString:@"Unknown command ‘zoinks’" mode:ECTestComparisonDiff];
+}
+
 @end
