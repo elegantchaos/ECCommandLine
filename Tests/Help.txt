@@ -1,0 +1,11 @@
+Usage: ECCommandLineExample <command> [<args>]
+                            [--outputJSON=<path> | -J <path>]
+                            [--blah=<string> | -b <string>]
+                            [--help | -h] [--version | -v]
+
+Commands:
+	example              An example command.
+	help                 Show this help message.
+
+
+See ‘ECCommandLineExample help <command>’ for more information on a specific command.
