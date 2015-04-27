@@ -133,6 +133,10 @@
             argument = "example"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "blah"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

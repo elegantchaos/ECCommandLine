@@ -55,7 +55,9 @@
 			<key>options</key>
 			<dict>
 				<key>required</key>
-				<array/>
+				<array>
+					<string>message</string>
+				</array>
 				<key>optional</key>
 				<array>
 					<string>blah</string>

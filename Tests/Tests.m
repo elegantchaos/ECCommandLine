@@ -23,20 +23,26 @@
 	task.launchPath = [path stringByAppendingPathComponent:@"ECCommandLineExample"];
 	
 	if (arguments)
-	[task setArguments:arguments];
+		[task setArguments:arguments];
 	
-	NSPipe *pipe;
-	pipe = [NSPipe pipe];
+	NSPipe *pipe = [NSPipe pipe];
 	[task setStandardOutput: pipe];
-	
-	NSFileHandle *file;
-	file = [pipe fileHandleForReading];
+
+	NSPipe *errorPipe = [NSPipe pipe];
+	[task setStandardError: errorPipe];
+
+	NSFileHandle *file = [pipe fileHandleForReading];
+	NSFileHandle *errorFile = [errorPipe fileHandleForReading];
 	
 	[task launch];
 	
 	NSData *data = [file readDataToEndOfFile];
+	NSData* errorData = [errorFile readDataToEndOfFile];
+
 	NSString* output = [[NSString alloc] initWithData: data encoding:NSUTF8StringEncoding];
-	
+	NSString* error = [[NSString alloc] initWithData: errorData encoding:NSUTF8StringEncoding];
+	output = [output stringByAppendingString:error];
+
 	return output;
 }
 
@@ -48,13 +54,18 @@
 }
 
 - (void)testExample {
+	NSString* output = [self runToolWithArguments:@[@"example", @"argument"]];
+	[self assertString:output matchesString:@"This is an example command. It's not very useful. The argument was “argument”. The parameter was “waffle”" mode:ECTestComparisonDiff];
+}
+
+- (void)testExampleNoArgument {
 	NSString* output = [self runToolWithArguments:@[@"example"]];
-	[self assertString:output matchesString:@"This is an example command. It's not very useful. The blah parameter was “waffle”" mode:ECTestComparisonDiff];
+	[self assertString:output matchesString:@"We were expecting an argument." mode:ECTestComparisonDiff];
 }
 
 - (void)testExampleWithOption {
-	NSString* output = [self runToolWithArguments:@[@"example", @"--blah=doodah"]];
-	[self assertString:output matchesString:@"This is an example command. It's not very useful. The blah parameter was “doodah”" mode:ECTestComparisonDiff];
+	NSString* output = [self runToolWithArguments:@[@"example", @"argument", @"--blah=doodah"]];
+	[self assertString:output matchesString:@"This is an example command. It's not very useful. The argument was “argument”. The parameter was “doodah”" mode:ECTestComparisonDiff];
 }
 
 - (void)testUnknown {

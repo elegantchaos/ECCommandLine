@@ -12,9 +12,15 @@
 
 - (ECCommandLineResult)engine:(ECCommandLineEngine*)engine didProcessWithArguments:(NSMutableArray *)arguments
 {
-	NSString* blah = [engine stringOptionForKey:@"blah"];
-	[engine outputFormat:@"This is an example command. It's not very useful. The blah parameter was “%@”", blah];
-
+	if ([arguments count] == 1)
+	{
+		NSString* blah = [engine stringOptionForKey:@"blah"];
+		[engine outputFormat:@"This is an example command. It's not very useful. The argument was “%@”. The parameter was “%@”", arguments[0], blah];
+	}
+	else
+	{
+		[engine outputError:nil format:@"We were expecting an argument."];
+	}
 	return ECCommandLineResultOK;
 }
 
