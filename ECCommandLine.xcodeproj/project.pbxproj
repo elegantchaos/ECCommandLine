@@ -62,7 +62,7 @@
 		22381E121A6C305B000AD60A /* MacDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacDebug.xcconfig; sourceTree = "<group>"; };
 		22381E131A6C305B000AD60A /* MacRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacRelease.xcconfig; sourceTree = "<group>"; };
 		22381E141A6C3101000AD60A /* ECLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ECLogging.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/Workflow-dbsiypdiqaexddevshljlitkdapc/Build/Products/Debug/ECLogging.framework"; sourceTree = "<group>"; };
-		22381E181A6C40E7000AD60A /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		22381E181A6C40E7000AD60A /* ECCommandLine.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ECCommandLine.modulemap; sourceTree = "<group>"; };
 		225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineHelpCommand.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		225DECC517649ADE000056F4 /* ECCommandLineHelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineHelpCommand.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2260A31215DFD96D0057C9DA /* MacUnitTestDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacUnitTestDebug.xcconfig; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				2260A3AC15DFEF4F0057C9DA /* Info.plist */,
-				22381E181A6C40E7000AD60A /* module.modulemap */,
+				22381E181A6C40E7000AD60A /* ECCommandLine.modulemap */,
 				223CBAFB1205C7680008A641 /* tests */,
 			);
 			path = Resources;
