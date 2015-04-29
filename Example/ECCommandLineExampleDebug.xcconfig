@@ -1,0 +1,2 @@
+#include "../ECLogging/Source/Configuration/ECMacDebug.xcconfig"
+#include "ECCommandLineExample.xcconfig"
