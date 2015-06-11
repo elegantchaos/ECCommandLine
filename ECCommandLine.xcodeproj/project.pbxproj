@@ -367,7 +367,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Elegant Chaos";
 				TargetAttributes = {
 					226889ED1AEE5150005510E5 = {
@@ -487,14 +487,12 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 			};
 			name = Debug;
 		};
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 			};
 			name = Release;
 		};
@@ -516,12 +514,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2260A31215DFD96D0057C9DA /* MacUnitTestDebug.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
 			};
 			name = Debug;
 		};
@@ -529,12 +521,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2260A31315DFD96D0057C9DA /* MacUnitTestRelease.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
 			};
 			name = Release;
 		};
@@ -571,6 +557,7 @@
 				226889F41AEE5150005510E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		2283A40814F52EC0009142F7 /* Build configuration list for PBXNativeTarget "ECCommandLineMacTests" */ = {
 			isa = XCConfigurationList;

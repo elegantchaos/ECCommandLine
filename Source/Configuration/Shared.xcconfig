@@ -5,3 +5,5 @@
 // --------------------------------------------------------------------------
 
 WARNING_CFLAGS = $(inherited) -Wno-arc-bridge-casts-disallowed-in-nonarc -Wno-deprecated-declarations
+
+PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.frameworks.eccommandline
