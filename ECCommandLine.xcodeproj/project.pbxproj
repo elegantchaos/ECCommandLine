@@ -332,7 +332,6 @@
 				2283A3F014F52EC0009142F7 /* Sources */,
 				2283A3F114F52EC0009142F7 /* Frameworks */,
 				2283A3F214F52EC0009142F7 /* Resources */,
-				2283A3F314F52EC0009142F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -425,19 +424,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "mkdir -p \"${TEMP_DIR}\"\n\n# copy the info plist into the build products dir - the linker will pick up this version\nTEMP_INFO=\"${TEMP_DIR}/Info.plist\"\ncp \"${SOURCE_ROOT}/Example/Info.plist\" \"${TEMP_INFO}\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleExecutable $EXECUTABLE_NAME\" \"${TEMP_INFO}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleName $PRODUCT_NAME\" \"${TEMP_INFO}\"\n\n# update the version information in the copy\n\"${SOURCE_ROOT}/../ECLogging/Extras/Scripts/update-version.sh\" \"${TEMP_INFO}\" \"${TOOL_VERSION}\"\n";
-		};
-		2283A3F314F52EC0009142F7 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
