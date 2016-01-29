@@ -284,7 +284,7 @@
 				[engine outputError:error format:@"%@", exception];
 			}
 			
-			if (result != ECCommandLineResultStayRunning)
+			if (commandResult != ECCommandLineResultStayRunning)
 			{
 				[engine exitWithResult:commandResult];
 			}

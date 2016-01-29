@@ -361,6 +361,9 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 - (void)exitWithResult:(ECCommandLineResult)result
 {
 	[self processOutput];
+	if (result == ECCommandLineResultOKButTerminate)
+		result = ECCommandLineResultOK;
+
 	exit(result);
 }
 
