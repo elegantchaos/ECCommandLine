@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------
 //  Copyright 2013 Sam Deane, Elegant Chaos. All rights reserved.
-//  This source code is distributed under the terms of Elegant Chaos's
+//  This source code is distributed under the terms of Elegant Chaos's 
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 - (void)registerCommands:(NSDictionary*)commands
 {
 	[commands enumerateKeysAndObjectsUsingBlock:^(NSString* name, NSDictionary* info, BOOL* stop) {
-		[ECCommandLineEngine addCommandNamed:name withInfo:info toDictionary:self.commands parentCommand:nil];
+			[ECCommandLineEngine addCommandNamed:name withInfo:info toDictionary:self.commands parentCommand:nil];
 	}];
 }
 
@@ -222,7 +222,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 	// TODO: maybe load these from a plist?
 	[self registerOptions:
-	          @{
+	 @{
 		          @"help": @{ @"short": @"h", @"help": @"show command help" },
 		          @"outputJSON": @{ @"short": @"J", @"help": @"produce output as json rather than text", @"type": @"path", @"mode": @"optional" },
 		          @"version": @{ @"short": @"v", @"help": @"show version number" },
@@ -253,27 +253,27 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	@try
 	{
 		while ((shortOption = getopt_long(argc, (char* const*)argv, shortOptions, optionsArray, &optionIndex)) != -1)
+	{
+		++processedOptions;
+		switch (shortOption)
 		{
-			++processedOptions;
-			switch (shortOption)
+			case '?':
+				NSLog(@"unknown option %s", optarg);
+				break;
+
+			case ':':
+				NSLog(@"missing value %s", optarg);
+				break;
+
+			default:
 			{
-				case '?':
-					NSLog(@"unknown option %s", optarg);
-					break;
-
-				case ':':
-					NSLog(@"missing value %s", optarg);
-					break;
-
-				default:
-				{
-					ECCommandLineOption* option = self.optionsByShortName[[NSString stringWithFormat:@"%c", (char)shortOption]];
-					NSString* optionValue = optarg ? [[NSString alloc] initWithCString:optarg encoding:NSUTF8StringEncoding] : nil;
-					[self processOption:option value:optionValue];
+				ECCommandLineOption* option = self.optionsByShortName[[NSString stringWithFormat:@"%c", (char)shortOption]];
+				NSString* optionValue = optarg ? [[NSString alloc] initWithCString:optarg encoding:NSUTF8StringEncoding] : nil;
+				[self processOption:option value:optionValue];
 				}
+	}
 			}
 		}
-	}
 	@finally
 	{
 		[self cleanupOptionsArray:optionsArray withShortOptions:shortOptions];
@@ -367,6 +367,10 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	exit(result);
 }
 
+- (void)outputDescription:(NSString*)description {
+	[self outputFormat:@"%@", description];
+}
+
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1, 2)
 {
 	va_list args;
@@ -380,7 +384,11 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		[self.output appendString:string];
 }
 
-- (void)outputError:(NSError*)error format:(NSString*)format, ...
+- (void)outputError:(NSError*)error description:(NSString*)description {
+	[self outputError:error format:@"%@", description];
+}
+
+- (void)outputError:(NSError *)error format:(NSString *)format, ...
 {
 	va_list args;
 	va_start(args, format);

@@ -14,18 +14,29 @@
 		2230CDA5176366AA0026AA5E /* ECCommandLineCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */; };
 		2230CDAE17637D970026AA5E /* ECCommandLineOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDAC17637D970026AA5E /* ECCommandLineOption.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2230CDAF17637D970026AA5E /* ECCommandLineOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDAD17637D970026AA5E /* ECCommandLineOption.m */; };
-		225DECC617649ADE000056F4 /* ECCommandLineHelpCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */; };
+		22381E021A6C2FF0000AD60A /* ECCommandLineCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */; };
+		22381E031A6C2FF3000AD60A /* ECCommandLineHelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 225DECC517649ADE000056F4 /* ECCommandLineHelpCommand.m */; };
+		22381E041A6C2FFA000AD60A /* ECCommandLineMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2207E4C7176875520003F042 /* ECCommandLineMain.m */; };
+		22381E051A6C2FFA000AD60A /* ECCommandLineMissingClassCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 22664DFD1763AF2600D6439D /* ECCommandLineMissingClassCommand.m */; };
+		22381E061A6C2FFA000AD60A /* ECCommandLineOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 2230CDAD17637D970026AA5E /* ECCommandLineOption.m */; };
+		22381E071A6C2FFA000AD60A /* ECCommandLineResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 22664DF91763AD6500D6439D /* ECCommandLineResult.m */; };
+		22381E081A6C2FFA000AD60A /* ECCommandLineEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 229628F617634465008D887F /* ECCommandLineEngine.m */; };
+		22381E091A6C2FFF000AD60A /* ECCommandLineEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 220EF34D17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E0A1A6C2FFF000AD60A /* ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 229628F11763442D008D887F /* ECCommandLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E0B1A6C2FFF000AD60A /* ECCommandLineCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E0C1A6C2FFF000AD60A /* ECCommandLineHelpCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E0D1A6C2FFF000AD60A /* ECCommandLineMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2207E4C6176875520003F042 /* ECCommandLineMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E0E1A6C2FFF000AD60A /* ECCommandLineMissingClassCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 22664DFC1763AF2600D6439D /* ECCommandLineMissingClassCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E0F1A6C2FFF000AD60A /* ECCommandLineOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2230CDAC17637D970026AA5E /* ECCommandLineOption.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E101A6C2FFF000AD60A /* ECCommandLineResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 22664DF81763AD6400D6439D /* ECCommandLineResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E111A6C2FFF000AD60A /* ECCommandLineEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 229628F517634465008D887F /* ECCommandLineEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22381E151A6C3101000AD60A /* ECLogging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22381E141A6C3101000AD60A /* ECLogging.framework */; };
+		225DECC617649ADE000056F4 /* ECCommandLineHelpCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		225DECC717649ADE000056F4 /* ECCommandLineHelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 225DECC517649ADE000056F4 /* ECCommandLineHelpCommand.m */; };
 		22664DFA1763AD6500D6439D /* ECCommandLineResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 22664DF81763AD6400D6439D /* ECCommandLineResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22664DFB1763AD6500D6439D /* ECCommandLineResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 22664DF91763AD6500D6439D /* ECCommandLineResult.m */; };
-		22664DFE1763AF2600D6439D /* ECCommandLineMissingClassCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 22664DFC1763AF2600D6439D /* ECCommandLineMissingClassCommand.h */; };
+		22664DFE1763AF2600D6439D /* ECCommandLineMissingClassCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 22664DFC1763AF2600D6439D /* ECCommandLineMissingClassCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22664DFF1763AF2600D6439D /* ECCommandLineMissingClassCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 22664DFD1763AF2600D6439D /* ECCommandLineMissingClassCommand.m */; };
-		226889F11AEE5150005510E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 226889F01AEE5150005510E5 /* main.m */; };
-		226889F81AEE52B6005510E5 /* libECCommandLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296287117621E33008D887F /* libECCommandLine.a */; };
-		226889FC1AEE54A5005510E5 /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2230CDA717636BE30026AA5E /* libECLogging.a */; };
-		226889FE1AEE55D3005510E5 /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 226889FD1AEE55D3005510E5 /* libECCore.a */; };
-		22688A011AEE5644005510E5 /* ECCommandLineExampleCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 22688A001AEE5644005510E5 /* ECCommandLineExampleCommand.m */; };
-		22688A071AEE59D1005510E5 /* Help.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22688A061AEE59D1005510E5 /* Help.txt */; };
 		229628F31763442D008D887F /* ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 229628F11763442D008D887F /* ECCommandLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		229628F817634465008D887F /* ECCommandLineEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 229628F517634465008D887F /* ECCommandLineEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		229628FB17634465008D887F /* ECCommandLineEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 229628F617634465008D887F /* ECCommandLineEngine.m */; };
@@ -35,6 +46,11 @@
 		22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */; };
 		22C8B768182D3C71003EA301 /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2230CDA717636BE30026AA5E /* libECLogging.a */; };
 		22C8B76A182D3C8B003EA301 /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C8B769182D3C8B003EA301 /* libECCore.a */; };
+		22D0BEFF1AF1742A00AE043D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEF31AF173CE00AE043D /* main.m */; };
+		22D0BF001AF1744600AE043D /* ECCommandLineExampleCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEEF1AF173CE00AE043D /* ECCommandLineExampleCommand.m */; };
+		22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296287117621E33008D887F /* libECCommandLine.a */; };
+		22D0BF041AF174B200AE043D /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D0BF031AF174B200AE043D /* libECLogging.a */; };
+		22D0BF061AF174B700AE043D /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D0BF051AF174B700AE043D /* libECCore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		226889EC1AEE5150005510E5 /* CopyFiles */ = {
+		22D0BEF61AF173DF00AE043D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -69,6 +85,11 @@
 		2230CDA717636BE30026AA5E /* libECLogging.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libECLogging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2230CDAC17637D970026AA5E /* ECCommandLineOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineOption.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2230CDAD17637D970026AA5E /* ECCommandLineOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineOption.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		22381DE91A6C2FA9000AD60A /* ECCommandLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ECCommandLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22381E121A6C305B000AD60A /* MacDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacDebug.xcconfig; sourceTree = "<group>"; };
+		22381E131A6C305B000AD60A /* MacRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacRelease.xcconfig; sourceTree = "<group>"; };
+		22381E141A6C3101000AD60A /* ECLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ECLogging.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/Workflow-dbsiypdiqaexddevshljlitkdapc/Build/Products/Debug/ECLogging.framework"; sourceTree = "<group>"; };
+		22381E181A6C40E7000AD60A /* ECCommandLine.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ECCommandLine.modulemap; sourceTree = "<group>"; };
 		225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineHelpCommand.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		225DECC517649ADE000056F4 /* ECCommandLineHelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineHelpCommand.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2260A31215DFD96D0057C9DA /* MacUnitTestDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacUnitTestDebug.xcconfig; sourceTree = "<group>"; };
@@ -79,16 +100,6 @@
 		22664DF91763AD6500D6439D /* ECCommandLineResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineResult.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		22664DFC1763AF2600D6439D /* ECCommandLineMissingClassCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineMissingClassCommand.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		22664DFD1763AF2600D6439D /* ECCommandLineMissingClassCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineMissingClassCommand.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		226889EE1AEE5150005510E5 /* ECCommandLineExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ECCommandLineExample; sourceTree = BUILT_PRODUCTS_DIR; };
-		226889F01AEE5150005510E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		226889F51AEE524B005510E5 /* ECCommandLineExample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExample.xcconfig; sourceTree = "<group>"; };
-		226889F61AEE524B005510E5 /* ECCommandLineExampleDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExampleDebug.xcconfig; sourceTree = "<group>"; };
-		226889F71AEE524B005510E5 /* ECCommandLineExampleRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExampleRelease.xcconfig; sourceTree = "<group>"; };
-		226889FB1AEE5451005510E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		226889FD1AEE55D3005510E5 /* libECCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECCore.a; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Sketch-bvxmpmduodufqvepelwtjqymvdyl/Build/Products/Debug/libECCore.a"; sourceTree = "<group>"; };
-		226889FF1AEE5644005510E5 /* ECCommandLineExampleCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLineExampleCommand.h; sourceTree = "<group>"; };
-		22688A001AEE5644005510E5 /* ECCommandLineExampleCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCommandLineExampleCommand.m; sourceTree = "<group>"; };
-		22688A061AEE59D1005510E5 /* Help.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Help.txt; sourceTree = "<group>"; };
 		226C205C14FBCB8F00D2751B /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		2283A3F514F52EC0009142F7 /* ECCommandLineMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ECCommandLineMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2296287117621E33008D887F /* libECCommandLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libECCommandLine.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,16 +118,24 @@
 		22C4FB3E1791C5C000F33FB2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		22C8B769182D3C8B003EA301 /* libECCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECCore.a; path = "../../../../../../../../../../../castor/Caches/DerivedData/ECIntegration-fbajcwyruhnhxzgnphlhxaexutkp/Build/Products/Debug/libECCore.a"; sourceTree = "<group>"; };
 		22C8B76B182D3CB8003EA301 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		22D0BEED1AF173CE00AE043D /* ECCommandLineExample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExample.xcconfig; sourceTree = "<group>"; };
+		22D0BEEE1AF173CE00AE043D /* ECCommandLineExampleCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLineExampleCommand.h; sourceTree = "<group>"; };
+		22D0BEEF1AF173CE00AE043D /* ECCommandLineExampleCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECCommandLineExampleCommand.m; sourceTree = "<group>"; };
+		22D0BEF01AF173CE00AE043D /* ECCommandLineExampleDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExampleDebug.xcconfig; sourceTree = "<group>"; };
+		22D0BEF11AF173CE00AE043D /* ECCommandLineExampleRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExampleRelease.xcconfig; sourceTree = "<group>"; };
+		22D0BEF21AF173CE00AE043D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22D0BEF31AF173CE00AE043D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		22D0BEF81AF173DF00AE043D /* ECCommandLineExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ECCommandLineExample; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D0BF031AF174B200AE043D /* libECLogging.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECLogging.a; path = ../ECLogging/build/Debug/libECLogging.a; sourceTree = "<group>"; };
+		22D0BF051AF174B700AE043D /* libECCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECCore.a; path = ../ECCore/build/Debug/libECCore.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		226889EB1AEE5150005510E5 /* Frameworks */ = {
+		22381DE51A6C2FA9000AD60A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				226889FE1AEE55D3005510E5 /* libECCore.a in Frameworks */,
-				226889FC1AEE54A5005510E5 /* libECLogging.a in Frameworks */,
-				226889F81AEE52B6005510E5 /* libECCommandLine.a in Frameworks */,
+				22381E151A6C3101000AD60A /* ECLogging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +157,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		22D0BEF51AF173DF00AE043D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D0BF061AF174B700AE043D /* libECCore.a in Frameworks */,
+				22D0BF041AF174B200AE043D /* libECLogging.a in Frameworks */,
+				22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -146,7 +175,8 @@
 			children = (
 				2283A3F514F52EC0009142F7 /* ECCommandLineMacTests.xctest */,
 				2296287117621E33008D887F /* libECCommandLine.a */,
-				226889EE1AEE5150005510E5 /* ECCommandLineExample */,
+				22381DE91A6C2FA9000AD60A /* ECCommandLine.framework */,
+				22D0BEF81AF173DF00AE043D /* ECCommandLineExample */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,8 +186,8 @@
 			children = (
 				2260A30B15DFD8FB0057C9DA /* Source */,
 				22C4FB371791C56A00F33FB2 /* Tests */,
-				226889EF1AEE5150005510E5 /* Example */,
 				089C1665FE841158C02AAC07 /* Resources */,
+				22D0BEEC1AF173CE00AE043D /* Example */,
 				226C205C14FBCB8F00D2751B /* Scripts */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
@@ -169,7 +199,9 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				226889FD1AEE55D3005510E5 /* libECCore.a */,
+				22D0BF051AF174B700AE043D /* libECCore.a */,
+				22D0BF031AF174B200AE043D /* libECLogging.a */,
+				22381E141A6C3101000AD60A /* ECLogging.framework */,
 				22C8B76B182D3CB8003EA301 /* IOKit.framework */,
 				22C8B769182D3C8B003EA301 /* libECCore.a */,
 				22C4FB3E1791C5C000F33FB2 /* Cocoa.framework */,
@@ -184,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				2260A3AC15DFEF4F0057C9DA /* Info.plist */,
+				22381E181A6C40E7000AD60A /* ECCommandLine.modulemap */,
 				223CBAFB1205C7680008A641 /* tests */,
 			);
 			path = Resources;
@@ -192,6 +225,8 @@
 		2210B5D41152E630006C6CCA /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				22381E121A6C305B000AD60A /* MacDebug.xcconfig */,
+				22381E131A6C305B000AD60A /* MacRelease.xcconfig */,
 				2296287C17621E73008D887F /* MacDebugStatic.xcconfig */,
 				2296287D17621E73008D887F /* MacReleaseStatic.xcconfig */,
 				2260A31215DFD96D0057C9DA /* MacUnitTestDebug.xcconfig */,
@@ -221,28 +256,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		226889EF1AEE5150005510E5 /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				22688A081AEE5A4E005510E5 /* Config */,
-				226889FF1AEE5644005510E5 /* ECCommandLineExampleCommand.h */,
-				22688A001AEE5644005510E5 /* ECCommandLineExampleCommand.m */,
-				226889FB1AEE5451005510E5 /* Info.plist */,
-				226889F01AEE5150005510E5 /* main.m */,
-			);
-			path = Example;
-			sourceTree = "<group>";
-		};
-		22688A081AEE5A4E005510E5 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				226889F51AEE524B005510E5 /* ECCommandLineExample.xcconfig */,
-				226889F61AEE524B005510E5 /* ECCommandLineExampleDebug.xcconfig */,
-				226889F71AEE524B005510E5 /* ECCommandLineExampleRelease.xcconfig */,
-			);
-			name = Config;
-			sourceTree = "<group>";
-		};
 		22728A64124A240500A9881F /* Prefix */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				22C4FB381791C56A00F33FB2 /* Tests.m */,
-				22688A061AEE59D1005510E5 /* Help.txt */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -285,9 +297,39 @@
 			path = Generic;
 			sourceTree = "<group>";
 		};
+		22D0BEEC1AF173CE00AE043D /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				22D0BEED1AF173CE00AE043D /* ECCommandLineExample.xcconfig */,
+				22D0BEEE1AF173CE00AE043D /* ECCommandLineExampleCommand.h */,
+				22D0BEEF1AF173CE00AE043D /* ECCommandLineExampleCommand.m */,
+				22D0BEF01AF173CE00AE043D /* ECCommandLineExampleDebug.xcconfig */,
+				22D0BEF11AF173CE00AE043D /* ECCommandLineExampleRelease.xcconfig */,
+				22D0BEF21AF173CE00AE043D /* Info.plist */,
+				22D0BEF31AF173CE00AE043D /* main.m */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		22381DE61A6C2FA9000AD60A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22381E0A1A6C2FFF000AD60A /* ECCommandLine.h in Headers */,
+				22381E101A6C2FFF000AD60A /* ECCommandLineResult.h in Headers */,
+				22381E0B1A6C2FFF000AD60A /* ECCommandLineCommand.h in Headers */,
+				22381E091A6C2FFF000AD60A /* ECCommandLineEngineDelegate.h in Headers */,
+				22381E0D1A6C2FFF000AD60A /* ECCommandLineMain.h in Headers */,
+				22381E0F1A6C2FFF000AD60A /* ECCommandLineOption.h in Headers */,
+				22381E0E1A6C2FFF000AD60A /* ECCommandLineMissingClassCommand.h in Headers */,
+				22381E111A6C2FFF000AD60A /* ECCommandLineEngine.h in Headers */,
+				22381E0C1A6C2FFF000AD60A /* ECCommandLineHelpCommand.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2296286F17621E33008D887F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,23 +349,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		226889ED1AEE5150005510E5 /* ECCommandLineExample */ = {
+		22381DE81A6C2FA9000AD60A /* ECCommandLineMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 226889F21AEE5150005510E5 /* Build configuration list for PBXNativeTarget "ECCommandLineExample" */;
+			buildConfigurationList = 22381DFC1A6C2FA9000AD60A /* Build configuration list for PBXNativeTarget "ECCommandLineMac" */;
 			buildPhases = (
-				226889FA1AEE53CA005510E5 /* Update Version */,
-				226889EA1AEE5150005510E5 /* Sources */,
-				226889EB1AEE5150005510E5 /* Frameworks */,
-				226889EC1AEE5150005510E5 /* CopyFiles */,
+				22381DE41A6C2FA9000AD60A /* Sources */,
+				22381DE51A6C2FA9000AD60A /* Frameworks */,
+				22381DE61A6C2FA9000AD60A /* Headers */,
+				22381DE71A6C2FA9000AD60A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ECCommandLineExample;
-			productName = ECCommandLineTest;
-			productReference = 226889EE1AEE5150005510E5 /* ECCommandLineExample */;
-			productType = "com.apple.product-type.tool";
+			name = ECCommandLineMac;
+			productName = ECCommandLine;
+			productReference = 22381DE91A6C2FA9000AD60A /* ECCommandLine.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		2283A3F414F52EC0009142F7 /* ECCommandLineMacTests */ = {
 			isa = PBXNativeTarget;
@@ -336,7 +378,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				22688A031AEE58A8005510E5 /* PBXTargetDependency */,
 			);
 			name = ECCommandLineMacTests;
 			productName = libECCoreMacTests;
@@ -360,6 +401,24 @@
 			productReference = 2296287117621E33008D887F /* libECCommandLine.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		22D0BEF71AF173DF00AE043D /* ECCommandLineExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22D0BEFC1AF173DF00AE043D /* Build configuration list for PBXNativeTarget "ECCommandLineExample" */;
+			buildPhases = (
+				22D0BF011AF1748600AE043D /* Update Version */,
+				22D0BEF41AF173DF00AE043D /* Sources */,
+				22D0BEF51AF173DF00AE043D /* Frameworks */,
+				22D0BEF61AF173DF00AE043D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ECCommandLineExample;
+			productName = Example2;
+			productReference = 22D0BEF81AF173DF00AE043D /* ECCommandLineExample */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -369,7 +428,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Elegant Chaos";
 				TargetAttributes = {
-					226889ED1AEE5150005510E5 = {
+					22381DE81A6C2FA9000AD60A = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					22D0BEF71AF173DF00AE043D = {
 						CreatedOnToolsVersion = 6.3;
 					};
 				};
@@ -392,26 +454,46 @@
 			projectRoot = "";
 			targets = (
 				2296287017621E33008D887F /* ECCommandLineMacStatic */,
+				22381DE81A6C2FA9000AD60A /* ECCommandLineMac */,
 				2283A3F414F52EC0009142F7 /* ECCommandLineMacTests */,
-				226889ED1AEE5150005510E5 /* ECCommandLineExample */,
+				22D0BEF71AF173DF00AE043D /* ECCommandLineExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		22381DE71A6C2FA9000AD60A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2283A3F214F52EC0009142F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				22C2DB5E14FB9ADC005D2E89 /* Test.bundle in Resources */,
-				22688A071AEE59D1005510E5 /* Help.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		226889FA1AEE53CA005510E5 /* Update Version */ = {
+		2283A3F314F52EC0009142F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		22D0BF011AF1748600AE043D /* Update Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -428,12 +510,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		226889EA1AEE5150005510E5 /* Sources */ = {
+		22381DE41A6C2FA9000AD60A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22688A011AEE5644005510E5 /* ECCommandLineExampleCommand.m in Sources */,
-				226889F11AEE5150005510E5 /* main.m in Sources */,
+				22381E031A6C2FF3000AD60A /* ECCommandLineHelpCommand.m in Sources */,
+				22381E041A6C2FFA000AD60A /* ECCommandLineMain.m in Sources */,
+				22381E061A6C2FFA000AD60A /* ECCommandLineOption.m in Sources */,
+				22381E021A6C2FF0000AD60A /* ECCommandLineCommand.m in Sources */,
+				22381E081A6C2FFA000AD60A /* ECCommandLineEngine.m in Sources */,
+				22381E071A6C2FFA000AD60A /* ECCommandLineResult.m in Sources */,
+				22381E051A6C2FFA000AD60A /* ECCommandLineMissingClassCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,13 +546,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXSourcesBuildPhase section */
+		22D0BEF41AF173DF00AE043D /* Sources */ = {
 
 /* Begin PBXTargetDependency section */
-		22688A031AEE58A8005510E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 226889ED1AEE5150005510E5 /* ECCommandLineExample */;
-			targetProxy = 22688A021AEE58A8005510E5 /* PBXContainerItemProxy */;
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D0BF001AF1744600AE043D /* ECCommandLineExampleCommand.m in Sources */,
+				22D0BEFF1AF1742A00AE043D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXTargetDependency section */
 
@@ -482,16 +572,16 @@
 			};
 			name = Release;
 		};
-		226889F31AEE5150005510E5 /* Debug */ = {
+		22381DFD1A6C2FA9000AD60A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 226889F61AEE524B005510E5 /* ECCommandLineExampleDebug.xcconfig */;
+			baseConfigurationReference = 22381E121A6C305B000AD60A /* MacDebug.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		226889F41AEE5150005510E5 /* Release */ = {
+		22381DFE1A6C2FA9000AD60A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 226889F71AEE524B005510E5 /* ECCommandLineExampleRelease.xcconfig */;
+			baseConfigurationReference = 22381E131A6C305B000AD60A /* MacRelease.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -524,6 +614,20 @@
 			};
 			name = Release;
 		};
+		22D0BEFD1AF173DF00AE043D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22D0BEF01AF173CE00AE043D /* ECCommandLineExampleDebug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		22D0BEFE1AF173DF00AE043D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22D0BEF11AF173CE00AE043D /* ECCommandLineExampleRelease.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -536,11 +640,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		226889F21AEE5150005510E5 /* Build configuration list for PBXNativeTarget "ECCommandLineExample" */ = {
+		22381DFC1A6C2FA9000AD60A /* Build configuration list for PBXNativeTarget "ECCommandLineMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				226889F31AEE5150005510E5 /* Debug */,
-				226889F41AEE5150005510E5 /* Release */,
+				22381DFD1A6C2FA9000AD60A /* Debug */,
+				22381DFE1A6C2FA9000AD60A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -562,6 +666,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
+		};
+		22D0BEFC1AF173DF00AE043D /* Build configuration list for PBXNativeTarget "ECCommandLineExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22D0BEFD1AF173DF00AE043D /* Debug */,
+				22D0BEFE1AF173DF00AE043D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

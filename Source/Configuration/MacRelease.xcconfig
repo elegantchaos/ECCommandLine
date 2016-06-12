@@ -4,4 +4,9 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-#import "ECCommandLineShared.pch"
+/// Standard xcconfig files.
+/// The use of a relative path here relies on ECLogging being in a known location. See <ImportNote> in the documentation for more details.
+
+#include "../ECLogging/Source/Configuration/ECMacRelease.xcconfig"
+#include "../ECLogging/Source/Configuration/ECFramework.xcconfig"
+#include "Shared.xcconfig"
