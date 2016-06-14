@@ -53,16 +53,6 @@
 		22D0BF061AF174B700AE043D /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D0BF051AF174B700AE043D /* libECCore.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		22688A021AEE58A8005510E5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 226889ED1AEE5150005510E5;
-			remoteInfo = ECCommandLineExample;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		22D0BEF61AF173DF00AE043D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -105,9 +95,7 @@
 		2296287117621E33008D887F /* libECCommandLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libECCommandLine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2296287C17621E73008D887F /* MacDebugStatic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacDebugStatic.xcconfig; sourceTree = "<group>"; };
 		2296287D17621E73008D887F /* MacReleaseStatic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacReleaseStatic.xcconfig; sourceTree = "<group>"; };
-		229628EE176343D2008D887F /* ECCommandLineDebug.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLineDebug.pch; sourceTree = "<group>"; };
-		229628EF176343D2008D887F /* ECCommandLineRelease.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLineRelease.pch; sourceTree = "<group>"; };
-		229628F0176343D2008D887F /* ECCommandLineShared.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLineShared.pch; sourceTree = "<group>"; };
+		229628F0176343D2008D887F /* ECCommandLine.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLine.pch; sourceTree = "<group>"; };
 		229628F11763442D008D887F /* ECCommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLine.h; sourceTree = "<group>"; };
 		229628F517634465008D887F /* ECCommandLineEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLineEngine.h; sourceTree = "<group>"; };
 		229628F617634465008D887F /* ECCommandLineEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCommandLineEngine.m; sourceTree = "<group>"; };
@@ -259,9 +247,7 @@
 		22728A64124A240500A9881F /* Prefix */ = {
 			isa = PBXGroup;
 			children = (
-				229628EE176343D2008D887F /* ECCommandLineDebug.pch */,
-				229628EF176343D2008D887F /* ECCommandLineRelease.pch */,
-				229628F0176343D2008D887F /* ECCommandLineShared.pch */,
+				229628F0176343D2008D887F /* ECCommandLine.pch */,
 			);
 			path = Prefix;
 			sourceTree = "<group>";
@@ -480,19 +466,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2283A3F314F52EC0009142F7 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		22D0BF011AF1748600AE043D /* Update Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,8 +520,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		22D0BEF41AF173DF00AE043D /* Sources */ = {
-
-/* Begin PBXTargetDependency section */
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -557,7 +528,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXTargetDependency section */
+/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB91B208733DA50010E9CD /* Debug */ = {
@@ -674,6 +645,7 @@
 				22D0BEFE1AF173DF00AE043D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

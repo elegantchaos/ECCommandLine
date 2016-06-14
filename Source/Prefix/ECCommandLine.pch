@@ -4,11 +4,9 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-#define EC_COMMAND_LINE 1
-
 #ifdef __OBJC__
 
-#import <ECLogging/ECLogging.h>
-#import <ECCore/ECCore.h>
+@import ECLogging;
+@import ECCore;
 
 #endif
