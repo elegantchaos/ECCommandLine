@@ -9,4 +9,4 @@
 
 #include "../ECLogging/Source/Configuration/ECMacRelease.xcconfig"
 #include "../ECLogging/Source/Configuration/ECUnitTests.xcconfig"
-#include "Shared.xcconfig"
+#include "UnitTestShared.xcconfig"

@@ -4,9 +4,8 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
-/// Standard xcconfig files.
-/// The use of a relative path here relies on ECLogging being in a known location. See <ImportNote> in the documentation for more details.
+WARNING_CFLAGS = $(inherited) -Wno-arc-bridge-casts-disallowed-in-nonarc -Wno-deprecated-declarations
 
-#include "../ECLogging/Source/Configuration/ECMacDebug.xcconfig"
-#include "../ECLogging/Source/Configuration/ECUnitTests.xcconfig"
-#include "UnitTestShared.xcconfig"
+PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.frameworks.eccommandline
+
+GCC_PREFIX_HEADER = Source/Prefix/ECCommandLineTests.pch

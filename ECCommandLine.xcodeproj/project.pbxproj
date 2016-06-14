@@ -104,6 +104,8 @@
 		22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ECUnitTests.framework; path = "../../../../../../../../../../../castor/Caches/DerivedData/ECIntegration-fbajcwyruhnhxzgnphlhxaexutkp/Build/Products/Debug/ECUnitTests.framework"; sourceTree = "<group>"; };
 		22C4FB3C1791C5AB00F33FB2 /* ECLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ECLogging.framework; path = "../../../../../../../../../../../castor/Caches/DerivedData/ECIntegration-fbajcwyruhnhxzgnphlhxaexutkp/Build/Products/Debug/ECLogging.framework"; sourceTree = "<group>"; };
 		22C4FB3E1791C5C000F33FB2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		22C775F41D107B51007FDD5D /* UnitTestShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UnitTestShared.xcconfig; sourceTree = "<group>"; };
+		22C775F51D107BB1007FDD5D /* ECCommandLineTests.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLineTests.pch; sourceTree = "<group>"; };
 		22C8B769182D3C8B003EA301 /* libECCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECCore.a; path = "../../../../../../../../../../../castor/Caches/DerivedData/ECIntegration-fbajcwyruhnhxzgnphlhxaexutkp/Build/Products/Debug/libECCore.a"; sourceTree = "<group>"; };
 		22C8B76B182D3CB8003EA301 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		22D0BEED1AF173CE00AE043D /* ECCommandLineExample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExample.xcconfig; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				2296287D17621E73008D887F /* MacReleaseStatic.xcconfig */,
 				2260A31215DFD96D0057C9DA /* MacUnitTestDebug.xcconfig */,
 				2260A31315DFD96D0057C9DA /* MacUnitTestRelease.xcconfig */,
+				22C775F41D107B51007FDD5D /* UnitTestShared.xcconfig */,
 				2260A39615DFDC600057C9DA /* Shared.xcconfig */,
 			);
 			path = Configuration;
@@ -248,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				229628F0176343D2008D887F /* ECCommandLine.pch */,
+				22C775F51D107BB1007FDD5D /* ECCommandLineTests.pch */,
 			);
 			path = Prefix;
 			sourceTree = "<group>";
