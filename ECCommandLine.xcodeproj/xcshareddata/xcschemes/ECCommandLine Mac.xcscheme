@@ -44,7 +44,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2296287017621E33008D887F"
                BuildableName = "libECCommandLine.a"
-               BlueprintName = "ECCommandLineMacStatic"
+               BlueprintName = "ECCommandLineStatic"
                ReferencedContainer = "container:ECCommandLine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,9 +64,9 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -79,19 +79,18 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2283A3F414F52EC0009142F7"
-               BuildableName = "ECCommandLineMacTests.xctest"
-               BlueprintName = "ECCommandLineMacTests"
+               BuildableName = "ECCommandLineTests.xctest"
+               BlueprintName = "ECCommandLineTests"
                ReferencedContainer = "container:ECCommandLine.xcodeproj">
             </BuildableReference>
          </TestableReference>

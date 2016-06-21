@@ -6,7 +6,6 @@
 
 #ifdef __OBJC__
 
-@import ECLogging;
 @import ECCore;
 @import ECUnitTests;
 

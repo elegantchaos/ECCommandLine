@@ -4,6 +4,8 @@
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
+@import ECLogging;
+
 #import "ECCommandLineEngine.h"
 #import "ECCommandLineEngineDelegate.h"
 #import "ECCommandLineCommand.h"
