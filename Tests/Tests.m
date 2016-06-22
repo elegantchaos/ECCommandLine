@@ -18,6 +18,7 @@
 	NSTask *task = [[NSTask alloc] init];
 	NSString* path = [[NSBundle bundleForClass:[self class]].bundlePath stringByDeletingLastPathComponent];
 	task.launchPath = [path stringByAppendingPathComponent:@"ECCommandLineExample"];
+	NSLog(@"launching %@", task.launchPath);
 	
 	if (arguments)
 		[task setArguments:arguments];
