@@ -92,10 +92,10 @@
 		22664DFD1763AF2600D6439D /* ECCommandLineMissingClassCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineMissingClassCommand.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		226C205C14FBCB8F00D2751B /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		2283A3F514F52EC0009142F7 /* ECCommandLineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ECCommandLineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		229230EF1D1A81DB00CB4B4E /* ECCommandLine.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ECCommandLine.pch; path = Prefix/ECCommandLine.pch; sourceTree = "<group>"; };
 		2296287117621E33008D887F /* libECCommandLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libECCommandLine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2296287C17621E73008D887F /* MacDebugStatic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacDebugStatic.xcconfig; sourceTree = "<group>"; };
 		2296287D17621E73008D887F /* MacReleaseStatic.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MacReleaseStatic.xcconfig; sourceTree = "<group>"; };
-		229628F0176343D2008D887F /* Prefix */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Prefix; sourceTree = "<group>"; };
 		229628F11763442D008D887F /* ECCommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECCommandLine.h; path = Generic/ECCommandLine.h; sourceTree = "<group>"; };
 		229628F517634465008D887F /* ECCommandLineEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLineEngine.h; sourceTree = "<group>"; };
 		229628F617634465008D887F /* ECCommandLineEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCommandLineEngine.m; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 			children = (
 				229628F11763442D008D887F /* ECCommandLine.h */,
 				22381E181A6C40E7000AD60A /* ECCommandLine.modulemap */,
-				229628F0176343D2008D887F /* Prefix */,
+				229230EF1D1A81DB00CB4B4E /* ECCommandLine.pch */,
 				2210B5D41152E630006C6CCA /* Configuration */,
 				22CA555E13DA09FF007E89E2 /* Generic */,
 			);

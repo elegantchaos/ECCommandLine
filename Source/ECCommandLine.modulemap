@@ -1,4 +1,4 @@
-framework module ECCommandLine {
+module ECCommandLine {
   umbrella header "ECCommandLine.h"
 
   config_macros [exhaustive] EC_DEBUG, EC_RELEASE
