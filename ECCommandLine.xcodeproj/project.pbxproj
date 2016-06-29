@@ -54,6 +54,16 @@
 		22D0BF061AF174B700AE043D /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D0BF051AF174B700AE043D /* libECCore.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		223721571D23E68800C61CC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22D0BEF71AF173DF00AE043D;
+			remoteInfo = ECCommandLineExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		22D0BEF61AF173DF00AE043D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -360,6 +370,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				223721581D23E68800C61CC1 /* PBXTargetDependency */,
 			);
 			name = ECCommandLineTests;
 			productName = libECCoreMacTests;
@@ -541,6 +552,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		223721581D23E68800C61CC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22D0BEF71AF173DF00AE043D /* ECCommandLineExample */;
+			targetProxy = 223721571D23E68800C61CC1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB91B208733DA50010E9CD /* Debug */ = {
