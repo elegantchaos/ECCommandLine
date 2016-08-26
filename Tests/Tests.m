@@ -15,27 +15,11 @@
 @implementation ExampleToolTests
 
 - (NSString*)runToolWithArguments:(NSArray*)arguments {
-	NSTask *task = [[NSTask alloc] init];
 	NSString* path = [[NSBundle bundleForClass:[self class]].bundlePath stringByDeletingLastPathComponent];
-	task.launchPath = [path stringByAppendingPathComponent:@"ECCommandLineExample"];
-	NSLog(@"launching %@", task.launchPath);
-	
-	if (arguments)
-		[task setArguments:arguments];
-	
-	NSPipe *pipe = [NSPipe pipe];
-	[task setStandardOutput: pipe];
 
-	NSPipe *errorPipe = [NSPipe pipe];
-	[task setStandardError: errorPipe];
-
-	NSFileHandle *file = [pipe fileHandleForReading];
-	NSFileHandle *errorFile = [errorPipe fileHandleForReading];
-	
-	[task launch];
-	
-	NSData *data = [file readDataToEndOfFile];
-	NSData* errorData = [errorFile readDataToEndOfFile];
+	int status;
+	NSData* errorData = nil;
+	NSData *data = [self runCommand:[path stringByAppendingPathComponent:@"ECCommandLineExample"] arguments:arguments status:&status error:&errorData];
 
 	NSString* output = [[NSString alloc] initWithData: data encoding:NSUTF8StringEncoding];
 	NSString* error = [[NSString alloc] initWithData: errorData encoding:NSUTF8StringEncoding];
