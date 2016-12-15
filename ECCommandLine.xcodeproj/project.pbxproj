@@ -425,6 +425,9 @@
 					22381DE81A6C2FA9000AD60A = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
+					2283A3F414F52EC0009142F7 = {
+						LastSwiftMigration = 0820;
+					};
 					22D0BEF71AF173DF00AE043D = {
 						CreatedOnToolsVersion = 6.3;
 					};
