@@ -419,11 +419,14 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Elegant Chaos";
 				TargetAttributes = {
 					22381DE81A6C2FA9000AD60A = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					2283A3F414F52EC0009142F7 = {
+						LastSwiftMigration = 0820;
 					};
 					22D0BEF71AF173DF00AE043D = {
 						CreatedOnToolsVersion = 6.3;
