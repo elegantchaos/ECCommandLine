@@ -123,15 +123,17 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		optionPtr->flag = NULL;
 		optionPtr->val = option.shortOption;
 		NSString* shortChar = [NSString stringWithFormat:@"%c", option.shortOption];
-		[shortBuffer appendString:shortChar];
-		ECCommandLineOption* optionUsingChar = shortIndex[shortChar];
-		if (optionUsingChar)
-		{
-			NSLog(@"clash detected: %@ and %@ are both trying to use a short char of %@", option.name, optionUsingChar.name, shortChar);
-		}
-		else
-		{
-			shortIndex[shortChar] = option;
+		if ([shortChar length] == 1) {
+			[shortBuffer appendString:shortChar];
+			ECCommandLineOption* optionUsingChar = shortIndex[shortChar];
+			if (optionUsingChar)
+			{
+				NSLog(@"clash detected: %@ and %@ are both trying to use a short char of %@", option.name, optionUsingChar.name, shortChar);
+			}
+			else
+			{
+				shortIndex[shortChar] = option;
+			}
 		}
 		optionPtr++;
 	}];
