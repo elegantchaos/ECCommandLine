@@ -276,7 +276,7 @@
 	}
 	else
 	{
-		[engine outputError:nil format:@"Missing arguments for command ‘%@’.\n", self.name];
+		[engine outputErrorWithDomain:ECCommandLineDomain code:ECCommandLineResultMissingArguments info:@{} format:@"Missing arguments for command ‘%@’.\n", self.name];
 		[engine outputFormat:@"Usage: %@\n", [self usageAs:self.name parentName:nil engine:engine]];
 	}
 
@@ -289,8 +289,7 @@
 			}
 			@catch (NSException *exception) {
 				commandResult = ECCommandLineResultImplementationReturnedError;
-				NSError* error = [NSError errorWithDomain:ECCommandLineDomain code:ECCommandLineResultImplementationReturnedError userInfo:@{NSLocalizedDescriptionKey : @"Command threw exception"}];
-				[engine outputError:error format:@"%@", exception];
+				[engine outputErrorWithDomain:ECCommandLineDomain code:ECCommandLineResultImplementationReturnedError info:@{} format:@"Command threw exception"];
 			}
 			
 			if (commandResult != ECCommandLineResultStayRunning)

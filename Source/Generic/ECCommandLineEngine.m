@@ -340,7 +340,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		NSData* data = [NSJSONSerialization dataWithJSONObject:self.info options:NSJSONWritingPrettyPrinted error:&error];
 		if (!data)
 		{
-			[self outputError:error format:@"Failed to convert output info to JSON"];
+			[self outputErrorWithDomain:ECCommandLineDomain code:ECCommandLineResultJSONConversionFailed info:@{ NSUnderlyingErrorKey : error } format:@"Failed to convert output info to JSON"];
 		}
 		else
 		{
@@ -349,7 +349,7 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 			{
 				if (![text writeToURL:self.outputJSONURL atomically:YES encoding:NSUTF8StringEncoding error:&error])
 				{
-					[self outputError:error format:@"Failed to write info file"];
+					[self outputErrorWithDomain:ECCommandLineDomain code:ECCommandLineResultJSONOutputFailed info:@{ NSUnderlyingErrorKey : error } format:@"Failed to write info file"];
 				}
 			}
 			else if (printJSON)
@@ -386,25 +386,30 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 		[self.output appendString:string];
 }
 
-- (void)outputError:(NSError*)error description:(NSString*)description {
-	[self outputError:error format:@"%@", description];
-}
-
-- (void)outputError:(NSError *)error format:(NSString *)format, ...
-{
+- (void)outputErrorWithDomain:(NSString*)domain code:(NSUInteger)code info:(NSDictionary*)info format:(NSString *)format, ... {
 	va_list args;
 	va_start(args, format);
-	NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
+	NSString* message = [[NSString alloc] initWithFormat:format arguments:args];
 	va_end(args);
 
+	NSMutableDictionary* errorInfo = [info mutableCopy];
+	errorInfo[NSLocalizedDescriptionKey] = message;
+	NSError* error = [NSError errorWithDomain:domain code:code userInfo:errorInfo];
+	[self outputError:error];
+}
 
+- (void)outputError:(NSError *)error
+{
+	ECAssertNonNil(error);
 
-	NSString* errorString = @"";
-	if (error) {
-		NSString* reason = error.localizedFailureReason;
-		errorString = reason? [NSString stringWithFormat:@"(%@ %@:%ld)\n", reason, error.domain, error.code] : [NSString stringWithFormat:@"(%@:%ld)\n", error.domain, error.code];
+	NSString* reason = error.localizedFailureReason;
+	NSString* output = reason ? [NSString stringWithFormat:@"(%@ %@:%ld)\n", reason, error.domain, error.code] : [NSString stringWithFormat:@"(%@:%ld)\n", error.domain, error.code];
+	fprintf(stderr, "%s\n", [output UTF8String]);
+
+	NSError* underlying = [error userInfo][NSUnderlyingErrorKey];
+	if (underlying) {
+		fprintf(stderr, "%s\n", [[underlying description] UTF8String]);
 	}
-	fprintf(stderr, "%s\n%s\n", [string UTF8String], [errorString UTF8String]);
 }
 
 - (void)outputInfo:(id)info withKey:(NSString*)key

@@ -19,7 +19,7 @@
 	}
 	else
 	{
-		[engine outputError:nil format:@"We were expecting an argument."];
+		[engine outputErrorWithDomain:ECCommandLineDomain code:ECCommandLineResultMissingArguments info:@{} format:@"We were expecting an argument."];
 	}
 	return ECCommandLineResultOK;
 }

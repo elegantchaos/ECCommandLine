@@ -24,8 +24,8 @@
 - (void)showUsage;
 - (void)outputDescription:(NSString*)description;
 - (void)outputFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
-- (void)outputError:(NSError*)error description:(NSString*)description;
-- (void)outputError:(NSError*)error format:(NSString*)format, ... NS_FORMAT_FUNCTION(2,3);
+- (void)outputErrorWithDomain:(NSString*)domain code:(NSUInteger)code info:(NSDictionary*)info format:(NSString *)format, ... NS_FORMAT_FUNCTION(4,5);
+- (void)outputError:(NSError*)error;
 - (void)outputInfo:(id)info withKey:(NSString*)key;
 - (void)openInfoGroupWithKey:(NSString*)key;
 - (void)closeInfoGroup;
