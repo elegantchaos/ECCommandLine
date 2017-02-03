@@ -402,11 +402,15 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 {
 	ECAssertNonNil(error);
 
-	NSString* reason = error.localizedFailureReason;
-	NSString* output = reason ? [NSString stringWithFormat:@"(%@ %@:%ld)\n", reason, error.domain, error.code] : [NSString stringWithFormat:@"(%@:%ld)\n", error.domain, error.code];
+	NSError* underlying = [error userInfo][NSUnderlyingErrorKey];
+	NSString* reason = error.localizedDescription ?: error.localizedFailureReason;
+	if (!reason && underlying) {
+		reason = underlying.localizedDescription ?: underlying.localizedFailureReason;
+	}
+
+	NSString* output = reason ? [NSString stringWithFormat:@"%@\n\n(%@:%ld)\n", reason, error.domain, error.code] : [NSString stringWithFormat:@"(%@:%ld)\n", error.domain, error.code];
 	fprintf(stderr, "%s\n", [output UTF8String]);
 
-	NSError* underlying = [error userInfo][NSUnderlyingErrorKey];
 	if (underlying) {
 		fprintf(stderr, "%s\n", [[underlying description] UTF8String]);
 	}
