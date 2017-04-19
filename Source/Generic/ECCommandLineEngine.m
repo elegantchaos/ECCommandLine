@@ -7,6 +7,8 @@
 #import "ECCommandLineEngine.h"
 #import "ECCommandLineCommand.h"
 #import "ECCommandLineOption.h"
+#import "NSDictionary+ECCommandLine.h"
+#import "NSBundle+ECCommandLine.h"
 
 #import <getopt.h>
 #import <stdarg.h>

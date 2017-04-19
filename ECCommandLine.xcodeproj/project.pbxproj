@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22035DE01EA7A3C2003920FA /* NSBundle+ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 22035DDC1EA7A3C2003920FA /* NSBundle+ECCommandLine.h */; };
+		22035DE11EA7A3C2003920FA /* NSBundle+ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 22035DDC1EA7A3C2003920FA /* NSBundle+ECCommandLine.h */; };
+		22035DE21EA7A3C2003920FA /* NSBundle+ECCommandLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 22035DDD1EA7A3C2003920FA /* NSBundle+ECCommandLine.m */; };
+		22035DE31EA7A3C2003920FA /* NSBundle+ECCommandLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 22035DDD1EA7A3C2003920FA /* NSBundle+ECCommandLine.m */; };
+		22035DE41EA7A3C2003920FA /* NSDictionary+ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 22035DDE1EA7A3C2003920FA /* NSDictionary+ECCommandLine.h */; };
+		22035DE51EA7A3C2003920FA /* NSDictionary+ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 22035DDE1EA7A3C2003920FA /* NSDictionary+ECCommandLine.h */; };
+		22035DE61EA7A3C2003920FA /* NSDictionary+ECCommandLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 22035DDF1EA7A3C2003920FA /* NSDictionary+ECCommandLine.m */; };
+		22035DE71EA7A3C2003920FA /* NSDictionary+ECCommandLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 22035DDF1EA7A3C2003920FA /* NSDictionary+ECCommandLine.m */; };
 		2207E4C8176875520003F042 /* ECCommandLineMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 2207E4C6176875520003F042 /* ECCommandLineMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2207E4C9176875520003F042 /* ECCommandLineMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2207E4C7176875520003F042 /* ECCommandLineMain.m */; };
 		220EF34E17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 220EF34D17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,12 +54,10 @@
 		22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */; };
 		22C775F71D107F2D007FDD5D /* Help.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C775F61D107F2D007FDD5D /* Help.txt */; };
 		22C8B768182D3C71003EA301 /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2230CDA717636BE30026AA5E /* libECLogging.a */; };
-		22C8B76A182D3C8B003EA301 /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C8B769182D3C8B003EA301 /* libECCore.a */; };
 		22D0BEFF1AF1742A00AE043D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEF31AF173CE00AE043D /* main.m */; };
 		22D0BF001AF1744600AE043D /* ECCommandLineExampleCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEEF1AF173CE00AE043D /* ECCommandLineExampleCommand.m */; };
 		22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296287117621E33008D887F /* libECCommandLine.a */; };
 		22D0BF041AF174B200AE043D /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D0BF031AF174B200AE043D /* libECLogging.a */; };
-		22D0BF061AF174B700AE043D /* libECCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D0BF051AF174B700AE043D /* libECCore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		22035DDC1EA7A3C2003920FA /* NSBundle+ECCommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ECCommandLine.h"; sourceTree = "<group>"; };
+		22035DDD1EA7A3C2003920FA /* NSBundle+ECCommandLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ECCommandLine.m"; sourceTree = "<group>"; };
+		22035DDE1EA7A3C2003920FA /* NSDictionary+ECCommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ECCommandLine.h"; sourceTree = "<group>"; };
+		22035DDF1EA7A3C2003920FA /* NSDictionary+ECCommandLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ECCommandLine.m"; sourceTree = "<group>"; };
 		2207E4C6176875520003F042 /* ECCommandLineMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLineMain.h; sourceTree = "<group>"; };
 		2207E4C7176875520003F042 /* ECCommandLineMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCommandLineMain.m; sourceTree = "<group>"; };
 		220EF34D17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineEngineDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -117,7 +127,6 @@
 		22C775F41D107B51007FDD5D /* UnitTestShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UnitTestShared.xcconfig; sourceTree = "<group>"; };
 		22C775F51D107BB1007FDD5D /* ECCommandLineTests.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLineTests.pch; sourceTree = "<group>"; };
 		22C775F61D107F2D007FDD5D /* Help.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Help.txt; path = Tests/Help.txt; sourceTree = SOURCE_ROOT; };
-		22C8B769182D3C8B003EA301 /* libECCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECCore.a; path = "../../../../../../../../../../../castor/Caches/DerivedData/ECIntegration-fbajcwyruhnhxzgnphlhxaexutkp/Build/Products/Debug/libECCore.a"; sourceTree = "<group>"; };
 		22C8B76B182D3CB8003EA301 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		22D0BEED1AF173CE00AE043D /* ECCommandLineExample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ECCommandLineExample.xcconfig; sourceTree = "<group>"; };
 		22D0BEEE1AF173CE00AE043D /* ECCommandLineExampleCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCommandLineExampleCommand.h; sourceTree = "<group>"; };
@@ -128,7 +137,6 @@
 		22D0BEF31AF173CE00AE043D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22D0BEF81AF173DF00AE043D /* ECCommandLineExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ECCommandLineExample; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D0BF031AF174B200AE043D /* libECLogging.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECLogging.a; path = ../ECLogging/build/Debug/libECLogging.a; sourceTree = "<group>"; };
-		22D0BF051AF174B700AE043D /* libECCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECCore.a; path = ../ECCore/build/Debug/libECCore.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +152,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C8B76A182D3C8B003EA301 /* libECCore.a in Frameworks */,
 				22C8B768182D3C71003EA301 /* libECLogging.a in Frameworks */,
 				22C4FB341791C4CD00F33FB2 /* libECCommandLine.a in Frameworks */,
 				22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */,
@@ -162,7 +169,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D0BF061AF174B700AE043D /* libECCore.a in Frameworks */,
 				22D0BF041AF174B200AE043D /* libECLogging.a in Frameworks */,
 				22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */,
 			);
@@ -200,11 +206,9 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22D0BF051AF174B700AE043D /* libECCore.a */,
 				22D0BF031AF174B200AE043D /* libECLogging.a */,
 				22381E141A6C3101000AD60A /* ECLogging.framework */,
 				22C8B76B182D3CB8003EA301 /* IOKit.framework */,
-				22C8B769182D3C8B003EA301 /* libECCore.a */,
 				22C4FB3E1791C5C000F33FB2 /* Cocoa.framework */,
 				22C4FB3C1791C5AB00F33FB2 /* ECLogging.framework */,
 				22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */,
@@ -270,9 +274,11 @@
 		22CA555E13DA09FF007E89E2 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
-				220EF34D17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h */,
 				2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */,
 				2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */,
+				229628F517634465008D887F /* ECCommandLineEngine.h */,
+				229628F617634465008D887F /* ECCommandLineEngine.m */,
+				220EF34D17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h */,
 				225DECC417649ADE000056F4 /* ECCommandLineHelpCommand.h */,
 				225DECC517649ADE000056F4 /* ECCommandLineHelpCommand.m */,
 				2207E4C6176875520003F042 /* ECCommandLineMain.h */,
@@ -283,8 +289,10 @@
 				2230CDAD17637D970026AA5E /* ECCommandLineOption.m */,
 				22664DF81763AD6400D6439D /* ECCommandLineResult.h */,
 				22664DF91763AD6500D6439D /* ECCommandLineResult.m */,
-				229628F517634465008D887F /* ECCommandLineEngine.h */,
-				229628F617634465008D887F /* ECCommandLineEngine.m */,
+				22035DDC1EA7A3C2003920FA /* NSBundle+ECCommandLine.h */,
+				22035DDD1EA7A3C2003920FA /* NSBundle+ECCommandLine.m */,
+				22035DDE1EA7A3C2003920FA /* NSDictionary+ECCommandLine.h */,
+				22035DDF1EA7A3C2003920FA /* NSDictionary+ECCommandLine.m */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -313,7 +321,9 @@
 				22381E0A1A6C2FFF000AD60A /* ECCommandLine.h in Headers */,
 				22381E101A6C2FFF000AD60A /* ECCommandLineResult.h in Headers */,
 				22381E0B1A6C2FFF000AD60A /* ECCommandLineCommand.h in Headers */,
+				22035DE51EA7A3C2003920FA /* NSDictionary+ECCommandLine.h in Headers */,
 				22381E091A6C2FFF000AD60A /* ECCommandLineEngineDelegate.h in Headers */,
+				22035DE11EA7A3C2003920FA /* NSBundle+ECCommandLine.h in Headers */,
 				22381E0D1A6C2FFF000AD60A /* ECCommandLineMain.h in Headers */,
 				22381E0F1A6C2FFF000AD60A /* ECCommandLineOption.h in Headers */,
 				22381E0E1A6C2FFF000AD60A /* ECCommandLineMissingClassCommand.h in Headers */,
@@ -329,7 +339,9 @@
 				2207E4C8176875520003F042 /* ECCommandLineMain.h in Headers */,
 				220EF34E17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h in Headers */,
 				229628F31763442D008D887F /* ECCommandLine.h in Headers */,
+				22035DE41EA7A3C2003920FA /* NSDictionary+ECCommandLine.h in Headers */,
 				229628F817634465008D887F /* ECCommandLineEngine.h in Headers */,
+				22035DE01EA7A3C2003920FA /* NSBundle+ECCommandLine.h in Headers */,
 				2230CDA4176366AA0026AA5E /* ECCommandLineCommand.h in Headers */,
 				2230CDAE17637D970026AA5E /* ECCommandLineOption.h in Headers */,
 				22664DFA1763AD6500D6439D /* ECCommandLineResult.h in Headers */,
@@ -513,9 +525,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22035DE71EA7A3C2003920FA /* NSDictionary+ECCommandLine.m in Sources */,
 				22381E031A6C2FF3000AD60A /* ECCommandLineHelpCommand.m in Sources */,
 				22381E041A6C2FFA000AD60A /* ECCommandLineMain.m in Sources */,
 				22381E061A6C2FFA000AD60A /* ECCommandLineOption.m in Sources */,
+				22035DE31EA7A3C2003920FA /* NSBundle+ECCommandLine.m in Sources */,
 				22381E021A6C2FF0000AD60A /* ECCommandLineCommand.m in Sources */,
 				22381E081A6C2FFA000AD60A /* ECCommandLineEngine.m in Sources */,
 				22381E071A6C2FFA000AD60A /* ECCommandLineResult.m in Sources */,
@@ -535,9 +549,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22035DE61EA7A3C2003920FA /* NSDictionary+ECCommandLine.m in Sources */,
 				229628FB17634465008D887F /* ECCommandLineEngine.m in Sources */,
 				2230CDA5176366AA0026AA5E /* ECCommandLineCommand.m in Sources */,
 				2230CDAF17637D970026AA5E /* ECCommandLineOption.m in Sources */,
+				22035DE21EA7A3C2003920FA /* NSBundle+ECCommandLine.m in Sources */,
 				22664DFB1763AD6500D6439D /* ECCommandLineResult.m in Sources */,
 				2207E4C9176875520003F042 /* ECCommandLineMain.m in Sources */,
 				22664DFF1763AF2600D6439D /* ECCommandLineMissingClassCommand.m in Sources */,
