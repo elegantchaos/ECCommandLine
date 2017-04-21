@@ -10,9 +10,6 @@
 
 int main(int argc, const char * argv[])
 {
-	CGFloat r = [ECRandom randomDoubleFromZeroTo:1.0]; // helpfully, the linker won't link in the ECCore framework if we only use categories from it - so lets use an actual function
-	(void)r;
-	
 	int result;
 	@autoreleasepool {
 		
