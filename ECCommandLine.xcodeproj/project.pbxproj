@@ -503,6 +503,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${ECLOGGING_SCRIPT_PATH}/package-mac-static-library.sh";
+			showEnvVarsInLog = 0;
 		};
 		22D0BF011AF1748600AE043D /* Update Version */ = {
 			isa = PBXShellScriptBuildPhase;
