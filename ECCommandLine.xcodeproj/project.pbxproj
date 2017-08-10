@@ -53,11 +53,9 @@
 		22C4FB391791C56A00F33FB2 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C4FB381791C56A00F33FB2 /* Tests.m */; };
 		22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */; };
 		22C775F71D107F2D007FDD5D /* Help.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C775F61D107F2D007FDD5D /* Help.txt */; };
-		22C8B768182D3C71003EA301 /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2230CDA717636BE30026AA5E /* libECLogging.a */; };
 		22D0BEFF1AF1742A00AE043D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEF31AF173CE00AE043D /* main.m */; };
 		22D0BF001AF1744600AE043D /* ECCommandLineExampleCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEEF1AF173CE00AE043D /* ECCommandLineExampleCommand.m */; };
 		22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296287117621E33008D887F /* libECCommandLine.a */; };
-		22D0BF041AF174B200AE043D /* libECLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D0BF031AF174B200AE043D /* libECLogging.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +90,6 @@
 		220EF34D17F42FBE00F5FA8A /* ECCommandLineEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineEngineDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineCommand.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineCommand.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2230CDA717636BE30026AA5E /* libECLogging.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libECLogging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2230CDAC17637D970026AA5E /* ECCommandLineOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ECCommandLineOption.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2230CDAD17637D970026AA5E /* ECCommandLineOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ECCommandLineOption.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		22381DE91A6C2FA9000AD60A /* ECCommandLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ECCommandLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +133,6 @@
 		22D0BEF21AF173CE00AE043D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22D0BEF31AF173CE00AE043D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22D0BEF81AF173DF00AE043D /* ECCommandLineExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ECCommandLineExample; sourceTree = BUILT_PRODUCTS_DIR; };
-		22D0BF031AF174B200AE043D /* libECLogging.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libECLogging.a; path = ../ECLogging/build/Debug/libECLogging.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +148,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C8B768182D3C71003EA301 /* libECLogging.a in Frameworks */,
 				22C4FB341791C4CD00F33FB2 /* libECCommandLine.a in Frameworks */,
 				22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */,
 			);
@@ -169,7 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D0BF041AF174B200AE043D /* libECLogging.a in Frameworks */,
 				22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,13 +200,11 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22D0BF031AF174B200AE043D /* libECLogging.a */,
 				22381E141A6C3101000AD60A /* ECLogging.framework */,
 				22C8B76B182D3CB8003EA301 /* IOKit.framework */,
 				22C4FB3E1791C5C000F33FB2 /* Cocoa.framework */,
 				22C4FB3C1791C5AB00F33FB2 /* ECLogging.framework */,
 				22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */,
-				2230CDA717636BE30026AA5E /* libECLogging.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
