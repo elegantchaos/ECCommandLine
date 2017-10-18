@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		038F13B81F97604D000E8967 /* ECCommandLineEngineIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 038F13B71F97604D000E8967 /* ECCommandLineEngineIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		22035DE01EA7A3C2003920FA /* NSBundle+ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 22035DDC1EA7A3C2003920FA /* NSBundle+ECCommandLine.h */; };
 		22035DE11EA7A3C2003920FA /* NSBundle+ECCommandLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 22035DDC1EA7A3C2003920FA /* NSBundle+ECCommandLine.h */; };
 		22035DE21EA7A3C2003920FA /* NSBundle+ECCommandLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 22035DDD1EA7A3C2003920FA /* NSBundle+ECCommandLine.m */; };
@@ -81,6 +82,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		038F13B71F97604D000E8967 /* ECCommandLineEngineIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommandLineEngineIO.h; sourceTree = "<group>"; };
 		22035DDC1EA7A3C2003920FA /* NSBundle+ECCommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ECCommandLine.h"; sourceTree = "<group>"; };
 		22035DDD1EA7A3C2003920FA /* NSBundle+ECCommandLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ECCommandLine.m"; sourceTree = "<group>"; };
 		22035DDE1EA7A3C2003920FA /* NSDictionary+ECCommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ECCommandLine.h"; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		22CA555E13DA09FF007E89E2 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				038F13B71F97604D000E8967 /* ECCommandLineEngineIO.h */,
 				2230CDA2176366AA0026AA5E /* ECCommandLineCommand.h */,
 				2230CDA3176366AA0026AA5E /* ECCommandLineCommand.m */,
 				229628F517634465008D887F /* ECCommandLineEngine.h */,
@@ -335,6 +338,7 @@
 				2230CDA4176366AA0026AA5E /* ECCommandLineCommand.h in Headers */,
 				2230CDAE17637D970026AA5E /* ECCommandLineOption.h in Headers */,
 				22664DFA1763AD6500D6439D /* ECCommandLineResult.h in Headers */,
+				038F13B81F97604D000E8967 /* ECCommandLineEngineIO.h in Headers */,
 				22664DFE1763AF2600D6439D /* ECCommandLineMissingClassCommand.h in Headers */,
 				225DECC617649ADE000056F4 /* ECCommandLineHelpCommand.h in Headers */,
 			);
@@ -426,16 +430,20 @@
 				TargetAttributes = {
 					22381DE81A6C2FA9000AD60A = {
 						CreatedOnToolsVersion = 6.1.1;
+						ProvisioningStyle = Manual;
 					};
 					2283A3F414F52EC0009142F7 = {
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 					};
 					2296287017621E33008D887F = {
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 					};
 					22D0BEF71AF173DF00AE043D = {
 						CreatedOnToolsVersion = 6.3;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
