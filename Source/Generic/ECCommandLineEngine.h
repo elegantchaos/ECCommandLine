@@ -6,15 +6,13 @@
 
 #import "ECCommandLineResult.h"
 #import "ECCommandLineEngineDelegate.h"
-#import "ECCommandLineEngineIO.h"
 
 //ECDeclareDebugChannel(CommandLineEngineChannel);
 
 @class ECCommandLineCommand;
 @class ECCommandLineOption;
 
-
-@interface ECCommandLineEngine : NSObject <ECCommandLineEngineIO>
+@interface ECCommandLineEngine : NSObject <ECIODelegate>
 
 @property (strong, nonatomic, readonly) NSString* name;
 @property (strong, nonatomic) id<ECCommandLineEngineDelegate> delegate;
