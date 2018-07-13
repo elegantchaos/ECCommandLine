@@ -57,7 +57,6 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
 	return self;
 }
 
-ECDefineDebugChannel(CommandLineEngineChannel);
 
 #pragma mark - Commands
 
@@ -74,7 +73,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	ECCommandLineCommand* command = [ECCommandLineCommand commandWithName:mainName info:info parentCommand:parentCommand];
 	for (NSString* name in names)
 	{
-		ECDebug(CommandLineEngineChannel, @"registered command %@", name);
 		dictionary[name] = command;
 	}
 }
@@ -90,7 +88,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 
 - (void)registerOptionNamed:(NSString*)name withInfo:(NSDictionary*)info
 {
-	ECDebug(CommandLineEngineChannel, @"registered option %@", name);
 
 	ECCommandLineOption* option = [ECCommandLineOption optionWithName:name info:info];
 	self.options[name] = option;
@@ -161,7 +158,6 @@ ECDefineDebugChannel(CommandLineEngineChannel);
 	if (!value)
 		value = @(YES);
 
-	ECDebug(CommandLineEngineChannel, @"option %@ = %@", option.name, value);
 	option.value = value;
 }
 
