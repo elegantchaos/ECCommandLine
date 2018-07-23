@@ -1,2 +1,5 @@
+ZTRACE_ECCOMMANDLINEEXAMPLEDEBUG = 146
+ZTRACE_PATH = $(inherited)_146
+
 #include "../ECLogging/Source/Configuration/ECMacDebug.xcconfig"
 #include "ECCommandLineExample.xcconfig"

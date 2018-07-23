@@ -1,3 +1,6 @@
+ZTRACE_ECCOMMANDLINEEXAMPLE = 145
+ZTRACE_PATH = $(inherited)_145
+
 #include "../ECLogging/Source/Configuration/ECMacCommandLine.xcconfig"
 
 OTHER_LDFLAGS = -ObjC -sectcreate __TEXT __info_plist $(TEMP_DIR)/Info.plist
