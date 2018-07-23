@@ -1,7 +1,7 @@
 module ECCommandLine {
   umbrella header "ECCommandLine.h"
 
-  config_macros [exhaustive] EC_DEBUG, EC_RELEASE
+  config_macros [exhaustive] BC_DEBUG, BC_RELEASE
 
   export *
   module * { export * }

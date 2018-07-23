@@ -396,9 +396,7 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
 	[self outputError:error];
 }
 
-- (void)outputError:(NSError *)error
-{
-	ECAssertNonNil(error);
+- (void)outputError:(NSError *)error {
 
 	NSError* underlying = [error userInfo][NSUnderlyingErrorKey];
 	NSString* reason = error.localizedDescription ?: error.localizedFailureReason;
