@@ -6,6 +6,7 @@
 
 #import "ECCommandLineResult.h"
 #import "ECCommandLineEngineDelegate.h"
+@import ECLogging;
 
 @class ECCommandLineCommand;
 @class ECCommandLineOption;

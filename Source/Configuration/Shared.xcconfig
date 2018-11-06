@@ -7,3 +7,5 @@ ZTRACE_PATH = $(inherited)_151
 //  liberal license: http://www.elegantchaos.com/license/liberal
 // --------------------------------------------------------------------------
 
+// Stop compiling the PCH header
+GCC_PREFIX_HEADER = 
