@@ -7,6 +7,7 @@
 //
 
 #import "ECCommandLineExampleCommand.h"
+@import ECCommandLine.ECCommandLineEngine;
 
 @implementation ECCommandLineExampleCommand
 
