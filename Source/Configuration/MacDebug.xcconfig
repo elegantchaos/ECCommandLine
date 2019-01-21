@@ -13,3 +13,5 @@ ZTRACE_PATH = $(inherited)_150
 #include "../ECLogging/Source/Configuration/ECMacDebug.xcconfig"
 #include "../ECLogging/Source/Configuration/ECFramework.xcconfig"
 #include "Shared.xcconfig"
+
+MODULEMAP_FILE = 
