@@ -9,3 +9,6 @@ ZTRACE_PATH = $(inherited)_151
 
 // Stop compiling the PCH header
 GCC_PREFIX_HEADER = 
+
+// Don't use the module map until we can figure out how to get working.
+MODULEMAP_FILE =
