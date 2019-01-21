@@ -49,13 +49,13 @@
 		229628F817634465008D887F /* ECCommandLineEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 229628F517634465008D887F /* ECCommandLineEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		229628FB17634465008D887F /* ECCommandLineEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 229628F617634465008D887F /* ECCommandLineEngine.m */; };
 		22C2DB5E14FB9ADC005D2E89 /* Test.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22C2DB5D14FB9ADC005D2E89 /* Test.bundle */; };
-		22C4FB341791C4CD00F33FB2 /* libECCommandLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296287117621E33008D887F /* libECCommandLine.a */; };
 		22C4FB391791C56A00F33FB2 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C4FB381791C56A00F33FB2 /* Tests.m */; };
 		22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C4FB3A1791C59D00F33FB2 /* ECUnitTests.framework */; };
 		22C775F71D107F2D007FDD5D /* Help.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22C775F61D107F2D007FDD5D /* Help.txt */; };
 		22D0BEFF1AF1742A00AE043D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEF31AF173CE00AE043D /* main.m */; };
 		22D0BF001AF1744600AE043D /* ECCommandLineExampleCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0BEEF1AF173CE00AE043D /* ECCommandLineExampleCommand.m */; };
-		22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296287117621E33008D887F /* libECCommandLine.a */; };
+		430E026C21F5ED5600B3E784 /* ECCommandLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22381DE91A6C2FA9000AD60A /* ECCommandLine.framework */; };
+		430E026D21F5ED6800B3E784 /* ECCommandLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22381DE91A6C2FA9000AD60A /* ECCommandLine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,7 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				225F21FF1F3C72040030878E /* ECLogging.framework in Frameworks */,
-				22C4FB341791C4CD00F33FB2 /* libECCommandLine.a in Frameworks */,
+				430E026C21F5ED5600B3E784 /* ECCommandLine.framework in Frameworks */,
 				22C4FB3B1791C59D00F33FB2 /* ECUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D0BF021AF174AA00AE043D /* libECCommandLine.a in Frameworks */,
+				430E026D21F5ED6800B3E784 /* ECCommandLine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

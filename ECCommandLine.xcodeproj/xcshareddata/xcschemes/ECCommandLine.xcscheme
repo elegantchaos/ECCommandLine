@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "228CF1E817562478003E1D25"
-               BuildableName = "libECLogging.a"
-               BlueprintName = "ECLoggingMacStatic"
+               BlueprintIdentifier = "2251B9FE15DBCC3E00F2FE40"
+               BuildableName = "ECLogging.framework"
+               BlueprintName = "ECLoggingMac"
                ReferencedContainer = "container:../ECLogging/ECLogging.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2296287017621E33008D887F"
-               BuildableName = "libECCore.a"
-               BlueprintName = "ECCoreMacStatic"
-               ReferencedContainer = "container:../ECCore/ECCore.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2296287017621E33008D887F"
-               BuildableName = "libECCommandLine.a"
-               BlueprintName = "ECCommandLineStatic"
+               BlueprintIdentifier = "22381DE81A6C2FA9000AD60A"
+               BuildableName = "ECCommandLine.framework"
+               BlueprintName = "ECCommandLine"
                ReferencedContainer = "container:ECCommandLine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
