@@ -23,6 +23,7 @@ typedef void(^ArgumentBlock)(NSString* name, ECCommandLineArgumentMode mode, Uni
 @property (readonly, nonatomic) NSString* name;
 @property (readonly, nonatomic) NSArray* arguments;
 @property (readonly, nonatomic) ECCommandLineCommand* parentCommand;
+@property (readonly, nonatomic, getter=isHidden) BOOL hidden;
 
 + (ECCommandLineCommand*)commandWithName:(NSString*)name info:(NSDictionary*)info parentCommand:(ECCommandLineCommand*)parentCommand;
 

@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOptionMode)
 
 @property (readonly, nonatomic) NSString* name;
 @property (strong, nonatomic) id value;
+@property (readonly, nonatomic, getter=isHidden) BOOL hidden;
 
 + (ECCommandLineOption*)optionWithName:(NSString*)name info:(NSDictionary*)info;
 
