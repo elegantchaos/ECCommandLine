@@ -84,6 +84,10 @@
 	return self.info[@"help"];
 }
 
+- (BOOL)isHidden {
+	return [self.info[@"hidden"] boolValue];
+}
+
 - (NSString*)summaryAs:(NSString*)name parentName:(NSString*)parentName
 {
 	NSString* fullName = parentName ? [NSString stringWithFormat:@"%@ %@", parentName, name] : name;
@@ -95,7 +99,9 @@
 		[result appendString:@"\n"];
 		for (ECCommandLineCommand* subcommand in sortedSubcommands)
 		{
-			[result appendFormat:@"%@", [subcommand summaryAs:subcommand.name parentName:fullName]];
+			if (!subcommand.isHidden) {
+				[result appendFormat:@"%@", [subcommand summaryAs:subcommand.name parentName:fullName]];
+			}
 		}
 		[result appendString:@"\n"];
 	}

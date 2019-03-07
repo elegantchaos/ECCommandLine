@@ -458,14 +458,16 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
 	NSString* padding = [@"" stringByPaddingToLength:paddingLength withString:@" " startingAtIndex:0];
 	NSMutableString* string = [NSMutableString stringWithString:padding];
 	[self.options enumerateKeysAndObjectsUsingBlock:^(NSString* name, ECCommandLineOption* option, BOOL* stop) {
-		NSString* optionString = [NSString stringWithFormat:@" [%@ | %@]", option.longUsage, option.shortUsage];
-		if ([string length] + [optionString length] > 70)
-		{
-			[self outputFormat:@"%@\n", string];
-			[string setString:padding];
-		}
+		if (!option.isHidden) {
+			NSString* optionString = [NSString stringWithFormat:@" [%@ | %@]", option.longUsage, option.shortUsage];
+			if ([string length] + [optionString length] > 70)
+			{
+				[self outputFormat:@"%@\n", string];
+				[string setString:padding];
+			}
 
-		[string appendString:optionString];
+			[string appendString:optionString];
+		}
 	}];
 	[self outputFormat:@"%@\n", string];
 
@@ -473,7 +475,9 @@ typedef NS_ENUM(NSUInteger, ECCommandLineOutputMode)
 	NSArray* sortedCommands = [ECCommandLineEngine commandsInDisplayOrder:self.commands];
 	for (ECCommandLineCommand* command in sortedCommands)
 	{
-		[self outputFormat:@"%@", [command summaryAs:command.name parentName:nil]];
+		if (!command.isHidden) {
+			[self outputFormat:@"%@", [command summaryAs:command.name parentName:nil]];
+		}
 	};
 
 	[self outputFormat:@"\n\nSee ‘%@ help <command>’ for more information on a specific command.\n", self.name];

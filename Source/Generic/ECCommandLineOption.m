@@ -73,6 +73,10 @@
 	return result;
 }
 
+- (BOOL)isHidden {
+	return [self.info[@"hidden"] boolValue];
+}
+
 - (NSString*)longUsage
 {
 	NSString* result = [NSString stringWithFormat:@"--%@", self.name];
