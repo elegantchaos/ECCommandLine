@@ -13,5 +13,3 @@ GCC_PREFIX_HEADER =
 // Don't use the module map until we can figure out how to get working.
 MODULEMAP_FILE =
 
-CODE_SIGN_IDENTITY = Developer ID Application
-DEVELOPMENT_TEAM = WUGMZZ5K46
